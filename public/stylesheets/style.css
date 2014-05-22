@@ -1,0 +1,44 @@
+body {background:url(/images/bg_main.png);}
+
+.navbar-default {background:#fff;border-bottom:2px solid #eaeaea;border-top:4px solid #E62534;}
+
+.action-form {display:none;width:450px;background:#eee;padding:20px 28px 1px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;box-shadow:0 0 0 3px #001A25;}
+.navbar-default .navbar-brand {font-size:3em;color:#fff;display:block;padding:23px;background:#E62534;height:auto;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}
+.navbar-brand, .btn {font-family:'Gafata', sans-serif;}
+.navbar-nav {padding-top:7px;}
+.navbar-nav > li {border-right:1px solid #eaeaea;}
+.btn {text-transform:uppercase;}
+
+.btn-default {background:#046971;color:#fff;}
+.btn-danger {background:#D70206;}
+.app-action-change, .app-action-change:hover {color:#D70206;}
+
+.navbar-default .navbar-nav>li>a:hover {color:#fff;}
+
+#add-gig {position:absolute;top:51px;}
+
+ul {margin:0;}
+#future-gigs li, #past-gigs li {width:350px;background:#001A25;list-style-type:none;display:inline-block;position:relative;box-shadow:0 0 10px #000;}
+
+.ticket-container {padding:40px 20px;margin:10px 0;background:#fff;margin:10px;}
+.event-detail {display:block;height:40px;}
+.event-detail label {display:none;}
+.booking-agent {display:block;padding:10px 20px;color:#fff;font-family:'Raleway', sans-serif;font-weight:800;font-size:1.8em;text-align:center;}
+
+/*-- Forms --*/
+/* Update Form */
+.static-value {display:inline-block;}
+.hidden-update {display:none;}
+
+/* Ticket */
+.date-sticker {display:block;padding:5px 10px;box-sizing:border-box;text-align:center;background:#E62534;}
+.date-sticker span {display:block;color:#fff;}
+.date-sticker .day {font-size:2em;background:#fff;color:#000;}
+.date-sticker .weekday {font-size:1.4em;color:#fff;}
+
+.display-date {position:absolute;top:0;right:0;}
+.gig-date {display:none;}
+
+.gig-stack {width:49%;display:inline-block;text-align:center;}
+
+.ticket-artist span {font-size:2em;}
