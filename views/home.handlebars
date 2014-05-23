@@ -1,9 +1,9 @@
 <section id="upcoming" class="gig-stack">
-	<h1>Upcoming gigs:</h1>
+	<h1>Dude! You're totally going to see:</h1>
 	<ul id="future-gigs">
 		{{#each gigs}}
 			{{#this.future}}
-				<li>
+				<li data-date="{{this.gig_date}}">
 					<span class="booking-agent">GigsterLtd.</span>
 					<div class="ticket-container">
 						<form method="POST" action="/update/{{this._id}}">
@@ -35,11 +35,11 @@
 	</ul>
 </section>
 <section id="past" class="gig-stack">
-	<h1>Past gigs:</h1>
+	<h1>You totally saw these guys:</h1>
 	<ul id="past-gigs">
 		{{#each gigs}}
 			{{^this.future}}
-				<li>
+				<li data-date="{{this.gig_date}}">
 					<span class="booking-agent">GigsterLtd.</span>
 					<div class="ticket-container">
 						<form method="POST" action="/update/{{this._id}}">
@@ -55,7 +55,7 @@
 							</div>
 							<div class="display-date">
 								<label class="hidden-update">Date:</label>
-								<span class="static-value">{{this.gig_date}}</span>							
+								<abbr>VOID: </abbr><span class="static-value past-date">{{this.gig_date}}</span>
 							</div>
 							<div class="event-detail gig-date">
 								<label>Date:</label>
@@ -63,7 +63,7 @@
 							</div>
 							<button class="hidden-update">Update</button>
 						</form>
-						 <a class="app-action-change" href="/delete/{{this._id}}">remove show</a> | <a class="app-action-change action-update" href="/update/{{this._id}}">update show</a>
+						 <!--<a class="app-action-change" href="/delete/{{this._id}}">remove show</a> | <a class="app-action-change action-update" href="/update/{{this._id}}">update show</a>-->
 					</div>
 				</li>
 

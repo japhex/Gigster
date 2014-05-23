@@ -94,9 +94,9 @@ app.use(passport.session());
  */
 // Load all snippets
 app.get('/', function (req, res) {
-	Gig.find(function (err, gigs) {
-  		res.render('home', { title : 'Home', gigs: gigs, user: req.user});
-	});
+	Gig.find().sort({gig_date: 'asc'}).execFind(function (err, gigs) {
+	  res.render('home', { title : 'Home', gigs: gigs, user: req.session.user});
+	});	
 });
 
 // POST REQUESTS
@@ -122,7 +122,7 @@ app.post('/update/:id', function (req, res) {
 });
 
 // Delete Gig
-app.post('/delete/:id', function (req, res) {
+app.get('/delete/:id', function (req, res) {
 	Gig.remove({_id: req.params.id}, function (err) {
 		res.redirect( '/' );
 	});

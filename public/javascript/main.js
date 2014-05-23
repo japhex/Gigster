@@ -2,8 +2,9 @@ var gigster = {} || gigster;
 
 gigster.dataCalls = {
 	artistLookup: function(){
+		// Call to Last.fm for autocomplete of bands and venues.
 		$('.lookup').on('click', $('div'), function(){
-			$.post(gigster.dataCalls.apiUrl('artist',$(this).prev().val()), function(data) {
+			$.post(this.apiUrl('artist',$(this).prev().val()), function(data) {
 				$('[name="artist"]').val(data.results.artistmatches.artist[0].name);
 			});
 			return false;
@@ -26,6 +27,24 @@ gigster.dataCalls = {
 			container.find('label').show();
 			return false;
 		});
+	},
+	loadBands: function(){
+		var collection = $('.ticket-artist span');
+
+		for (var i=0;i<collection.length;i++){
+			var band = $(collection[i]);
+
+			// Closure, bitch!
+			(function(band){
+				$.ajax({
+					url: 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + band.text() + ' logo',
+					dataType:'jsonp',
+				}).done(function(data) {
+					$('<img src=' + data.responseData.results[0].unescapedUrl + ' class="band-logo" />').insertAfter(band);
+					band.hide();
+				});
+			})(band);
+		}
 	}
 };
 
@@ -57,12 +76,18 @@ gigster.utilities = {
 			dateString = "";
 
 		for (var i=0;i<dates.length;i++){
-			dateString = "<div class='date-sticker'>";
-			dateString += "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + "</span>";
-			dateString += "<span class='day'>" + $(dates[i]).text().substring(8,11) + "</span>";
-			dateString += "<span class='month'>" + this.convertMonth($(dates[i]).text().substring(4,7)) + "</span>";
-			dateString += "</div>";
-
+			if ($(dates[i]).hasClass('past-date')){
+				dateString = "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + "</span>";
+				dateString += "<span class='day'> " + $(dates[i]).text().substring(8,11) + "</span>";
+				dateString += "<span class='month'>" + $(dates[i]).text().substring(4,7) + "</span>";
+				dateString += "<span class='year'> " + $(dates[i]).text().substring(13,15) + "</span>";
+			} else {
+				dateString = "<div class='date-sticker'>";
+				dateString += "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + "</span>";
+				dateString += "<span class='day'>" + $(dates[i]).text().substring(8,11) + "</span>";
+				dateString += "<span class='month'>" + this.convertMonth($(dates[i]).text().substring(4,7)) + "</span>";
+				dateString += "</div>";
+			}
 			$(dates[i]).html(dateString);
 		}
 	},
@@ -78,22 +103,13 @@ $(function (){
 	gigster.dataCalls.artistLookup();
 	gigster.internalApiCalls.gigSubmit();
 	gigster.dataCalls.update();
+	gigster.dataCalls.loadBands();
 	gigster.utilities.actionForm();
     $('.datepicker').datepicker();
     $('[name="gig_date"]').datepicker();
 }());
 
 // var snipit = {} || snipit;
-
-// snipit.utilities = {
-// 	toggle: function(){
-// 		$('[data-toggle]').on('click', $('a'), function(){
-// 			var toggleTarget = $(this).data('toggle');
-// 			$('#' + toggleTarget).toggle();
-// 			return false;
-// 		});
-// 	}
-// };
 
 // snipit.data = {
 // 	retrieveSnip: function(){

@@ -1,29 +1,41 @@
 body {background:url(/images/bg_main.png);}
 
+h1 {margin-top:0;}
+
+header {position:fixed;width:100%;z-index:4;}
+
 .navbar-default {background:#fff;border-bottom:2px solid #eaeaea;border-top:4px solid #E62534;}
 
-.action-form {display:none;width:450px;background:#eee;padding:20px 28px 1px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;box-shadow:0 0 0 3px #001A25;}
-.navbar-default .navbar-brand {font-size:3em;color:#fff;display:block;padding:23px;background:#E62534;height:auto;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}
+.action-form {display:none;width:450px;background:#fff;padding:20px 28px 1px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;border:2px solid #eaeaea;}
+.navbar-default .navbar-brand {font-size:3em;color:#fff;display:block;padding:23px 23px 34px 23px;background:#E62534;height:auto;line-height:9px;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}
 .navbar-brand, .btn {font-family:'Gafata', sans-serif;}
 .navbar-nav {padding-top:7px;}
 .navbar-nav > li {border-right:1px solid #eaeaea;}
+.navbar-nav>li>a:hover {color:#666;}
 .btn {text-transform:uppercase;}
 
-.btn-default {background:#046971;color:#fff;}
+.btn-default {background:#eaeaea;color:#666;}
 .btn-danger {background:#D70206;}
 .app-action-change, .app-action-change:hover {color:#D70206;}
 
 .navbar-default .navbar-nav>li>a:hover {color:#fff;}
 
-#add-gig {position:absolute;top:51px;}
+#add-gig {position:absolute;top:70px;z-index:2;left:161px;}
+
+#main {padding-top:80px;}
 
 ul {margin:0;}
-#future-gigs li, #past-gigs li {width:350px;background:#001A25;list-style-type:none;display:inline-block;position:relative;box-shadow:0 0 10px #000;}
+#future-gigs li, #past-gigs li {width:300px;background:#001A25;list-style-type:none;display:inline-block;position:relative;box-shadow:0 0 10px #000;margin-bottom:20px;border-right:3px dashed #fff;}
+#future-gigs li:first-child, #past-gigs li:first-child {width:350px;}
+#future-gigs li:after {content:'VOID IF TORN';width:100px;display:block;height:100%;background:#001A25;position:absolute;top:0;right:-103px;color:#fff;padding:150px 10px 0 10px;box-shadow:0 0 10px #000;}
+#past-gigs .display-date {position:static;color:#E62534;border:1px dashed #E62534;display:inline-block;padding:8px;font-family:'Rock Salt';-webkit-transform:rotate(-30deg);}
+
 
 .ticket-container {padding:40px 20px;margin:10px 0;background:#fff;margin:10px;}
 .event-detail {display:block;height:40px;}
 .event-detail label {display:none;}
-.booking-agent {display:block;padding:10px 20px;color:#fff;font-family:'Raleway', sans-serif;font-weight:800;font-size:1.8em;text-align:center;}
+.event-detail.ticket-artist {height:auto;}
+.booking-agent {display:block;padding:10px 20px;color:#fff;font-family:'Raleway', sans-serif;font-weight:800;font-size:1em;text-align:center;}
 
 /*-- Forms --*/
 /* Update Form */
@@ -31,14 +43,16 @@ ul {margin:0;}
 .hidden-update {display:none;}
 
 /* Ticket */
-.date-sticker {display:block;padding:5px 10px;box-sizing:border-box;text-align:center;background:#E62534;}
+.date-sticker {display:block;padding:5px 10px;box-sizing:border-box;text-align:center;background:#E62534;width:100px;}
 .date-sticker span {display:block;color:#fff;}
 .date-sticker .day {font-size:2em;background:#fff;color:#000;}
 .date-sticker .weekday {font-size:1.4em;color:#fff;}
 
-.display-date {position:absolute;top:0;right:0;}
+.display-date {position:absolute;top:0;right:-103px;z-index:3;}
 .gig-date {display:none;}
 
-.gig-stack {width:49%;display:inline-block;text-align:center;}
+.gig-stack {width:49%;display:inline-block;text-align:center;vertical-align:top;}
 
 .ticket-artist span {font-size:2em;}
+
+.band-logo {display:inline-block;max-height:50px;max-width:200px;}
