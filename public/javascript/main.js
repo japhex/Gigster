@@ -4,7 +4,7 @@ gigster.dataCalls = {
 	artistLookup: function(){
 		// Call to Last.fm for autocomplete of bands and venues.
 		$('.lookup').on('click', $('div'), function(){
-			$.post(this.apiUrl('artist',$(this).prev().val()), function(data) {
+			$.post(gigster.dataCalls.apiUrl('artist',$(this).prev().val()), function(data) {
 				$('[name="artist"]').val(data.results.artistmatches.artist[0].name);
 			});
 			return false;

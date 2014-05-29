@@ -1,6 +1,7 @@
 body {background:url(/images/bg_main.png);}
 
-h1 {margin-top:0;}
+h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-transform:rotate(-90deg);position:absolute;left:16px;top:100px;color:#E62534;font-family:'Gafata';border:1px solid #E62534;}
+#past h1 {left:58px;top:53px;}
 
 header {position:fixed;width:100%;z-index:4;}
 
@@ -20,9 +21,9 @@ header {position:fixed;width:100%;z-index:4;}
 
 .navbar-default .navbar-nav>li>a:hover {color:#fff;}
 
-#add-gig {position:absolute;top:70px;z-index:2;left:161px;}
+#add-gig {position:fixed;top:70px;z-index:2;left:161px;}
 
-#main {padding-top:80px;}
+#main {padding-top:100px;}
 
 ul {margin:0;}
 #future-gigs li, #past-gigs li {width:300px;background:#001A25;list-style-type:none;display:inline-block;position:relative;box-shadow:0 0 10px #000;margin-bottom:20px;border-right:3px dashed #fff;}
@@ -51,7 +52,7 @@ ul {margin:0;}
 .display-date {position:absolute;top:0;right:-103px;z-index:3;}
 .gig-date {display:none;}
 
-.gig-stack {width:49%;display:inline-block;text-align:center;vertical-align:top;}
+.gig-stack {width:49%;display:inline-block;text-align:center;vertical-align:top;position:relative;}
 
 .ticket-artist span {font-size:2em;}
 

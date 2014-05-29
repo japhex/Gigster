@@ -29,7 +29,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FacebookStrategy({
   clientID: "677577118944252",
   clientSecret: "13c52bf59b3519a7d61e61367917f43f",
-  callbackURL: 'http://gigster.pagekite.me/auth/facebook/callback'
+  callbackURL: 'https://scijsldpaf.localtunnel.me/auth/facebook/callback'
 }, function(accessToken, refreshToken, profile, done) {
   process.nextTick(function() {
     //Assuming user exists
@@ -76,10 +76,16 @@ var server = connect.createServer(
   connect.static(__dirname + '/public')
 );
 
+// Your own super cool function
+var consolelogger = function(req, res, next) {
+    console.log(req);
+    next(); // Passing the request to the next handler in the stack.
+}
+
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.logger());
+app.use(consolelogger);
 app.use(express.cookieParser("thissecretrocks"));
 app.use(express.bodyParser());
 app.use(express.methodOverride()); // must come after bodyParser
@@ -96,7 +102,8 @@ app.use(passport.session());
 app.get('/', function (req, res) {
 	Gig.find().sort({gig_date: 'asc'}).execFind(function (err, gigs) {
 	  res.render('home', { title : 'Home', gigs: gigs, user: req.session.user});
-	});	
+	});
+	console.log(req);
 });
 
 // POST REQUESTS
