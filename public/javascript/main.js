@@ -108,27 +108,3 @@ $(function (){
     $('.datepicker').datepicker();
     $('[name="gig_date"]').datepicker();
 }());
-
-// var snipit = {} || snipit;
-
-// snipit.data = {
-// 	retrieveSnip: function(){
-// 		$('.snip').on('click', $('#snippets'), function(){
-// 			$.get($(this).data('id'), function(data){
-// 				snipit.widgets.popup(data);
-// 			});
-// 		});
-// 	}
-// };
-
-// snipit.widgets = {
-// 	popup: function(data){
-// 		// Put in hogan templating to handle these!
-// 		$('body').append('<div class="popup">' + data.name + '</div>');
-// 	}
-// };
-
-// (function () {
-// 	snipit.utilities.toggle();
-// 	snipit.data.retrieveSnip();
-// }());

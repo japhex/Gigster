@@ -19,16 +19,6 @@
 						<li><a href="#">Gig Calendar</a></li>
 						<li><a href="#" data-action-form="add-gig">Attend a show</a></li>
 						<li><a href="#">Send gig request</a></li>
-						<li>
-							{{{user}}}
-							{{^user}}
-								<a href="/auth/facebook">Login with Facebook</a>
-							{{/user}}
-							{{#user}}
-								<a href="#">Hello, {{user.username}}.</a>
-							{{/user}}
-							#{{user.name}}
-						</li>
 					</ul>
 				</div>
 			</div>

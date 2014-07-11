@@ -10,32 +10,11 @@ var express = require('express'),
 	sass = require('node-sass'),
 	exphbs  = require('express3-handlebars'),
 	hbshelpers = require('handlebars-helpers'),
-	passport = require('passport'),
 	util = require('util'),
-	FacebookStrategy = require('passport-facebook').Strategy,
 	nib = require('nib'),
 	mongoose = require('mongoose');
 
 /* ------------------------- */
-
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
- 
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
-
-passport.use(new FacebookStrategy({
-  clientID: "677577118944252",
-  clientSecret: "13c52bf59b3519a7d61e61367917f43f",
-  callbackURL: 'https://scijsldpaf.localtunnel.me/auth/facebook/callback'
-}, function(accessToken, refreshToken, profile, done) {
-  process.nextTick(function() {
-    //Assuming user exists
-    done(null, profile);
-  });
-}));
 
 var app = express();
 
@@ -90,8 +69,6 @@ app.use(express.cookieParser("thissecretrocks"));
 app.use(express.bodyParser());
 app.use(express.methodOverride()); // must come after bodyParser
 app.use(express.cookieSession({ secret: 'thissecretrocks', cookie: { maxAge: 60000 } }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 /* ------------------------- */
 
@@ -101,7 +78,7 @@ app.use(passport.session());
 // Load all snippets
 app.get('/', function (req, res) {
 	Gig.find().sort({gig_date: 'asc'}).execFind(function (err, gigs) {
-	  res.render('home', { title : 'Home', gigs: gigs, user: req.session.user});
+	  res.render('home', { title : 'Home', gigs: gigs});
 	});
 	console.log(req);
 });
@@ -143,27 +120,6 @@ app.get('/gigs', function (req, res) {
 	});
 });
 
-// USER SHIT
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
-});
-
-app.get('/login', function(req, res){
-  res.render('login', { user: req.user });
-});
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
- 
-app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/',
-  failureRedirect: '/error'
-}));
-
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
 // WRITE API ACTION THAT GETS GIGS IN 2 LOTS. 
 // API CALL TO '/futureshows' WHICH MAKES SURE THE DATE IS GREATER THAN TODAYS DATE
 // API CALL TO '/pastshows' WHICH MAKES SURE THE DATE IS LESS THAN TODAYS DATE
@@ -198,38 +154,3 @@ var port = process.env.PORT || 5000;
 server.listen(port);
 app.listen(3000);
 /* ------------------------- */
-
-// Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
-
-app.dynamicHelpers({
-    user: function(req, res){
-        var roles, name;
-
-        if (req.session && req.session.auth == true) {
-            roles = ['member'];
-            name = (req.session.user) ? req.session.user.name : 'Registered member';
-            id = (req.session.user) ? req.session.user.id : 0;
-        }
-        else {
-            roles = ['guest'];
-            name = 'Guest';
-            id = null;
-        }
-
-        return {
-            name: name, 
-            id: id,
-            roles: roles,
-            isGuest: roles.indexOf('guest') !== -1,
-            isAdmin: roles.indexOf('admin') !== -1
-        }
-    }
-});
