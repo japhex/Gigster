@@ -1,7 +1,9 @@
 body {background:url(/images/bg_main.png);}
 
-h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-transform:rotate(-90deg);position:absolute;left:16px;top:100px;color:#E62534;font-family:'Gafata';border:1px solid #E62534;}
-#past h1 {left:58px;top:53px;}
+h1 {font-family:'Raleway';}
+
+.gig-stack h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-transform:rotate(-90deg);position:absolute;left:24px;top:100px;color:#E62534;font-family:'Gafata';border:1px solid #E62534;}
+#past h1 {left:66px;top:53px;}
 
 header {position:fixed;width:100%;z-index:4;}
 

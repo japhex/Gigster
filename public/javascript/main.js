@@ -40,7 +40,7 @@ gigster.dataCalls = {
 					url: 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + band.text() + ' logo',
 					dataType:'jsonp',
 				}).done(function(data) {
-					$('<img src=' + data.responseData.results[0].unescapedUrl + ' class="band-logo" />').insertAfter(band);
+					$('<img src=' + data.responseData.results[0].unescapedUrl + ' class="band-logo" alt="' + band.text() + '" title="' + band.text() + '" />').insertAfter(band);
 					band.hide();
 				});
 			})(band);

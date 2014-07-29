@@ -20,7 +20,15 @@
 						<li><a href="#">Gig Calendar</a></li>
 						<li><a href="#" data-action-form="add-gig">Attend a show</a></li>
 						<li><a href="#">Send gig request</a></li>
-						<li><a href="/auth/facebook"><span class="fa fa-facebook"></span> Facebook</a></li>
+						<li>
+							<a href="/auth/facebook">
+								<% if (user == undefined) { %>
+									<span class="fa fa-facebook"></span> Facebook
+								<%} else {%>
+									<span class="glyphicon glyphicon-user"></span> Profile
+								<% } %>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>

@@ -1,4 +1,5 @@
 var Gig = require('./models/gig.js');
+var User = require('./models/user.js');
 
 // app/routes.js
 module.exports = function(app, passport) {
@@ -7,15 +8,22 @@ module.exports = function(app, passport) {
 	// HOME PAGE (LOAD ALL GIGS) ===========
 	// =====================================
 	app.get('/', function (req, res) {
-		Gig.find().sort({gig_date: 'asc'}).exec(function (err, gigs) {
-		  res.render('home', { title : 'Home', gigs: gigs});
+		res.render('home', { 
+			title : 'Home', 
+			user : req.user
 		});
 	});
+
+	// --==--==--==--==--==--==--==--==--==--
+
+	// Gig API
+
+	// --==--==--==--==--==--==--==--==--==--
 
 	// =====================================
 	// CREATE NEW GIG ======================
 	// =====================================
-	app.post('/create', function (req, res) {
+	app.post('/create', isLoggedIn, function (req, res) {
 	    new Gig({
 	        name: req.body.name,
 	        artist: req.body.artist,
@@ -24,7 +32,9 @@ module.exports = function(app, passport) {
 	        future: req.body.future,
 	        created_date: Date.now()
 	    }).save(function(err, gig, count){
-	    	res.redirect( '/' );
+			User.findByIdAndUpdate(req.user._id, {$addToSet: {gigs: gig._id}}, function (err) {
+				res.redirect( '/profile' );
+			});
 		});
 	});
 
@@ -55,12 +65,59 @@ module.exports = function(app, passport) {
 		});
 	});	
 
+	// --==--==--==--==--==--==--==--==--==--
+
+	// Event API
+
+	// --==--==--==--==--==--==--==--==--==--
+
+	// =====================================
+	// CREATE NEW EVENT ====================
+	// =====================================
+	app.post('/createEvent', isLoggedIn, function (req, res) {
+	    new Event({
+	        name: req.body.name,
+	        artist: req.body.artist,
+	        venue: req.body.venue,
+	        gig_date: req.body.gigDate,
+	        future: req.body.future,
+	        created_date: Date.now()
+	    }).save(function(err, gig, count){
+			User.findByIdAndUpdate(req.user._id, {$addToSet: {gigs: gig._id}}, function (err) {
+				res.redirect( '/profile' );
+			});
+		});
+	});
+
+	// =====================================
+	// UPDATE AN EVENT (FIND BY ID) ========
+	// =====================================
+	app.post('/update/:id', function (req, res) {
+		Gig.findByIdAndUpdate(req.params.id, {artist:req.body.artist,venue:req.body.venue,gig_date:req.body.gig_date}, function (err) {
+			res.redirect( '/' );
+		});
+	});
+
+	// =====================================
+	// DELETE AN EVENT (FIND BY ID) ========
+	// =====================================
+	app.get('/delete/:id', function (req, res) {
+		Gig.remove({_id: req.params.id}, function (err) {
+			res.redirect( '/' );
+		});
+	});
+
+	// --==--==--==--==--==--==--==--==--==--
+
+	// User API
+
+	// --==--==--==--==--==--==--==--==--==--	
+
 	// =====================================
 	// LOGIN ===============================
 	// =====================================
 	// show the login form
 	app.get('/login', function(req, res) {
-
 		// render the page and pass in any flash data if it exists
 		res.render('login.ejs', { message: req.flash('loginMessage') });
 	});
@@ -95,8 +152,11 @@ module.exports = function(app, passport) {
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/profile', isLoggedIn, function(req, res) {
-		res.render('profile.ejs', {
-			user : req.user // get the user out of session and pass to template
+		Gig.find().sort({gig_date: -1}).where('_id').in(req.user.gigs).exec(function (err, records) {
+			res.render('profile.ejs', {
+				user : req.user, // get the user out of session and pass to template
+				gigStack : records
+			});
 		});
 	});
 
