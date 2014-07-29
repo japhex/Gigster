@@ -1,72 +1,84 @@
-<section id="upcoming" class="gig-stack">
-	<h1>upcoming</h1>
-	<ul id="future-gigs">
-		{{#each gigs}}
-			{{#this.future}}
-				<li data-date="{{this.gig_date}}">
+
+<% if (gigs[i].future)  {%>
+
+	<section id="upcoming" class="gig-stack">
+		<h1>upcoming</h1>
+		<ul id="future-gigs">
+
+			<% for(var i=0; i<gigs.length; i++) {%>
+
+				<li data-date="<%= gigs[i].gig_date %>">
 					<span class="booking-agent">GigsterLtd.</span>
 					<div class="ticket-container">
-						<form method="POST" action="/update/{{this._id}}">
+						<form method="POST" action="/update/<%= gigs[i]._id %>">
 							<div class="event-detail ticket-artist">
 								<label>Artist:</label>
-								<span class="static-value">{{this.artist}}</span>
-								<input value="{{this.artist}}" class="hidden-update" name="artist" />
+								<span class="static-value"><%= gigs[i].artist %></span>
+								<input value="<%= gigs[i].artist %>" class="hidden-update" name="artist" />
 							</div>
 							<div class="event-detail ticket-venue">
 								<label>Venue:</label>
-								<span class="static-value">{{this.venue}}</span>
-								<input value="{{this.venue}}" class="hidden-update" name="venue" />
+								<span class="static-value"><%= gigs[i].venue %></span>
+								<input value="<%= gigs[i].venue %>" class="hidden-update" name="venue" />
 							</div>
 							<div class="display-date">
 								<label class="hidden-update">Date:</label>
-								<span class="static-value">{{this.gig_date}}</span>							
+								<span class="static-value"><%= gigs[i].gig_date %></span>							
 							</div>
 							<div class="event-detail gig-date">
 								<label>Date:</label>
-								<input value="{{this.gig_date}}" class="hidden-update" name="gig_date" />
+								<input value="<%= gigs[i].gig_date %>" class="hidden-update" name="gig_date" />
 							</div>
 							<button class="hidden-update">Update</button>
 						</form>
-						 <a class="app-action-change" href="/delete/{{this._id}}">remove show</a> | <a class="app-action-change action-update" href="/update/{{this._id}}">update show</a>
+						 <a class="app-action-change" href="/delete/<%= gigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= gigs[i]._id %>">update show</a>
 					</div>
 				</li>
-			{{/this.future}}
-		{{/each}}
-	</ul>
-</section>
-<section id="past" class="gig-stack">
-	<h1>past</h1>
-	<ul id="past-gigs">
-		{{#each gigs}}
-			{{^this.future}}
-				<li data-date="{{this.gig_date}}">
+
+			<% } %>	
+
+		</ul>
+	</section>	
+
+<% } else { %>
+
+	<section id="past" class="gig-stack">
+		<h1>past</h1>
+		<ul id="past-gigs">
+
+			<% for(var i=0; i<gigs.length; i++) {%>
+
+				<li data-date="<%= gigs[i].gig_date %>">
 					<span class="booking-agent">GigsterLtd.</span>
 					<div class="ticket-container">
-						<form method="POST" action="/update/{{this._id}}">
+						<form method="POST" action="/update/<%= gigs[i]._id %>">
 							<div class="event-detail ticket-artist">
 								<label>Artist:</label>
-								<span class="static-value">{{this.artist}}</span>
-								<input value="{{this.artist}}" class="hidden-update" name="artist" />
+								<span class="static-value"><%= gigs[i].artist %></span>
+								<input value="<%= gigs[i].artist %>" class="hidden-update" name="artist" />
 							</div>
 							<div class="event-detail ticket-venue">
 								<label>Venue:</label>
-								<span class="static-value">{{this.venue}}</span>
-								<input value="{{this.venue}}" class="hidden-update" name="venue" />
+								<span class="static-value"><%= gigs[i].venue %></span>
+								<input value="<%= gigs[i].venue %>" class="hidden-update" name="venue" />
 							</div>
 							<div class="display-date">
 								<label class="hidden-update">Date:</label>
-								<abbr>VOID: </abbr><span class="static-value past-date">{{this.gig_date}}</span>
+								<abbr>VOID: </abbr><span class="static-value past-date"><%= gigs[i].gig_date %></span>
 							</div>
 							<div class="event-detail gig-date">
 								<label>Date:</label>
-								<input value="{{this.gig_date}}" class="hidden-update" name="gig_date" />
+								<input value="<%= gigs[i].gig_date %>" class="hidden-update" name="gig_date" />
 							</div>
 							<button class="hidden-update">Update</button>
 						</form>
 						 <!--<a class="app-action-change" href="/delete/{{this._id}}">remove show</a> | <a class="app-action-change action-update" href="/update/{{this._id}}">update show</a>-->
 					</div>
 				</li>
-			{{/this.future}}
-		{{/each}}
-	</ul>
-</section>
+
+			<% } %>
+
+		</ul>
+	</section>	
+				
+<% } %>

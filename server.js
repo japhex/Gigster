@@ -3,11 +3,17 @@
 // set up ======================================================================
 // get all the tools we need
 var express  = require('express');
+var engine = require('ejs-locals');
+var connect = require('connect');
 var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 var passport = require('passport');
+var sass = require('node-sass');
 var flash    = require('connect-flash');
+var	util = require('util');
+var	nib = require('nib');
+var serveStatic = require('serve-static');
 
 var configDB = require('./config/database.js');
 
@@ -15,6 +21,13 @@ var configDB = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
+app.use(express.logger('dev'));
+
+// SASS ========================================================================
+
+app.use(serveStatic(__dirname + '/public'));
+
+// app configuration ==========================================================
 
 app.configure(function() {
 
@@ -23,6 +36,7 @@ app.configure(function() {
 	app.use(express.cookieParser()); // read cookies (needed for auth)
 	app.use(express.bodyParser()); // get information from html forms
 
+	app.engine('ejs', engine);
 	app.set('view engine', 'ejs'); // set up ejs for templating
 
 	// required for passport

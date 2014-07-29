@@ -1,0 +1,86 @@
+<% layout('/layouts/main') -%>
+
+	<section id="upcoming" class="gig-stack">
+		<h1>upcoming</h1>
+		<ul id="future-gigs">
+
+			<% for(var i=0; i<gigs.length; i++) {%>
+				<% var currentDate = new Date(); %>
+				<% if (currentDate - gigs[i].gig_date < 0){ %>
+					<li data-date="<%= gigs[i].gig_date %>">
+						<span class="booking-agent">GigsterLtd.</span>
+						<div class="ticket-container">
+							<form method="POST" action="/update/<%= gigs[i]._id %>">
+								<div class="event-detail ticket-artist">
+									<label>Artist:</label>
+									<span class="static-value"><%= gigs[i].artist %></span>
+									<input value="<%= gigs[i].artist %>" class="hidden-update" name="artist" />
+								</div>
+								<div class="event-detail ticket-venue">
+									<label>Venue:</label>
+									<span class="static-value"><%= gigs[i].venue %></span>
+									<input value="<%= gigs[i].venue %>" class="hidden-update" name="venue" />
+								</div>
+								<div class="display-date">
+									<label class="hidden-update">Date:</label>
+									<span class="static-value"><%= gigs[i].gig_date %></span>							
+								</div>
+								<div class="event-detail gig-date">
+									<label>Date:</label>
+									<input value="<%= gigs[i].gig_date %>" class="hidden-update" name="gig_date" />
+								</div>
+								<button class="hidden-update">Update</button>
+							</form>
+							 <a class="app-action-change" href="/delete/<%= gigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= gigs[i]._id %>">update show</a>
+						</div>
+					</li>
+				<% }%>
+
+			<% } %>	
+
+		</ul>
+	</section>	
+
+
+
+	<section id="past" class="gig-stack">
+		<h1>past</h1>
+		<ul id="past-gigs">
+
+			<% for(var i=0; i<gigs.length; i++) {%>
+				<% var currentDate = new Date(); %>
+				<% if (currentDate - gigs[i].gig_date > 0){ %>
+					<li data-date="<%= gigs[i].gig_date %>">
+						<span class="booking-agent">GigsterLtd.</span>
+						<div class="ticket-container">
+							<form method="POST" action="/update/<%= gigs[i]._id %>">
+								<div class="event-detail ticket-artist">
+									<label>Artist:</label>
+									<span class="static-value"><%= gigs[i].artist %></span>
+									<input value="<%= gigs[i].artist %>" class="hidden-update" name="artist" />
+								</div>
+								<div class="event-detail ticket-venue">
+									<label>Venue:</label>
+									<span class="static-value"><%= gigs[i].venue %></span>
+									<input value="<%= gigs[i].venue %>" class="hidden-update" name="venue" />
+								</div>
+								<div class="display-date">
+									<label class="hidden-update">Date:</label>
+									<abbr>VOID: </abbr><span class="static-value past-date"><%= gigs[i].gig_date %></span>
+								</div>
+								<div class="event-detail gig-date">
+									<label>Date:</label>
+									<input value="<%= gigs[i].gig_date %>" class="hidden-update" name="gig_date" />
+								</div>
+								<button class="hidden-update">Update</button>
+							</form>
+							 <!--<a class="app-action-change" href="/delete/{{this._id}}">remove show</a> | <a class="app-action-change action-update" href="/update/{{this._id}}">update show</a>-->
+						</div>
+					</li>
+				<% } %>
+
+			<% } %>
+
+		</ul>
+	</section>	
+				

@@ -1,12 +1,59 @@
+var Gig = require('./models/gig.js');
+
 // app/routes.js
 module.exports = function(app, passport) {
 
 	// =====================================
-	// HOME PAGE (with login links) ========
+	// HOME PAGE (LOAD ALL GIGS) ===========
 	// =====================================
-	app.get('/', function(req, res) {
-		res.render('index.ejs'); // load the index.ejs file
+	app.get('/', function (req, res) {
+		Gig.find().sort({gig_date: 'asc'}).exec(function (err, gigs) {
+		  res.render('home', { title : 'Home', gigs: gigs});
+		});
 	});
+
+	// =====================================
+	// CREATE NEW GIG ======================
+	// =====================================
+	app.post('/create', function (req, res) {
+	    new Gig({
+	        name: req.body.name,
+	        artist: req.body.artist,
+	        venue: req.body.venue,
+	        gig_date: req.body.gigDate,
+	        future: req.body.future,
+	        created_date: Date.now()
+	    }).save(function(err, gig, count){
+	    	res.redirect( '/' );
+		});
+	});
+
+	// =====================================
+	// UPDATE A GIG (FIND BY ID) ===========
+	// =====================================
+	app.post('/update/:id', function (req, res) {
+		Gig.findByIdAndUpdate(req.params.id, {artist:req.body.artist,venue:req.body.venue,gig_date:req.body.gig_date}, function (err) {
+			res.redirect( '/' );
+		});
+	});
+
+	// =====================================
+	// DELETE A GIG (FIND BY ID) ===========
+	// =====================================
+	app.get('/delete/:id', function (req, res) {
+		Gig.remove({_id: req.params.id}, function (err) {
+			res.redirect( '/' );
+		});
+	});
+
+	// =====================================
+	// LOAD ALL GIGS =======================
+	// =====================================
+	app.get('/gigs', function (req, res) {
+		Gig.find(function (err, gigs) {
+			res.json({ title : 'Home', gigs: gigs});
+		});
+	});	
 
 	// =====================================
 	// LOGIN ===============================

@@ -6,6 +6,7 @@ h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-t
 header {position:fixed;width:100%;z-index:4;}
 
 .navbar-default {background:#fff;border-bottom:2px solid #eaeaea;border-top:4px solid #E62534;}
+.navbar-header {width:100%;}
 
 .action-form {display:none;width:450px;background:#fff;padding:20px 28px 1px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;border:2px solid #eaeaea;}
 .navbar-default .navbar-brand {font-size:3em;color:#fff;display:block;padding:23px 23px 34px 23px;background:#E62534;height:auto;line-height:9px;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}

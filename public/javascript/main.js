@@ -49,20 +49,6 @@ gigster.dataCalls = {
 };
 
 gigster.internalApiCalls = {
-	gigSubmit: function(){
-		$('[action="/create"]').submit(function(){
-			var currentDate = new Date(),
-				gigDate = $('[name="gigDate"]').datepicker('getDate');
-
-				// Compare dates to see if the show is in the past
-				if (currentDate - gigDate > 0){
-					$('[name="future"]').val('false');
-				} else {
-					$('[name="future"]').val('true');
-					alert('This gig date is in the future, so, you\'re planning on attending it and not letting anyone down, right?');
-				}
-		});
-	}
 };
 
 gigster.utilities = {
@@ -101,7 +87,6 @@ gigster.utilities = {
 $(function (){
 	gigster.utilities.formatDate();
 	gigster.dataCalls.artistLookup();
-	gigster.internalApiCalls.gigSubmit();
 	gigster.dataCalls.update();
 	gigster.dataCalls.loadBands();
 	gigster.utilities.actionForm();
