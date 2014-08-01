@@ -8,27 +8,26 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
 	<link href='http://fonts.googleapis.com/css?family=Gafata' rel='stylesheet' type='text/css' />
 	<link href='http://fonts.googleapis.com/css?family=Raleway:400,800|Rock+Salt:400,800' rel='stylesheet' type='text/css' />
-	<link href="stylesheets/style.css" rel="stylesheet" />
+	<link href="/stylesheets/style.css" rel="stylesheet" />
 </head>
 <body>
 	<header>
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<div class="nav navbar-header">
-					<a class="navbar-brand" href="#">gigster</a>
+					<a class="navbar-brand" href="/">gigster</a>
 					<ul class="nav navbar-nav">
 						<li><a href="#">Gig Calendar</a></li>
 						<li><a href="#" data-action-form="add-gig">Attend a show</a></li>
 						<li><a href="#">Send gig request</a></li>
-						<li>
-							<a href="/auth/facebook">
-								<% if (user == undefined) { %>
-									<span class="fa fa-facebook"></span> Facebook
-								<%} else {%>
-									<span class="glyphicon glyphicon-user"></span> Profile
-								<% } %>
-							</a>
-						</li>
+						<% if (user == undefined) { %>
+							<li><a href="/auth/facebook"><span class="fa fa-facebook"></span> Facebook</a>
+						<%} else {%>
+							<li>
+								<a href="/auth/facebook"><span class="glyphicon glyphicon-user"></span> Profile</a>
+							</li>
+							<li><a href="/logout"><span class="glyphicon glyphicon-eject"></span> Logout</a></li>
+						<% } %>
 					</ul>
 				</div>
 			</div>

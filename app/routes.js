@@ -114,6 +114,21 @@ module.exports = function(app, passport) {
 	// --==--==--==--==--==--==--==--==--==--	
 
 	// =====================================
+	// SHOW USER ===========================
+	// =====================================
+	app.get('/users/:username', function (req, res) {
+		User.findOne({username: req.params.username}, function (err, user) {
+			Gig.find().sort({gig_date: -1}).where('_id').in(user.gigs).exec(function (err, records) {
+				res.render('partials/user.ejs', { 
+					title : user.name,
+					user: user,
+					gigStack: records
+				});
+			});
+		});
+	});
+
+	// =====================================
 	// LOGIN ===============================
 	// =====================================
 	// show the login form
@@ -157,6 +172,19 @@ module.exports = function(app, passport) {
 				user : req.user, // get the user out of session and pass to template
 				gigStack : records
 			});
+		});
+	});
+
+	// =====================================
+	// UPDATE USER =========================
+	// =====================================
+	// we will want this protected so you have to be logged in to visit
+	// we will use route middleware to verify this (the isLoggedIn function)
+	app.post('/user/update/:id', isLoggedIn, function(req, res) {
+		User.findByIdAndUpdate(req.params.id, {
+			username : req.body.username
+		}, function (err) {
+			res.redirect( '/profile' );
 		});
 	});
 

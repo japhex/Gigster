@@ -1,5 +1,5 @@
+<h1>upcoming</h1>
 <section id="upcoming" class="gig-stack">
-	<h1>upcoming</h1>
 	<ul id="future-gigs">
 
 		<%
@@ -9,12 +9,13 @@
 			futureGigs.sort(function(a,b){
 			  return new Date(a.gig_date) - new Date(b.gig_date);
 			});
+			var freshSequence = 1;
 		%>
 
 		<% for(var i=0; i<futureGigs.length; i++) {%>
 			<% var currentDate = new Date(); %>
 			<% if (currentDate - futureGigs[i].gig_date < 0){ %>
-				<li data-date="<%= futureGigs[i].gig_date %>">
+				<li data-date="<%= futureGigs[i].gig_date %>" class="<%= freshSequence > 5 ? 'hide-gig' : ''%>">
 					<span class="booking-agent">GigsterLtd.</span>
 					<div class="ticket-container">
 						<form method="POST" action="/update/<%= futureGigs[i]._id %>">
@@ -30,7 +31,7 @@
 							</div>
 							<div class="display-date">
 								<label class="hidden-update">Date:</label>
-								<span class="static-value"><%= futureGigs[i].gig_date %></span>							
+								<span class="static-value"><%= futureGigs[i].gig_date %></span>
 							</div>
 							<div class="event-detail gig-date">
 								<label>Date:</label>
@@ -41,6 +42,7 @@
 						 <a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>">update show</a>
 					</div>
 				</li>
+				<% freshSequence++ %>
 			<% }%>
 
 		<% } %>	
@@ -48,8 +50,8 @@
 	</ul>
 </section>
 
+<h1>past</h1>
 <section id="past" class="gig-stack">
-	<h1>past</h1>
 	<ul id="past-gigs">
 
 		<%
@@ -59,12 +61,13 @@
 			pastGigs.sort(function(a,b){
 			  return new Date(b.gig_date) - new Date(a.gig_date);
 			});
+			var freshSequence = 1;
 		%>
 
 		<% for(var i=0; i<pastGigs.length; i++) {%>
 			<% var currentDate = new Date(); %>
 			<% if (currentDate - pastGigs[i].gig_date > 0){ %>
-				<li data-date="<%= pastGigs[i].gig_date %>">
+				<li data-date="<%= pastGigs[i].gig_date %>" class="<%= freshSequence > 5 ? 'hide-gig' : ''%>">
 					<span class="booking-agent">GigsterLtd.</span>
 					<div class="ticket-container">
 						<form method="POST" action="/update/<%= pastGigs[i]._id %>">
@@ -91,6 +94,7 @@
 						 <!--<a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= pastGigs[i]._id %>">update show</a>-->
 					</div>
 				</li>
+				<% freshSequence++ %>
 			<% } %>
 
 		<% } %>

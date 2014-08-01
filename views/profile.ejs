@@ -1,12 +1,46 @@
 <% layout('/layouts/main') -%>
 
+<!--
+	PROFILE TEMPLATE
+
+	The main profile page which shows each users gig list along with other features
+
+-->
 <div class="row panel panel-default">
   	<div class="panel-body">
-		<h1>Welcome <%= user.facebook.name %>, dude!</h1>
+		<h1>Welcome <%= user.username == undefined ? user.facebook.name : user.username %>, dude!</h1>
 		<p>We've got your registered email as <%= user.facebook.email %>, if that's wrong, change it <a href="#">here</a></p>
 		<p><%= gigStack.length > 0 ? 'You\'ve totally synced ' + gigStack.length + ' gigs!' : 'You have no gigs stored!' %></p>
 	</div>
 </div>
+
+<% if (user.username == undefined) { %>
+	<div class="row panel panel-warning">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-warning-sign"></span> Notification
+		</div>
+		<div class="panel-body">
+			<!--
+
+				Create username field. If username if null, before allowing them to continue, get them to create a unique username (or append with random string of characters and regex to bring it out?).
+
+				Use username in URL
+
+			-->		
+			<p>
+				Unlike other social media sites like Twitter, Facebook doesn't store a username against you, we require this to give you a nicer experience, if you wouldn't mind creating a username below, that would be awesome!
+			</p>
+			<form action="/user/update/<%= user._id %>" method="POST">
+				<label>
+					Username:
+				</label>
+				<input placeholder="username" name="username" />
+				<button type="submit">Update</button>
+			</form>
+		</div>
+	</div>					
+<% } else { %>
+<% }%>
 
 <!-- Render gig posts -->
 <% include partials/gigs.ejs %>	

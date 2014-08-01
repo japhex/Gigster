@@ -29,13 +29,15 @@ header {position:fixed;width:100%;z-index:4;}
 #main {padding-top:100px;}
 
 ul {margin:0;}
-#future-gigs li, #past-gigs li {width:300px;background:#001A25;list-style-type:none;display:inline-block;position:relative;box-shadow:0 0 10px #000;margin-bottom:20px;border-right:3px dashed #fff;}
+#future-gigs li, #past-gigs li {width:300px;background:#001A25;list-style-type:none;display:inline-block;position:relative;box-shadow:0 0 10px #000;margin:0 128px 20px 0;border-right:3px dashed #fff;}
 #future-gigs li:first-child, #past-gigs li:first-child {width:350px;}
-#future-gigs li:after {content:'VOID IF TORN';width:100px;display:block;height:100%;background:#001A25;position:absolute;top:0;right:-103px;color:#fff;padding:150px 10px 0 10px;box-shadow:0 0 10px #000;}
+#future-gigs li:last-child, #past-gigs li:last-child {margin-right:0;}
+#future-gigs li:after {content:'VOID IF TORN';width:100px;display:block;height:100%;background:#001A25;position:absolute;top:0;right:-103px;color:#fff;padding:150px 10px 0 10px;box-shadow:0 0 10px #000;text-align:center;}
 #past-gigs .display-date {position:static;color:#E62534;border:1px dashed #E62534;display:inline-block;padding:8px;font-family:'Rock Salt';-webkit-transform:rotate(-30deg);}
 
+#past-gigs li {margin-right:27px;}
 
-.ticket-container {padding:40px 20px;margin:10px 0;background:#fff;margin:10px;}
+.ticket-container {padding:40px 20px;margin:10px 0;background:#fff;margin:10px;text-align:center;}
 .event-detail {display:block;height:40px;}
 .event-detail label {display:none;}
 .event-detail.ticket-artist {height:auto;}
@@ -55,8 +57,13 @@ ul {margin:0;}
 .display-date {position:absolute;top:0;right:-103px;z-index:3;}
 .gig-date {display:none;}
 
-.gig-stack {width:49%;display:inline-block;text-align:center;vertical-align:top;position:relative;}
+.gig-stack {vertical-align:top;position:relative;overflow:hidden;width:100%;overflow-x:scroll;}
+.gig-stack ul {width:2218px;height:300px;box-shadow:inset 0 0 10px #000000;padding-top:20px;}
+#past-gigs {width:1718px;}
 
 .ticket-artist span {font-size:2em;}
 
 .band-logo {display:inline-block;max-height:50px;max-width:200px;}
+
+/* EUGH */
+.hide-gig {display:none !important;}

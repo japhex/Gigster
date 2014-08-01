@@ -92,4 +92,5 @@ $(function (){
 	gigster.utilities.actionForm();
     $('.datepicker').datepicker();
     $('[name="gig_date"]').datepicker();
+    $('.hide-gig').remove();
 }());
