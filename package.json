@@ -11,6 +11,7 @@
     "passport-twitter": "~1.0.2",
     "passport-google-oauth": "~0.1.5",
     "connect-flash": "~0.1.1",
+    "connect": "~2",
     "bcrypt-nodejs": "latest",
     "mongodb": "~1.4.7",
     "grunt": "~0.4.5",

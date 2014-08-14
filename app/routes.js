@@ -5,7 +5,7 @@ var User = require('./models/user.js');
 module.exports = function(app, passport) {
 
 	// =====================================
-	// HOME PAGE (LOAD ALL GIGS) ===========
+	// HOME PAGE ===========================
 	// =====================================
 	app.get('/', function (req, res) {
 		res.render('home', { 

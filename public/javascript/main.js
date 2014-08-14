@@ -5,6 +5,7 @@ gigster.dataCalls = {
 		// Call to Last.fm for autocomplete of bands and venues.
 		$('.lookup').on('click', $('div'), function(){
 			$.post(gigster.dataCalls.apiUrl('artist',$(this).prev().val()), function(data) {
+				console.log(data);
 				$('[name="artist"]').val(data.results.artistmatches.artist[0].name);
 			});
 			return false;
@@ -15,7 +16,7 @@ gigster.dataCalls = {
 			case 'artist':
 				return 'http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + params + '&api_key=87a726f5832926366bd09f6a3935d792&format=json';
 			case 'venue':
-				return 'http://ws.audioscrobbler.com/2.0/?method=venue.search&api_key=6de16c25e43a12240c4547fae1b18b13&venue=' + params + '&format=json';
+				return 'http://ws.audioscrobbler.com/2.0/?method=venue.search&api_key=87a726f5832926366bd09f6a3935d792&venue=' + params + '&format=json';
 		}
 	},
 	update: function(){
@@ -84,12 +85,34 @@ gigster.utilities = {
 	}
 };
 
+gigster.ui = {
+	popup: function(){
+		$('body').on('click', '[data-trigger="popup"]', function(){
+			var $popup = $('.popup'),
+				$shadow = $('<div class="popup-shadow" style="height:' + $(document).height() + 'px;"></div>');
+
+			$popup.css({
+				'left': ($(window).width() - $popup.width()) / 2 + 'px',
+				'top': ($(window).height() - $popup.height()) / 2 + 'px',
+			});
+			$shadow.appendTo('body').fadeIn();
+
+			// Clearing whenever we click anywhere on the body rather than delegating properly
+			$('body').on('click', $shadow,  function(){
+				$popup.hide();
+				$shadow.remove();
+			});
+		});
+	}
+};
+
 $(function (){
 	gigster.utilities.formatDate();
 	gigster.dataCalls.artistLookup();
 	gigster.dataCalls.update();
 	gigster.dataCalls.loadBands();
 	gigster.utilities.actionForm();
+	gigster.ui.popup();
     $('.datepicker').datepicker();
     $('[name="gig_date"]').datepicker();
     $('.hide-gig').remove();

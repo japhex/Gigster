@@ -10,7 +10,6 @@ header {position:fixed;width:100%;z-index:4;}
 .navbar-default {background:#fff;border-bottom:2px solid #eaeaea;border-top:4px solid #E62534;}
 .navbar-header {width:100%;}
 
-.action-form {display:none;width:450px;background:#fff;padding:20px 28px 1px;border-bottom-left-radius:10px;border-bottom-right-radius:10px;border:2px solid #eaeaea;}
 .navbar-default .navbar-brand {font-size:3em;color:#fff;display:block;padding:23px 23px 34px 23px;background:#E62534;height:auto;line-height:9px;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}
 .navbar-brand, .btn {font-family:'Gafata', sans-serif;}
 .navbar-nav {padding-top:7px;}
@@ -23,8 +22,6 @@ header {position:fixed;width:100%;z-index:4;}
 .app-action-change, .app-action-change:hover {color:#D70206;}
 
 .navbar-default .navbar-nav>li>a:hover {color:#fff;}
-
-#add-gig {position:fixed;top:70px;z-index:2;left:161px;}
 
 #main {padding-top:100px;}
 
@@ -54,16 +51,25 @@ ul {margin:0;}
 .date-sticker .day {font-size:2em;background:#fff;color:#000;}
 .date-sticker .weekday {font-size:1.4em;color:#fff;}
 
-.display-date {position:absolute;top:0;right:-103px;z-index:3;}
+.display-date {position:absolute;top:0;right:-103px;z-index:1;}
 .gig-date {display:none;}
 
 .gig-stack {vertical-align:top;position:relative;overflow:hidden;width:100%;overflow-x:scroll;}
-.gig-stack ul {width:2218px;height:300px;box-shadow:inset 0 0 10px #000000;padding-top:20px;}
-#past-gigs {width:1718px;}
+.gig-stack ul {width:2238px;height:300px;box-shadow:inset 0 0 10px #000000;padding-top:20px;}
+#past-gigs {width:1738px;}
 
 .ticket-artist span {font-size:2em;}
 
 .band-logo {display:inline-block;max-height:50px;max-width:200px;}
 
 /* EUGH */
-.hide-gig {display:none !important;}
+.hide-gig {display:none !important;} 
+
+/* Bootstrap Module Overrides */
+
+.panel-body h1 {margin-top:0;}
+
+/* Modules */
+
+.popup {position:fixed;padding:15px;box-shadow:0 0 10px #000;z-index:3;display:none;width:450px;background:#fff;border:2px solid #eaeaea;}
+.popup-shadow {width:100%;height:100%;position:absolute;background:#000;opacity:0.4;z-index:2;top:0;left:0;display:none;}

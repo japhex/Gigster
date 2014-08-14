@@ -8,9 +8,19 @@
 -->
 <div class="row panel panel-default">
   	<div class="panel-body">
-		<h1>Welcome <%= user.username == undefined ? user.facebook.name : user.username %>, dude!</h1>
-		<p>We've got your registered email as <%= user.facebook.email %>, if that's wrong, change it <a href="#">here</a></p>
-		<p><%= gigStack.length > 0 ? 'You\'ve totally synced ' + gigStack.length + ' gigs!' : 'You have no gigs stored!' %></p>
+  		<div class="row">
+  			<div class="col-md-6">
+				<h1>welcome <%= user.username == undefined ? user.facebook.name : user.username %>, dude!</h1>
+				<p><%= gigStack.length > 0 ? 'You\'ve totally synced ' + gigStack.length + ' gigs!' : 'You have no gigs stored!' %></p>
+			</div>
+			<div class="col-md-6">
+				<ul>
+					<li><strong>Name:</strong> <%= user.facebook.name %> <a href="#">edit</a></li>
+					<li><strong>Email:</strong> <%= user.facebook.email %> <a href="#">edit</a></li>
+					<li><strong>Username:</strong> <%= user.username %> <a href="#">edit</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -38,8 +48,7 @@
 				<button type="submit">Update</button>
 			</form>
 		</div>
-	</div>					
-<% } else { %>
+	</div>
 <% }%>
 
 <!-- Render gig posts -->
