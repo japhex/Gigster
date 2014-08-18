@@ -98,10 +98,10 @@ gigster.ui = {
 			$shadow.appendTo('body').fadeIn();
 
 			// Clearing whenever we click anywhere on the body rather than delegating properly
-			$('body').on('click', $shadow,  function(){
+			/*$('body').on('click', $shadow,  function(){
 				$popup.hide();
 				$shadow.remove();
-			});
+			});*/
 		});
 	}
 };

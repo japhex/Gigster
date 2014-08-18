@@ -43,7 +43,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.post('/update/:id', function (req, res) {
 		Gig.findByIdAndUpdate(req.params.id, {artist:req.body.artist,venue:req.body.venue,gig_date:req.body.gig_date}, function (err) {
-			res.redirect( '/' );
+			res.redirect( '/profile' );
 		});
 	});
 
