@@ -8,7 +8,7 @@ module.exports = function(app, passport) {
 	// HOME PAGE ===========================
 	// =====================================
 	app.get('/', function (req, res) {
-		res.render('home', { 
+		res.render('partials/_home.ejs', { 
 			title : 'Home', 
 			user : req.user
 		});
@@ -119,7 +119,7 @@ module.exports = function(app, passport) {
 	app.get('/users/:username', function (req, res) {
 		User.findOne({username: req.params.username}, function (err, user) {
 			Gig.find().sort({gig_date: -1}).where('_id').in(user.gigs).exec(function (err, records) {
-				res.render('partials/user.ejs', { 
+				res.render('partials/models/user/_viewUser.ejs', { 
 					title : user.name,
 					user: user,
 					gigStack: records

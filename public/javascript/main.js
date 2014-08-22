@@ -96,12 +96,11 @@ gigster.ui = {
 				'top': ($(window).height() - $popup.height()) / 2 + 'px',
 			});
 			$shadow.appendTo('body').fadeIn();
-
-			// Clearing whenever we click anywhere on the body rather than delegating properly
-			/*$('body').on('click', $shadow,  function(){
-				$popup.hide();
-				$shadow.remove();
-			});*/
+		});
+		// Clearing whenever we click anywhere on the body rather than delegating properly
+		$('body').on('click', $shadow,  function(){
+			$popup.hide();
+			$shadow.remove();
 		});
 	}
 };
