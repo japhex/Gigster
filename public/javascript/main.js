@@ -87,7 +87,7 @@ gigster.utilities = {
 
 gigster.ui = {
 	popup: function(){
-		$('body').on('click', '[data-trigger="popup"]', function(){
+		$('[data-trigger="popup"]').on('click', function(){
 			var $popup = $('.popup'),
 				$shadow = $('<div class="popup-shadow" style="height:' + $(document).height() + 'px;"></div>');
 
@@ -96,22 +96,29 @@ gigster.ui = {
 				'top': ($(window).height() - $popup.height()) / 2 + 'px',
 			});
 			$shadow.appendTo('body').fadeIn();
-		});
-		// Clearing whenever we click anywhere on the body rather than delegating properly
-		$('body').on('click', $shadow,  function(){
-			$popup.hide();
-			$shadow.remove();
+
+			// Clearing whenever we click anywhere on the body rather than delegating properly
+			$shadow.on('click', function(){
+				$popup.fadeOut("fast");
+				$shadow.fadeOut("fast", function(){
+					$shadow.remove();
+				});
+			});			
 		});
 	}
 };
 
 $(function (){
+	// gigster utility functions
 	gigster.utilities.formatDate();
+	gigster.utilities.actionForm();
+	// gigster data functions
 	gigster.dataCalls.artistLookup();
 	gigster.dataCalls.update();
 	gigster.dataCalls.loadBands();
-	gigster.utilities.actionForm();
+	// gigster ui functions
 	gigster.ui.popup();
+	// gigster plugin calls
     $('.datepicker').datepicker();
     $('[name="gig_date"]').datepicker();
     $('.hide-gig').remove();

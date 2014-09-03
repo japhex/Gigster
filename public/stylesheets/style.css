@@ -10,7 +10,7 @@ header {position:fixed;width:100%;z-index:4;}
 .navbar-default {background:#fff;border-bottom:2px solid #eaeaea;border-top:4px solid #E62534;}
 .navbar-header {width:100%;}
 
-.navbar-default .navbar-brand {font-size:3em;color:#fff;display:block;padding:23px 23px 34px 23px;background:#E62534;height:auto;line-height:9px;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}
+.navbar-default .navbar-brand {font-size:3em;/*color:#fff;*/display:block;padding:23px 23px 34px 23px;/*background:#E62534;*/height:auto;line-height:9px;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}
 .navbar-brand, .btn {font-family:'Gafata', sans-serif;}
 .navbar-nav {padding-top:7px;}
 .navbar-nav > li {border-right:1px solid #eaeaea;}
@@ -21,7 +21,9 @@ header {position:fixed;width:100%;z-index:4;}
 .btn-danger {background:#D70206;}
 .app-action-change, .app-action-change:hover {color:#D70206;}
 
-.navbar-default .navbar-nav>li>a:hover {color:#fff;}
+.navbar-default .navbar-nav>li>a:hover {color:#000;}
+
+.form-horizontal .form-group {margin:0;}
 
 #main {padding-top:100px;}
 
@@ -68,6 +70,9 @@ ul {margin:0;}
 /* Bootstrap Module Overrides */
 
 .panel-body h1 {margin-top:0;}
+.navbar-nav li {padding:15px;}
+.navbar-nav li a {padding:0;}
+.badge {background:#d9534f;}
 
 /* Modules */
 

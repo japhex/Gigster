@@ -17,7 +17,7 @@
 				<div class="nav navbar-header">
 					<a class="navbar-brand" href="/">gigster</a>
 					<ul class="nav navbar-nav">
-						<% if (user == undefined) { %>						
+						<% if (user == undefined) { %>
 							<li><a href="/auth/facebook"><span class="fa fa-facebook"></span> Facebook</a>
 						<%} else {%>
 							<li><a href="#">Gig Calendar</a></li>
@@ -26,9 +26,15 @@
 							<li>
 								<a href="/auth/facebook"><span class="glyphicon glyphicon-user"></span> Profile</a>
 							</li>
-							<li><a href="/logout"><span class="glyphicon glyphicon-eject"></span> Logout</a></li>
 						<% } %>
 					</ul>
+					<% if (user != undefined) { %>
+					<ul class="nav navbar-nav pull-right">
+						<li><a href="#" data-action-form="update-user" data-trigger="popup"><%= user.username == undefined ? user.facebook.name : user.username %></a></li>
+						<li><p><span class="badge"><%= gigStack.length %></span> gigs!</p></li>
+						<li><a href="/logout"><span class="glyphicon glyphicon-eject"></span> Logout</a></li>
+					</ul>
+					<% } %>
 				</div>
 			</div>
 		</nav>
@@ -40,6 +46,7 @@
 	</footer>
 	<!-- Render new gig form -->
 	<% include ../partials/models/gigs/_createGig.ejs %>
+	<% include ../partials/models/user/_updateUserDetails.ejs %>
 	<script src="//code.jquery.com/jquery-latest.js"></script>
 	<script src="/javascript/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="/javascript/main.js"></script>
