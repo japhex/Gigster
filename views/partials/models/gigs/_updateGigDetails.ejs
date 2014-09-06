@@ -1,0 +1,17 @@
+<% if (user != undefined) { %>
+	<form method="POST" action="/update/gigId" id="update-gig" class="action-form form-horizontal popup">
+		<div class="form-group">
+			<label>Artist:</label>
+			<input type="text" class="form-control" value="artist" name="artist" />
+		</div>
+		<div class="form-group">
+			<label>Venue:</label>
+			<input type="text" class="form-control" value="venue" name="venue" />
+		</div>
+		<div class="form-group">
+			<label>Gig date:</label>
+			<input name="gigDate" class="datepicker form-control" />
+		</div>
+		<button>Update</button>
+	</form>
+<% } %>

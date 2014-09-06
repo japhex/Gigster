@@ -24,7 +24,7 @@
 							<li><a href="#" data-action-form="add-gig" data-trigger="popup">Attend a show</a></li>
 							<li><a href="#">Send gig request</a></li>
 							<li>
-								<a href="/auth/facebook"><span class="glyphicon glyphicon-user"></span> Profile</a>
+								<a href="/auth/facebook"><span class="glyphicon glyphicon-user"></span> Gigs</a>
 							</li>
 						<% } %>
 					</ul>
@@ -46,6 +46,7 @@
 	</footer>
 	<!-- Render new gig form -->
 	<% include ../partials/models/gigs/_createGig.ejs %>
+	<% include ../partials/models/gigs/_updateGigDetails.ejs %>
 	<% include ../partials/models/user/_updateUserDetails.ejs %>
 	<script src="//code.jquery.com/jquery-latest.js"></script>
 	<script src="/javascript/jquery-ui-1.10.4.custom.min.js"></script>

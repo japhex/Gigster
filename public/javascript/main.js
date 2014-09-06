@@ -21,16 +21,21 @@ gigster.dataCalls = {
 	},
 	update: function(){
 		$('.action-update').on('click',$('.ticket-container'), function(){
-			var container = $(this).parents('li');
-			container.find('.hidden-update').show();
-			container.find('.gig-date').show();
-			container.find('.static-value').hide();
-			container.find('label').show();
+			var container = $(this).parents('li'),
+				updateLink = $(this),
+				updateForm = $('#update-gig'),
+				artistName = container.find('.artist-name').text(),
+				venue = container.find('.venue-name').text();
+
+			updateForm.attr('action',updateLink.attr('href'));
+			updateForm.find('[name="artist"]').val(artistName);
+			updateForm.find('[name="venue"]').val(venue);
+
 			return false;
 		});
 	},
 	loadBands: function(){
-		var collection = $('.ticket-artist span');
+	/*(var collection = $('.ticket-artist .artist-name');
 
 		for (var i=0;i<collection.length;i++){
 			var band = $(collection[i]);
@@ -38,14 +43,13 @@ gigster.dataCalls = {
 			// Closure, bitch!
 			(function(band){
 				$.ajax({
-					url: 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + band.text() + ' logo',
+					url: 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + band.text() + ' band live',
 					dataType:'jsonp',
 				}).done(function(data) {
-					$('<img src=' + data.responseData.results[0].unescapedUrl + ' class="band-logo" alt="' + band.text() + '" title="' + band.text() + '" />').insertAfter(band);
-					band.hide();
+					$('<div class="img-crop"><img src=' + data.responseData.results[0].unescapedUrl + ' class="band-logo" alt="' + band.text() + '" title="' + band.text() + '" /></div>').insertBefore(band.parent());
 				});
 			})(band);
-		}
+		}*/
 	}
 };
 
@@ -64,24 +68,19 @@ gigster.utilities = {
 
 		for (var i=0;i<dates.length;i++){
 			if ($(dates[i]).hasClass('past-date')){
-				dateString = "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + "</span>";
+				dateString = "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + " </span>";
 				dateString += "<span class='day'> " + $(dates[i]).text().substring(8,11) + "</span>";
 				dateString += "<span class='month'>" + $(dates[i]).text().substring(4,7) + "</span>";
 				dateString += "<span class='year'> " + $(dates[i]).text().substring(13,15) + "</span>";
 			} else {
 				dateString = "<div class='date-sticker'>";
-				dateString += "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + "</span>";
+				dateString += "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + " </span>";
 				dateString += "<span class='day'>" + $(dates[i]).text().substring(8,11) + "</span>";
-				dateString += "<span class='month'>" + this.convertMonth($(dates[i]).text().substring(4,7)) + "</span>";
+				dateString += "<span class='month'>" + $(dates[i]).text().substring(4,7) + "</span>";
 				dateString += "</div>";
 			}
 			$(dates[i]).html(dateString);
 		}
-	},
-	convertMonth: function(month){
-		var monthMatch = {'Jan':'January','Feb':'February','Mar':'March','Apr':'April','May':'May','Jun':'June','Jul':'July','Aug':'August','Sep':'September','Oct':'October','Nov':'November','Dec':'December'};
-		
-		return monthMatch[month];
 	}
 };
 

@@ -93,7 +93,11 @@ module.exports = function(app, passport) {
 	// UPDATE AN EVENT (FIND BY ID) ========
 	// =====================================
 	app.post('/update/:id', function (req, res) {
-		Gig.findByIdAndUpdate(req.params.id, {artist:req.body.artist,venue:req.body.venue,gig_date:req.body.gig_date}, function (err) {
+		Gig.findByIdAndUpdate(req.params.id, {
+			artist:req.body.artist,
+			venue:req.body.venue,
+			gig_date:req.body.gig_date
+		}, function (err) {
 			res.redirect( '/' );
 		});
 	});
@@ -182,7 +186,9 @@ module.exports = function(app, passport) {
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.post('/user/update/:id', isLoggedIn, function(req, res) {
 		User.findByIdAndUpdate(req.params.id, {
-			username : req.body.username
+			username : req.body.username,
+			name : req.body.name,
+			email : req.body.email
 		}, function (err) {
 			res.redirect( '/profile' );
 		});

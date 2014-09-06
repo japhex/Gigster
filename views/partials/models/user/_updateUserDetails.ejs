@@ -1,3 +1,4 @@
+<% if (user != undefined) { %>
 <div class="popup" id="update-user">
 	<!-- LOGIN FORM -->
 	<form action="/user/update/<%= user._id %>" method="post" class="action-form form-horizontal">
@@ -16,3 +17,4 @@
 		<button type="submit" class="btn btn-warning btn-lg">Update</button>
 	</form>
 </div>
+<% } %>

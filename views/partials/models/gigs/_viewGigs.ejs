@@ -1,4 +1,3 @@
-<h1>upcoming</h1>
 <section id="upcoming" class="gig-stack">
 	<ul id="future-gigs">
 
@@ -15,31 +14,19 @@
 		<% for(var i=0; i<futureGigs.length; i++) {%>
 			<% var currentDate = new Date(); %>
 			<% if (currentDate - futureGigs[i].gig_date < 0){ %>
-				<li data-date="<%= futureGigs[i].gig_date %>" class="<%= freshSequence > 5 ? 'hide-gig' : ''%>">
-					<span class="booking-agent">GigsterLtd.</span>
+				<li data-date="<%= futureGigs[i].gig_date %>" data-id="<%= futureGigs[i]._id %>">
 					<div class="ticket-container">
-						<form method="POST" action="/update/<%= futureGigs[i]._id %>">
-							<div class="event-detail ticket-artist">
-								<label>Artist:</label>
-								<span class="static-value"><%= futureGigs[i].artist %></span>
-								<input value="<%= futureGigs[i].artist %>" class="hidden-update" name="artist" />
-							</div>
-							<div class="event-detail ticket-venue">
-								<label>Venue:</label>
-								<span class="static-value"><%= futureGigs[i].venue %></span>
-								<input value="<%= futureGigs[i].venue %>" class="hidden-update" name="venue" />
-							</div>
-							<div class="display-date">
-								<label class="hidden-update">Date:</label>
-								<span class="static-value"><%= futureGigs[i].gig_date %></span>
-							</div>
-							<div class="event-detail gig-date">
-								<label>Date:</label>
-								<input value="<%= futureGigs[i].gig_date %>" class="hidden-update" name="gig_date" />
-							</div>
-							<button class="hidden-update">Update</button>
-						</form>
-						 <a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>">update show</a>
+						<div class="display-date">
+							<span class="static-value"><%= futureGigs[i].gig_date %></span>
+						</div>						
+						<div class="event-detail ticket-artist">
+							<span class="static-value artist-name"><%= futureGigs[i].artist %></span>
+							<span class="static-value venue-name"><%= futureGigs[i].venue %></span>
+						</div>
+						<ul class="app-action-container">
+							<li><a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>">remove show</a> |</li> 
+							<li><a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>" data-action-form="update-gig" data-trigger="popup">update show</a></li>
+						</ul>
 					</div>
 				</li>
 				<% freshSequence++ %>
@@ -49,8 +36,6 @@
 
 	</ul>
 </section>
-
-<h1>past</h1>
 <section id="past" class="gig-stack">
 	<ul id="past-gigs">
 
@@ -67,31 +52,19 @@
 		<% for(var i=0; i<pastGigs.length; i++) {%>
 			<% var currentDate = new Date(); %>
 			<% if (currentDate - pastGigs[i].gig_date > 0){ %>
-				<li data-date="<%= pastGigs[i].gig_date %>" class="<%= freshSequence > 5 ? 'hide-gig' : ''%>">
-					<span class="booking-agent">GigsterLtd.</span>
+				<li data-date="<%= pastGigs[i].gig_date %>" data-id="<%= pastGigs[i]._id %>">
 					<div class="ticket-container">
-						<form method="POST" action="/update/<%= pastGigs[i]._id %>">
-							<div class="event-detail ticket-artist">
-								<label>Artist:</label>
-								<span class="static-value"><%= pastGigs[i].artist %></span>
-								<input value="<%= pastGigs[i].artist %>" class="hidden-update" name="artist" />
-							</div>
-							<div class="event-detail ticket-venue">
-								<label>Venue:</label>
-								<span class="static-value"><%= pastGigs[i].venue %></span>
-								<input value="<%= pastGigs[i].venue %>" class="hidden-update" name="venue" />
-							</div>
-							<div class="display-date">
-								<label class="hidden-update">Date:</label>
-								<abbr>VOID: </abbr><span class="static-value past-date"><%= pastGigs[i].gig_date %></span>
-							</div>
-							<div class="event-detail gig-date">
-								<label>Date:</label>
-								<input value="<%= pastGigs[i].gig_date %>" class="hidden-update" name="gig_date" />
-							</div>
-							<button class="hidden-update">Update</button>
-						</form>
-						 <!--<a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= pastGigs[i]._id %>">update show</a>-->
+					<div class="event-detail ticket-artist">
+						<span class="static-value artist-name"><%= pastGigs[i].artist %></span>
+						<div class="event-detail ticket-venue">
+							<span class="static-value"><%= pastGigs[i].venue %></span>
+						</div>								
+					</div>
+					<div class="display-date">
+						<label class="hidden-update">Date:</label>
+						<abbr>VOID: </abbr><span class="static-value past-date"><%= pastGigs[i].gig_date %></span>
+					</div>
+					<!--<a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= pastGigs[i]._id %>">update show</a>-->
 					</div>
 				</li>
 				<% freshSequence++ %>

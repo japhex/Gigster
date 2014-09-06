@@ -2,7 +2,7 @@ body {background:url(/images/bg_main.png);}
 
 h1 {font-family:'Raleway';}
 
-.gig-stack h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-transform:rotate(-90deg);position:absolute;left:24px;top:100px;color:#E62534;font-family:'Gafata';border:1px solid #E62534;}
+.gig-stack h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-transform:rotate(-90deg);position:absolute;left:-91px;top:100px;color:#E62534;font-family:'Gafata';border:1px solid #E62534;}
 #past h1 {left:66px;top:53px;}
 
 header {position:fixed;width:100%;z-index:4;}
@@ -28,41 +28,48 @@ header {position:fixed;width:100%;z-index:4;}
 #main {padding-top:100px;}
 
 ul {margin:0;}
-#future-gigs li, #past-gigs li {width:300px;background:#001A25;list-style-type:none;display:inline-block;position:relative;box-shadow:0 0 10px #000;margin:0 128px 20px 0;border-right:3px dashed #fff;}
-#future-gigs li:first-child, #past-gigs li:first-child {width:350px;}
+#future-gigs > li, #past-gigs > li {width:100%;list-style-type:none;display:inline-block;position:relative;border-bottom:1px dashed #666;min-height:106px;}
 #future-gigs li:last-child, #past-gigs li:last-child {margin-right:0;}
-#future-gigs li:after {content:'VOID IF TORN';width:100px;display:block;height:100%;background:#001A25;position:absolute;top:0;right:-103px;color:#fff;padding:150px 10px 0 10px;box-shadow:0 0 10px #000;text-align:center;}
-#past-gigs .display-date {position:static;color:#E62534;border:1px dashed #E62534;display:inline-block;padding:8px;font-family:'Rock Salt';-webkit-transform:rotate(-30deg);}
+#future-gigs > li:first-child, #past-gigs > li:first-child {border-top:1px dashed #666;}
+
+.display-date {display:inline-block;position:relative;top:9px;}
+.date-sticker {/*position:absolute;top:-5px;left:-10px;*/font-family:'Gafata', sans-serif;}
+.date-sticker span {display:block;font-weight:bold;}
+.date-sticker .weekday {display:none;}
+.day {font-size:3em;line-height:0.5em;}
+.past-date .day {font-size:1em;}
+.date-sticker .month {font-size:2.5em;}
+
+#past-gigs .display-date {color:#E62534;border:1px dashed #E62534;padding:8px;font-family:'Rock Salt';position:absolute;min-width:192px;right:0;}
 
 #past-gigs li {margin-right:27px;}
 
-.ticket-container {padding:40px 20px;margin:10px 0;background:#fff;margin:10px;text-align:center;}
 .event-detail {display:block;height:40px;}
 .event-detail label {display:none;}
-.event-detail.ticket-artist {height:auto;}
-.booking-agent {display:block;padding:10px 20px;color:#fff;font-family:'Raleway', sans-serif;font-weight:800;font-size:1em;text-align:center;}
+.event-detail.ticket-artist {height:auto;display:inline-block;padding:17px 0 0 17px;}
+
+.app-action-container {position:absolute;bottom:5px;right:5px;}
+.app-action-container li {display:inline-block;}
+
+.img-crop {width:100px;overflow:hidden;float:left;}
+.band-logo {display:inline-block;max-height:100px;}
 
 /*-- Forms --*/
 /* Update Form */
 .static-value {display:inline-block;}
 .hidden-update {display:none;}
 
-/* Ticket */
-.date-sticker {display:block;padding:5px 10px;box-sizing:border-box;text-align:center;background:#E62534;width:100px;}
-.date-sticker span {display:block;color:#fff;}
-.date-sticker .day {font-size:2em;background:#fff;color:#000;}
-.date-sticker .weekday {font-size:1.4em;color:#fff;}
+.artist-name {font-size:2em;}
+.venue-name {display:block;}
+.ticket-venue {float:left;}
 
-.display-date {position:absolute;top:0;right:-103px;z-index:1;}
 .gig-date {display:none;}
 
-.gig-stack {vertical-align:top;position:relative;overflow:hidden;width:100%;overflow-x:scroll;}
+.gig-stack {display:inline-block;width:49%;position:relative;vertical-align:top;}
+
+/*.gig-stack {vertical-align:top;position:relative;overflow:hidden;width:100%;overflow-x:scroll;}
 .gig-stack ul {width:2238px;height:300px;box-shadow:inset 0 0 10px #000000;padding-top:20px;}
-#past-gigs {width:1738px;}
-
-.ticket-artist span {font-size:2em;}
-
-.band-logo {display:inline-block;max-height:50px;max-width:200px;}
+#past-gigs {width:1738px;}*/
 
 /* EUGH */
 .hide-gig {display:none !important;} 
