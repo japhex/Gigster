@@ -6,19 +6,22 @@
 	The main profile page which shows each users gig list along with other features
 
 -->
+
 <% if (user.username == undefined) { %>
 	<div class="row panel panel-warning">
 		<div class="panel-heading">
 			<span class="glyphicon glyphicon-warning-sign"></span> Notification
 		</div>
 		<div class="panel-body">
+			
 			<!--
 
 				Create username field. If username if null, before allowing them to continue, get them to create a unique username (or append with random string of characters and regex to bring it out?).
 
 				Use username in URL
 
-			-->		
+			-->
+
 			<p>
 				Unlike other social media sites like Twitter, Facebook doesn't store a username against you, we require this to give you a nicer experience, if you wouldn't mind creating a username below, that would be awesome!
 			</p>
