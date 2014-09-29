@@ -1,24 +1,7 @@
 var gigster = {} || gigster;
 
+
 gigster.dataCalls = {
-	artistLookup: function(){
-		// Call to Last.fm for autocomplete of bands and venues.
-		$('.lookup').on('click', $('div'), function(){
-			$.post(gigster.dataCalls.apiUrl('artist',$(this).prev().val()), function(data) {
-				console.log(data);
-				$('[name="artist"]').val(data.results.artistmatches.artist[0].name);
-			});
-			return false;
-		});
-	},
-	apiUrl: function(callType,params){
-		switch (callType){
-			case 'artist':
-				return 'http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + params + '&api_key=87a726f5832926366bd09f6a3935d792&format=json';
-			case 'venue':
-				return 'http://ws.audioscrobbler.com/2.0/?method=venue.search&api_key=87a726f5832926366bd09f6a3935d792&venue=' + params + '&format=json';
-		}
-	},
 	update: function(){
 		$('.action-update').on('click',$('.ticket-container'), function(){
 			var container = $(this).parents('li'),
@@ -90,19 +73,26 @@ gigster.ui = {
 			var $popup = $('.popup'),
 				$shadow = $('<div class="popup-shadow" style="height:' + $(document).height() + 'px;"></div>');
 
-			$popup.css({
-				'left': ($(window).width() - $popup.width()) / 2 + 'px',
-				'top': ($(window).height() - $popup.height()) / 2 + 'px',
-			});
 			$shadow.appendTo('body').fadeIn();
 
 			// Clearing whenever we click anywhere on the body rather than delegating properly
 			$shadow.on('click', function(){
+				removePopup();
+			});
+
+			// Clearing on keyup of the escape key
+			$(document).keyup(function(e) {
+				if (e.keyCode == 27) { 
+					removePopup();
+				}
+			});
+
+			function removePopup() {
 				$popup.fadeOut("fast");
-				$shadow.fadeOut("fast", function(){
+					$shadow.fadeOut("fast", function(){
 					$shadow.remove();
-				});
-			});			
+				});	
+			}
 		});
 	}
 };
@@ -112,7 +102,6 @@ $(function (){
 	gigster.utilities.formatDate();
 	gigster.utilities.actionForm();
 	// gigster data functions
-	gigster.dataCalls.artistLookup();
 	gigster.dataCalls.update();
 	gigster.dataCalls.loadBands();
 	// gigster ui functions
