@@ -1,7 +1,3 @@
-// server.js
-
-// set up ======================================================================
-// get all the tools we need
 var express  = require('express');
 var engine = require('ejs-locals');
 var connect = require('connect');
@@ -19,53 +15,44 @@ var serveStatic = require('serve-static');
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(configDB.url);
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport);
 app.use(express.logger('dev'));
-
-// SASS ========================================================================
-
 app.use(serveStatic(__dirname + '/public'));
 
 // app configuration ==========================================================
 
 app.configure(function() {
-
-	// set up our express application
-	app.use(express.logger('dev')); // log every request to the console
-	app.use(express.cookieParser()); // read cookies (needed for auth)
-	app.use(express.bodyParser()); // get information from html forms
-
+	app.use(express.logger('dev'));
+	app.use(express.cookieParser());
+	app.use(express.bodyParser());
 	app.engine('ejs', engine);
-	app.set('view engine', 'ejs'); // set up ejs for templating
-
-	// required for passport
-	app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+	app.set('view engine', 'ejs');
+	app.use(express.session({ secret: 'ilovescotchscotchyscotchscotch' }));
 	app.use(passport.initialize());
-	app.use(passport.session()); // persistent login sessions
-	app.use(flash()); // use connect-flash for flash messages stored in session
-
+	app.use(passport.session());
+	app.use(flash());
 });
 
 // routes ======================================================================
-require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport);
 
 // launch ======================================================================
 app.listen(port);
 console.log('The magic happens on port ' + port);
 		
-		// Node Mailer plugin
-		// var transporter = nodemailer.createTransport({
-		//     service: 'gmail',
-		//     auth: {
-		//         user: 'jlawrencedev@gmail.com',
-		//         pass: 'autumn69'
-		//     }
-		// });
-		// transporter.sendMail({
-		//     from: 'jlawrencedev@gmail.com',
-		//     to: 'jamie.lawrence@bt.com',
-		//     subject: 'hello',
-		//     text: 'hello world!'
-		// });
+// Node Mailer plugin
+// var transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     auth: {
+//         user: 'jlawrencedev@gmail.com',
+//         pass: 'autumn69'
+//     }
+// });
+// transporter.sendMail({
+//     from: 'jlawrencedev@gmail.com',
+//     to: 'jamie.lawrence@bt.com',
+//     subject: 'hello',
+//     text: 'hello world!'
+// });

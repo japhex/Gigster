@@ -108,6 +108,7 @@ module.exports = function(app, passport) {
 	app.get('/delete/:id', function (req, res) {
 		Gig.remove({_id: req.params.id}, function (err) {
 			res.redirect( '/' );
+			// Need to include gigStack in request params as well as user to re-render the page and pass back the correct data.
 		});
 	});
 
