@@ -20,8 +20,8 @@
 							<span class="static-value"><%= futureGigs[i].gig_date %></span>
 						</div>						
 						<div class="event-detail ticket-artist">
-							<span class="static-value artist-name"><%= futureGigs[i].artist %></span>
-							<span class="static-value venue-name"><%= futureGigs[i].venue %></span>
+							<span class="static-value artist-name" contenteditable><%= futureGigs[i].artist %></span>
+							<span class="static-value venue-name" contenteditable><%= futureGigs[i].venue %></span>
 						</div>
 						<ul class="app-action-container">
 							<li><a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>">remove show</a> |</li> 

@@ -52,7 +52,7 @@ ul {margin:0;}
 .app-action-container li {display:inline-block;}
 
 .img-crop {width:100px;overflow:hidden;float:left;}
-.band-logo {display:inline-block;max-height:100px;}
+.band-logo {display:inline-block;max-height:100px;min-height:100px;}
 
 /*-- Forms --*/
 /* Update Form */

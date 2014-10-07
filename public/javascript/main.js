@@ -16,23 +16,26 @@ gigster.dataCalls = {
 
 			return false;
 		});
+		$('.ticket-artist').blur(function(){
+			// Save updated record to DB.
+		});
 	},
 	loadBands: function(){
-	/*(var collection = $('.ticket-artist .artist-name');
+	var collection = $('.ticket-artist .artist-name');
 
-		for (var i=0;i<collection.length;i++){
-			var band = $(collection[i]);
+		// for (var i=0;i<collection.length;i++){
+		// 	var band = $(collection[i]);
 
-			// Closure, bitch!
-			(function(band){
-				$.ajax({
-					url: 'https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + band.text() + ' band live',
-					dataType:'jsonp',
-				}).done(function(data) {
-					$('<div class="img-crop"><img src=' + data.responseData.results[0].unescapedUrl + ' class="band-logo" alt="' + band.text() + '" title="' + band.text() + '" /></div>').insertBefore(band.parent());
-				});
-			})(band);
-		}*/
+		// 	// Closure, bitch!
+		// 	(function(band){
+		// 		$.ajax({
+		// 			url: 'https://ajax.googleapis.com/ajax/services/search/images?imgsz=small&imgtype=photo&v=1.0&q=' + band.text() + ' band photo',
+		// 			dataType:'jsonp',
+		// 		}).done(function(data) {
+		// 			$('<div class="img-crop"><img src=' + data.responseData.results[0].unescapedUrl + ' class="band-logo" alt="' + band.text() + '" title="' + band.text() + '" /></div>').insertBefore(band.parent());
+		// 		});
+		// 	})(band);
+		// }
 	}
 };
 
@@ -98,16 +101,19 @@ gigster.ui = {
 };
 
 $(function (){
+
 	// gigster utility functions
 	gigster.utilities.formatDate();
 	gigster.utilities.actionForm();
+
 	// gigster data functions
 	gigster.dataCalls.update();
 	gigster.dataCalls.loadBands();
+
 	// gigster ui functions
 	gigster.ui.popup();
+
 	// gigster plugin calls
     $('.datepicker').datepicker();
     $('[name="gig_date"]').datepicker();
-    $('.hide-gig').remove();
 }());
