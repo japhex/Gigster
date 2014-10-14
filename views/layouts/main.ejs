@@ -21,11 +21,11 @@
 						<% if (user == undefined) { %>
 							<li><a href="/auth/facebook"><span class="fa fa-facebook"></span> Facebook</a>
 						<%} else {%>
-							<li><a href="#">Gig Calendar</a></li>
-							<li><a href="#" data-action-form="add-gig" data-trigger="popup">Attend a show</a></li>
-							<li><a href="#">Send gig request</a></li>
+							<li><a href="/calendar"><span class="glyphicon glyphicon-calendar"></span> Gig Calendar</a></li>
+							<li><a href="#" data-action-form="add-gig" data-trigger="popup"><span class="glyphicon glyphicon-road"></span> Attend a show</a></li>
+							<li><a href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
 							<li>
-								<a href="/profile"><span class="glyphicon glyphicon-user"></span> Gigs</a>
+								<a href="/profile"><span class="glyphicon glyphicon-music"></span> Gigs</a>
 							</li>
 						<% } %>
 
