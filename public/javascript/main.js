@@ -92,7 +92,7 @@ gigster.ui = {
 
 			function removePopup() {
 				$popup.fadeOut("fast");
-					$shadow.fadeOut("fast", function(){
+				$shadow.fadeOut("fast", function(){
 					$shadow.remove();
 				});	
 			}

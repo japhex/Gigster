@@ -47,7 +47,7 @@ console.log('The magic happens on port ' + port);
 //     service: 'gmail',
 //     auth: {
 //         user: 'jlawrencedev@gmail.com',
-//         pass: 'autumn69'
+//         pass: '###'
 //     }
 // });
 // transporter.sendMail({
