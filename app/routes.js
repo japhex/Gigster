@@ -119,6 +119,20 @@ module.exports = function(app, passport) {
 	// --==--==--==--==--==--==--==--==--==--	
 
 	// =====================================
+	// SHOW ALL USERS ======================
+	// =====================================	
+	app.get('/users', function (req, res) {
+		User.findOne({username: req.params.username}, function (err, user) {
+			User.find().exec(function (err, users) {
+				res.render('users.ejs', { 
+					users : users,
+					user: user
+				});
+			});
+		});
+	});
+
+	// =====================================
 	// SHOW USER ===========================
 	// =====================================
 	app.get('/users/:username', function (req, res) {
