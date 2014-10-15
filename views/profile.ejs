@@ -16,7 +16,7 @@
 			
 			<!--
 
-				Create username field. If username if null, before allowing them to continue, get them to create a unique username (or append with random string of characters and regex to bring it out?).
+				Create username field. If username if null, before allowing them to continue, get them to create a unique username.
 
 				Use username in URL
 
@@ -34,7 +34,36 @@
 			</form>
 		</div>
 	</div>
-<% }%>
+<% } else if (user.email == undefined){ %>
+	<div class="row panel panel-warning">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-warning-sign"></span> Notification
+		</div>
+		<div class="panel-body">
+			
+			<!--
+
+				Create specific email field. 
+				
+				TODO: MD5 into DB and then create gravatar URL off the back of it.
+
+			-->
+
+			<p>
+				We can grab your email from your social account, but just to make sure we've got the right one to get you gravatar icon etc. do you mind entering it here?
+			</p>
+			<form action="/user/update/<%= user._id %>" method="POST">
+				<label>
+					Email:
+				</label>
+				<input placeholder="email" name="email" />
+				<button type="submit">Update</button>
+			</form>
+		</div>
+	</div>
+<% } %>
+
+<%= user.email %>
 
 <!-- Render gig posts -->
 <% include partials/models/gigs/_viewGigs.ejs %>

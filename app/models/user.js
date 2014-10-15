@@ -29,7 +29,8 @@ var userSchema = mongoose.Schema({
         name         : String
     },
     gigs             : Array,
-    username         : {type:String, unique:true}
+    username         : {type:String, unique:true},
+    email            : String
 
 });
 

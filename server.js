@@ -10,8 +10,6 @@ var flash    = require('connect-flash');
 var	util = require('util');
 var	nib = require('nib');
 var serveStatic = require('serve-static');
-//var nodemailer = require('nodemailer');
-
 var configDB = require('./config/database.js');
 
 // configuration ===============================================================
@@ -41,18 +39,3 @@ require('./app/routes.js')(app, passport);
 // launch ======================================================================
 app.listen(port);
 console.log('The magic happens on port ' + port);
-		
-// Node Mailer plugin
-// var transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//         user: 'jlawrencedev@gmail.com',
-//         pass: '###'
-//     }
-// });
-// transporter.sendMail({
-//     from: 'jlawrencedev@gmail.com',
-//     to: 'jamie.lawrence@bt.com',
-//     subject: 'hello',
-//     text: 'hello world!'
-// });
