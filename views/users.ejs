@@ -1,3 +1,5 @@
 <% layout('/layouts/main') -%>
 
-<%= users %>
+<% for(var i=0; i<users.length; i++) {%>
+	<a href="/users/<%=users[i].username %>"><%=users[i].username %></a>
+<% } %>

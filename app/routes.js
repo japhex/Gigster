@@ -121,12 +121,13 @@ module.exports = function(app, passport) {
 	// =====================================
 	// SHOW ALL USERS ======================
 	// =====================================	
-	app.get('/users', function (req, res) {
-		User.findOne({username: req.params.username}, function (err, user) {
-			User.find().exec(function (err, users) {
+	app.get('/users', isLoggedIn, function (req, res) {
+		User.find().exec(function (err, users) {
+			Gig.find().where('_id').in(req.user.gigs).exec(function (err, records) {
 				res.render('users.ejs', { 
 					users : users,
-					user: user
+					user: req.user,
+					gigStack: records
 				});
 			});
 		});
@@ -135,7 +136,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	// SHOW USER ===========================
 	// =====================================
-	app.get('/users/:username', function (req, res) {
+	app.get('/users/:username', isLoggedIn, function (req, res) {
 		User.findOne({username: req.params.username}, function (err, user) {
 			Gig.find().sort({gig_date: -1}).where('_id').in(user.gigs).exec(function (err, records) {
 				res.render('partials/models/user/_viewUser.ejs', { 
