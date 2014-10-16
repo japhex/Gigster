@@ -2,6 +2,25 @@ var gigster = {} || gigster;
 
 
 gigster.dataCalls = {
+	artistLookup: function(){
+		$('#venue-check').on('click', $('div'), function(){
+			$.post(gigster.dataCalls.apiUrl('venue',$(this).prev().val()), function(data) {
+				var venue = data.results.venuematches.venue[0];
+				console.log(venue);
+				console.log('lat:' + venue.location["geo:point"]["geo:lat"]);
+				console.log('long:' + venue.location["geo:point"]["geo:long"]);
+			});
+			return false;
+		});
+	},
+	apiUrl: function(callType,params){
+		switch (callType){
+			case 'artist':
+				return 'http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=' + params + '&api_key=87a726f5832926366bd09f6a3935d792&format=json';
+			case 'venue':
+				return 'http://ws.audioscrobbler.com/2.0/?method=venue.search&api_key=6de16c25e43a12240c4547fae1b18b13&venue=' + params + '&format=json';
+		}
+	},	
 	update: function(){
 		$('.action-update').on('click',$('.ticket-container'), function(){
 			var container = $(this).parents('li'),
@@ -107,6 +126,7 @@ $(function (){
 	gigster.utilities.actionForm();
 
 	// gigster data functions
+	gigster.dataCalls.artistLookup();
 	gigster.dataCalls.update();
 	gigster.dataCalls.loadBands();
 
