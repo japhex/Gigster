@@ -200,13 +200,21 @@ module.exports = function(app, passport) {
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.post('/user/update/:id', isLoggedIn, function(req, res) {
-		User.findByIdAndUpdate(req.params.id, {
-			username : req.body.username,
-			name : req.body.name,
-			email : req.body.email
-		}, function (err) {
-			console.log(err);
-			res.redirect( '/profile' );
+		User.findOne({_id:req.params.id}, function(err,user){
+			if (err) {
+				res.send(422,'update failed');
+			} else {
+				//Cycle through all fields and only update ones that have a value
+				for (var field in User.schema.paths) {
+				   if ((field !== '_id') && (field !== '__v')) {
+				      if (req.body[field] !== undefined) {
+				         user[field] = req.body[field];
+				      }  
+				   }  
+				}
+				user.save();
+				res.redirect( '/profile' );
+			}
 		});
 	});
 
