@@ -82,7 +82,9 @@ ul {margin:0;}
 
 /* Modules */
 
-.popup {position:fixed;padding:15px;box-shadow:0 0 10px #000;z-index:3;display:none;width:450px;background:#fff;border:2px solid #eaeaea;top:50%;left:50%;transform:translateX(-50%) translateY(-50%);}
+.popup {position:fixed;box-shadow:0 0 10px #000;z-index:3;display:none;width:450px;background:url(/images/bg_main.png);border:2px solid #eaeaea;top:50%;left:50%;transform:translateX(-50%) translateY(-50%);}
+.popup h3 {margin:0;border-bottom:1px solid #ccc;color:#777;border-top:3px solid #E62534;background:#fff;}
+.popup h3, .popup form {padding:15px;}
 .popup-shadow {width:100%;height:100%;position:absolute;background:#000;opacity:0.4;z-index:2;top:0;left:0;display:none;}
 
 /* Users */

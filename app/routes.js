@@ -53,7 +53,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	app.get('/delete/:id', function (req, res) {
 		Gig.remove({_id: req.params.id}, function (err) {
-			res.redirect( '/' );
+			res.redirect( '/profile' );
 		});
 	});
 
