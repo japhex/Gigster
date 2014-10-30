@@ -7,6 +7,8 @@ var gigSchema = mongoose.Schema({
     name: String,
     artist: String,
     venue: String,
+    venueLat: String,
+    venueLong: String,
     gig_date: Date,
     created_date: Date
 });

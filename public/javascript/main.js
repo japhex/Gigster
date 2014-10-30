@@ -3,12 +3,11 @@ var gigster = {} || gigster;
 
 gigster.dataCalls = {
 	artistLookup: function(){
-		$('#venue-check').on('click', $('div'), function(){
+		$('.venue-check').on('click', $('div'), function(){
 			$.post(gigster.dataCalls.apiUrl('venue',$(this).prev().val()), function(data) {
 				var venue = data.results.venuematches.venue[0];
-				console.log(venue);
-				console.log('lat:' + venue.location["geo:point"]["geo:lat"]);
-				console.log('long:' + venue.location["geo:point"]["geo:long"]);
+				$('[name="venueLat"]').val(venue.location["geo:point"]["geo:lat"]);
+				$('[name="venueLong"]').val(venue.location["geo:point"]["geo:long"]);
 			});
 			return false;
 		});
@@ -25,13 +24,17 @@ gigster.dataCalls = {
 		$('.action-update').on('click',$('.ticket-container'), function(){
 			var container = $(this).parents('li'),
 				updateLink = $(this),
-				updateForm = $('#update-gig'),
+				updateForm = $('#update-gig').find('form'),
 				artistName = container.find('.artist-name').text(),
-				venue = container.find('.venue-name').text();
+				venue = container.find('.venue-name').text(),
+				venueLat = container.data('lat'),
+				venueLong = container.data('long');
 
 			updateForm.attr('action',updateLink.attr('href'));
 			updateForm.find('[name="artist"]').val(artistName);
 			updateForm.find('[name="venue"]').val(venue);
+			updateForm.find('[name="venueLat"]').val(venueLat);
+			updateForm.find('[name="venueLong"]').val(venueLong);
 
 			return false;
 		});

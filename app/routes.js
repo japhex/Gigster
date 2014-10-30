@@ -29,6 +29,8 @@ module.exports = function(app, passport) {
 	        name: req.body.name,
 	        artist: req.body.artist,
 	        venue: req.body.venue,
+	        venueLat: req.body.venueLat,
+	        venueLong: req.body.venueLong,
 	        gig_date: req.body.gigDate,
 	        future: req.body.future,
 	        created_date: Date.now()
@@ -42,9 +44,28 @@ module.exports = function(app, passport) {
 	// =====================================
 	// UPDATE A GIG (FIND BY ID) ===========
 	// =====================================
-	app.post('/update/:id', function (req, res) {
-		Gig.findByIdAndUpdate(req.params.id, {artist:req.body.artist,venue:req.body.venue,gig_date:req.body.gig_date}, function (err) {
-			res.redirect( '/profile' );
+	// app.post('/update/:id', function (req, res) {
+	// 	Gig.findByIdAndUpdate(req.params.id, {artist:req.body.artist,venue:req.body.venue,gig_date:req.body.gig_date,venueLat:req.body.venueLat,venueLong:req.body.venueLong}, function (err) {
+	// 		res.redirect('/profile');
+	// 	});
+	// });
+
+	app.post('/update/:id', function(req, res) {
+		Gig.findOne({_id:req.params.id}, function(err,gig){
+			if (err) {
+				res.send(422,'update failed');
+			} else {
+				//Cycle through all fields and only update ones that have a value
+				for (var field in Gig.schema.paths) {
+				   if ((field !== '_id') && (field !== '__v')) {
+				      if (req.body[field] !== undefined) {
+				         gig[field] = req.body[field];
+				      }  
+				   }  
+				}
+				gig.save();
+				res.redirect( '/profile' );
+			}
 		});
 	});
 
@@ -93,25 +114,25 @@ module.exports = function(app, passport) {
 	// =====================================
 	// UPDATE AN EVENT (FIND BY ID) ========
 	// =====================================
-	app.post('/update/:id', function (req, res) {
-		Gig.findByIdAndUpdate(req.params.id, {
-			artist:req.body.artist,
-			venue:req.body.venue,
-			gig_date:req.body.gig_date
-		}, function (err) {
-			res.redirect( '/' );
-		});
-	});
+	// app.post('/update/:id', function (req, res) {
+	// 	Gig.findByIdAndUpdate(req.params.id, {
+	// 		artist:req.body.artist,
+	// 		venue:req.body.venue,
+	// 		gig_date:req.body.gig_date
+	// 	}, function (err) {
+	// 		res.redirect( '/' );
+	// 	});
+	// });
 
 	// =====================================
 	// DELETE AN EVENT (FIND BY ID) ========
 	// =====================================
-	app.get('/delete/:id', function (req, res) {
-		Gig.remove({_id: req.params.id}, function (err) {
-			res.redirect( '/' );
-			// Need to include gigStack in request params as well as user to re-render the page and pass back the correct data.
-		});
-	});
+	// app.get('/delete/:id', function (req, res) {
+	// 	Gig.remove({_id: req.params.id}, function (err) {
+	// 		res.redirect( '/' );
+	// 		// Need to include gigStack in request params as well as user to re-render the page and pass back the correct data.
+	// 	});
+	// });
 
 	// --==--==--==--==--==--==--==--==--==--
 

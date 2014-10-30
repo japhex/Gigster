@@ -39,6 +39,8 @@ ul {margin:0;}
 .day {font-size:3em;line-height:0.5em;}
 .past-date .day {font-size:1em;}
 .date-sticker .month {font-size:2.5em;}
+.map-container {height:50px;overflow:hidden;margin-top:20px;position:relative;}
+.map-container img {margin:;position:absolute;top:-108px;left:-60px;}
 
 #past-gigs .display-date {color:#E62534;border:1px dashed #E62534;padding:8px;font-family:'Rock Salt';position:absolute;min-width:192px;right:0;}
 
@@ -82,7 +84,7 @@ ul {margin:0;}
 
 /* Modules */
 
-.popup {position:fixed;box-shadow:0 0 10px #000;z-index:3;display:none;width:450px;background:url(/images/bg_main.png);border:2px solid #eaeaea;top:50%;left:50%;transform:translateX(-50%) translateY(-50%);}
+.popup {position:fixed;box-shadow:0 0 10px #000;z-index:3;display:none;width:450px;background:url(/images/bg_main.png);top:50%;left:50%;transform:translateX(-50%) translateY(-50%);}
 .popup h3 {margin:0;border-bottom:1px solid #ccc;color:#777;border-top:3px solid #E62534;background:#fff;}
 .popup h3, .popup form {padding:15px;}
 .popup-shadow {width:100%;height:100%;position:absolute;background:#000;opacity:0.4;z-index:2;top:0;left:0;display:none;}

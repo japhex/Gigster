@@ -14,7 +14,7 @@
 		<% for(var i=0; i<futureGigs.length; i++) {%>
 			<% var currentDate = new Date(); %>
 			<% if (currentDate - futureGigs[i].gig_date < 0){ %>
-				<li data-date="<%= futureGigs[i].gig_date %>" data-id="<%= futureGigs[i]._id %>">
+				<li data-date="<%= futureGigs[i].gig_date %>" data-id="<%= futureGigs[i]._id %>" data-lat="<%= futureGigs[i].venueLat %>" data-long="<%= futureGigs[i].venueLong %>">
 					<div class="ticket-container">
 						<div class="display-date">
 							<span class="static-value"><%= futureGigs[i].gig_date %></span>
@@ -27,6 +27,9 @@
 							<li><a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>">remove show</a> |</li> 
 							<li><a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>" data-action-form="update-gig" data-trigger="popup">update show</a></li>
 						</ul>
+						<div class="map-container">
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>&zoom=15&size=800x300&markers=color:red%7Clabel:%7C<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>" />
+						</div>
 					</div>
 				</li>
 				<% freshSequence++ %>

@@ -2,7 +2,8 @@
 	<h3>Create a show</h3>
 	<form action="/create" method="POST" role="form" class="action-form form-horizontal">
 		<fieldset>
-			<input type="hidden" name="future" value="" />
+			<input type="hidden" value="" name="venueLat" />
+			<input type="hidden" value="" name="venueLong" />
 			<div class="form-group">
 				<label for="artist" class="control-label">Artist:</label>
 				<input name="artist" class="form-control" />
@@ -10,7 +11,7 @@
 			<div class="form-group">
 				<label for="venue" class="control-label">Venue:</label>
 				<input name="venue" class="form-control" />
-				<input type="button" value="Check Venue" id="venue-check" />
+				<input type="button" value="Check Venue" class="venue-check" />
 			</div>
 			<div class="form-group">
 				<label for="gigDate" class="control-label">Gig Date:</label>
