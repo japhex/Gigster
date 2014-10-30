@@ -39,8 +39,8 @@ ul {margin:0;}
 .day {font-size:3em;line-height:0.5em;}
 .past-date .day {font-size:1em;}
 .date-sticker .month {font-size:2.5em;}
-.map-container {height:50px;overflow:hidden;margin-top:20px;position:relative;}
-.map-container img {margin:;position:absolute;top:-108px;left:-60px;}
+.map-container {height:50px;overflow:hidden;margin-top:20px;position:relative;cursor:pointer;}
+.map-container img {margin:;position:absolute;top:-108px;}
 
 #past-gigs .display-date {color:#E62534;border:1px dashed #E62534;padding:8px;font-family:'Rock Salt';position:absolute;min-width:192px;right:0;}
 
@@ -50,7 +50,7 @@ ul {margin:0;}
 .event-detail label {display:none;}
 .event-detail.ticket-artist {height:auto;display:inline-block;padding:17px 0 0 17px;}
 
-.app-action-container {position:absolute;bottom:5px;right:5px;}
+.app-action-container {position:absolute;top:5px;right:5px;}
 .app-action-container li {display:inline-block;}
 
 .img-crop {width:100px;overflow:hidden;float:left;}
