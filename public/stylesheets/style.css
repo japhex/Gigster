@@ -41,6 +41,7 @@ ul {margin:0;}
 .date-sticker .month {font-size:2.5em;}
 .map-container {height:50px;overflow:hidden;margin-top:20px;position:relative;cursor:pointer;}
 .map-container img {margin:;position:absolute;top:-108px;}
+.map-container.active img {position:static;}
 
 #past-gigs .display-date {color:#E62534;border:1px dashed #E62534;padding:8px;font-family:'Rock Salt';position:absolute;min-width:192px;right:0;}
 

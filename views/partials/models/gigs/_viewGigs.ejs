@@ -27,7 +27,7 @@
 							<li><a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>">remove show</a> |</li> 
 							<li><a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>" data-action-form="update-gig" data-trigger="popup">update show</a></li>
 						</ul>
-						<div class="map-container">
+						<div class="map-container" data-toggle="true">
 							<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>&zoom=15&size=519x300&markers=color:red%7Clabel:%7C<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>" />
 						</div>
 					</div>

@@ -119,6 +119,44 @@ gigster.ui = {
 				});	
 			}
 		});
+	},
+	maps: function(){
+		var mapContainer = $('.map-container'),
+			map = mapContainer.find('img');
+
+		mapContainer.hover(function(){
+			var currentMap = $(this);
+			if (currentMap.data('toggle')){
+				currentMap.animate({
+			  		height: "80px"
+				},200);
+			}
+		}, function(){
+			var currentMap = $(this);
+			if (currentMap.data('toggle')){
+				currentMap.animate({
+			  		height: "50px"
+				},200);
+			}
+		});
+
+		mapContainer.click(function(){
+			var currentMap = $(this);
+
+			if (currentMap.hasClass('active')){
+				currentMap.animate({
+			  		height: "50px"
+				},200);
+				currentMap.data('toggle',true);
+				currentMap.removeClass('active');
+			} else {
+				currentMap.animate({
+			  		height: "300px"
+				},200);
+				currentMap.data('toggle',false);
+				currentMap.addClass('active');
+			}
+		});		
 	}
 };
 
@@ -135,6 +173,7 @@ $(function (){
 
 	// gigster ui functions
 	gigster.ui.popup();
+	gigster.ui.maps();
 
 	// gigster plugin calls
     $('.datepicker').datepicker();
