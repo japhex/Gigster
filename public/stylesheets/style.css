@@ -61,6 +61,9 @@ ul {margin:0;}
 /* Update Form */
 .static-value {display:inline-block;}
 .hidden-update {display:none;}
+.form-control {width:330px;display:inline-block;float:right;}
+.control-input {width:212px;margin-right:10px;}
+.control-button {width:107px;float:right;}
 
 .artist-name {font-size:2em;}
 .venue-name {display:block;}
@@ -93,3 +96,10 @@ ul {margin:0;}
 /* Users */
 
 .user {font-family:'Gafata';font-size:3em;color:#000;}
+
+/* MODULES */
+/* Top artists */
+.top-artists {width:50%;}
+.top-artists td {position:relative;}
+.top-artists a {position:relative;z-index:1;}
+[data-filler] {background:#cecece;display:block;height:15px;width:0;position:absolute;z-index:0;}

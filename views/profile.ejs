@@ -34,7 +34,8 @@
 			</form>
 		</div>
 	</div>
-<% } else if (user.email == undefined){ %>
+<% } %>
+<% if (user.email == undefined){ %>
 	<div class="row panel panel-warning">
 		<div class="panel-heading">
 			<span class="glyphicon glyphicon-warning-sign"></span> Notification
@@ -62,6 +63,34 @@
 		</div>
 	</div>
 <% } %>
+<% if (user.lastfm == undefined) { %>
+	<div class="row panel panel-warning">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-warning-sign"></span> Notification
+		</div>
+		<div class="panel-body">
+			
+			<!--
 
+				Create Last.fm user.
+
+			-->
+
+			<p>
+				Do you have a Last.fm account? If so enter your username below to get some stats going on!
+			</p>
+			<form action="/user/update/<%= user._id %>" method="POST">
+				<label>
+					Last.fm Username:
+				</label>
+				<input placeholder="musicLover" name="lastfm" />
+				<button type="submit">Update</button>
+			</form>
+		</div>
+	</div>
+<% } %>
+
+<!-- Last.fm top artists -->
+<% include partials/models/user/lastfm/_topArtists.ejs %>
 <!-- Render gig posts -->
 <% include partials/models/gigs/_viewGigs.ejs %>

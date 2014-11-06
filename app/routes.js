@@ -1,6 +1,7 @@
 var Gig = require('./models/gig.js');
 var User = require('./models/user.js');
 var helpers = require('gigster-utils');
+var request = require('request');
 
 // app/routes.js
 module.exports = function(app, passport) {
@@ -60,7 +61,7 @@ module.exports = function(app, passport) {
 				   if ((field !== '_id') && (field !== '__v')) {
 				      if (req.body[field] !== undefined) {
 				         gig[field] = req.body[field];
-				      }  
+				      }
 				   }  
 				}
 				gig.save();
@@ -208,9 +209,12 @@ module.exports = function(app, passport) {
 	// we will use route middleware to verify this (the isLoggedIn function)
 	app.get('/profile', isLoggedIn, function(req, res) {
 		Gig.find().sort({gig_date: -1}).where('_id').in(req.user.gigs).exec(function (err, records) {
-			res.render('profile.ejs', {
-				user : req.user,
-				gigStack : records
+			request('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=' + req.user.lastfm + '&api_key=87a726f5832926366bd09f6a3935d792&format=json', function(err, resp, body) {
+				res.render('profile.ejs', {
+					user : req.user,
+					gigStack : records,
+					lastFmArtists : JSON.parse(body)
+				});				
 			});
 		});
 	});

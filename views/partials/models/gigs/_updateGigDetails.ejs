@@ -2,8 +2,14 @@
 <div class="popup" id="update-gig">
 	<h3>Update a show</h3>
 	<form method="POST" action="/update/gigId" class="action-form form-horizontal">
+		<!-- 
+		- Commented out until functionality is finished to do lookups on update as well,
+		  otherwise this will clear the lat/lng fields everytime a gig is updated!
+
 		<input type="hidden" value="" name="venueLat" />
-		<input type="hidden" value="" name="venueLong" />
+		<input type="hidden" value="" name="venueLong" /> 
+
+		-->
 		<div class="form-group">
 			<label>Artist:</label>
 			<input type="text" class="form-control" value="artist" name="artist" />
@@ -18,7 +24,7 @@
 			<input name="gigDate" class="datepicker form-control" />
 		</div>
 		<div class="form-group">
-			<button type="submit" class="btn btn-warning btn-lg">Update</button>
+			<button type="submit" class="btn btn-warning btn-lg" disabled>Update</button>
 		</div>
 	</form>
 </div>

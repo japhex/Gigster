@@ -1,0 +1,13 @@
+<table class="tabular top-artists">
+	<tbody>
+		<% for(var i=0; i<=10; i++) {%>
+			<tr>
+				<td>
+					<span data-filler="<%= lastFmArtists.topartists.artist[i].playcount.substring(0,2) %>"></span>
+					<a href="<%= lastFmArtists.topartists.artist[i].url %>"><%= lastFmArtists.topartists.artist[i].name %></a>
+				</td>
+				<td><%= lastFmArtists.topartists.artist[i].playcount %></td>
+			</tr>
+		<% } %>
+	</tbody>
+</table>

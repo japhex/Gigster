@@ -15,7 +15,7 @@
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
 				<div class="nav navbar-header">
-					<a class="navbar-brand" href="/">gigster</a>
+					<a class="navbar-brand" href="/profile">gigster</a>
 					<ul class="nav navbar-nav">
 
 						<% if (user == undefined) { %>
@@ -35,6 +35,7 @@
 
 					<ul class="nav navbar-nav pull-right">
 						<li><a href="#" data-action-form="update-user" data-trigger="popup"><%= user.username == undefined ? user.facebook.name : user.username %></a></li>
+						<% if (user.lastfm != undefined) { %><li data-lastfm="<%= user.lastfm %>"><a href="#"><img src="/images/lastfm_logo.png" /> <%= user.lastfm %></a></li><% } %>
 						<li><p><span class="badge"><%= gigStack.length %></span> gigs!</p></li>
 						<li><a href="/logout"><span class="glyphicon glyphicon-eject"></span> Logout</a></li>
 					</ul>

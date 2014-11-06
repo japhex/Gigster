@@ -127,14 +127,14 @@ gigster.ui = {
 		mapContainer.hover(function(){
 			var currentMap = $(this);
 			if (currentMap.data('toggle')){
-				currentMap.animate({
+				currentMap.stop().animate({
 			  		height: "80px"
 				},200);
 			}
 		}, function(){
 			var currentMap = $(this);
 			if (currentMap.data('toggle')){
-				currentMap.animate({
+				currentMap.stop().animate({
 			  		height: "50px"
 				},200);
 			}
@@ -157,6 +157,16 @@ gigster.ui = {
 				currentMap.addClass('active');
 			}
 		});		
+	},
+	artistFiller: function(){
+		var fillAmount = $('[data-filler]');
+
+		for (var i=0;i<$('[data-filler]').length;i++){
+			var currentBar = $(fillAmount[i]),
+				fillBarAmount = currentBar.data('filler');
+
+			currentBar.animate({'width': fillBarAmount + '%'});
+		}
 	}
 };
 
@@ -174,6 +184,7 @@ $(function (){
 	// gigster ui functions
 	gigster.ui.popup();
 	gigster.ui.maps();
+	gigster.ui.artistFiller();
 
 	// gigster plugin calls
     $('.datepicker').datepicker();
