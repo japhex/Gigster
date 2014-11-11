@@ -1,3 +1,4 @@
+* {box-sizing:border-box;}
 body {background:url(/images/bg_main.png);}
 
 h1 {font-family:'Raleway';}
@@ -25,12 +26,12 @@ header {position:fixed;width:100%;z-index:4;}
 
 .form-horizontal .form-group {margin:10px 0;}
 
-#main {padding-top:100px;}
+#main {padding:100px 0 0 0;}
 
-ul {margin:0;}
+ul {margin:0;padding:0;}
 #future-gigs > li, #past-gigs > li {width:100%;list-style-type:none;display:inline-block;position:relative;border-bottom:1px dashed #666;min-height:106px;}
-#future-gigs li:last-child, #past-gigs li:last-child {margin-right:0;}
-#future-gigs > li:first-child, #past-gigs > li:first-child {border-top:1px dashed #666;}
+#future-gigs li:last-child, #past-gigs li:last-child {margin-right:0;border-bottom:0;padding-bottom:0;}
+#future-gigs > li:first-child, #past-gigs > li:first-child {padding-top:0;}
 
 .display-date {display:inline-block;position:relative;top:9px;min-width:62px;}
 .date-sticker {/*position:absolute;top:-5px;left:-10px;*/font-family:'Gafata', sans-serif;}
@@ -56,6 +57,10 @@ ul {margin:0;}
 
 .img-crop {width:100px;overflow:hidden;float:left;}
 .band-logo {display:inline-block;max-height:100px;min-height:100px;}
+
+.map-minified {height:50px;transition:height 0.4s;}
+.map-expanded {height:300px;transition:height 0.4s;}
+.map-expanded img {position:static;}
 
 /*-- Forms --*/
 /* Update Form */
@@ -99,7 +104,14 @@ ul {margin:0;}
 
 /* MODULES */
 /* Top artists */
-.top-artists {width:50%;}
-.top-artists td {position:relative;}
-.top-artists a {position:relative;z-index:1;}
-[data-filler] {background:#cecece;display:block;height:15px;width:0;position:absolute;z-index:0;}
+.top-artists {width:100%;}
+.top-artists td {position:relative;height:35px;vertical-align:top;}
+.top-artists tr:first-child td {height:62px;}
+.top-artists tr:first-child td span {height:55px;}
+.top-artists tr:first-child td a {font-size:1.5em;padding-top:11px;}
+.top-artists a {position:relative;z-index:1;color:#fff;padding:5px 10px;display:block;}
+.artist-count {text-align:right;display:block;}
+[data-filler] {background:#E62534;display:block;height:30px;width:0;position:absolute;z-index:0;}
+
+/* WIDGETS */
+.widget {padding:10px;background:#fefefe;border-radius:10px;display:inline-block;width:49%;border:2px solid #eaeaea;box-shadow:0px 2px 3px #eee;max-height:436px;overflow:scroll;}

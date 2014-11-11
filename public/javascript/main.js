@@ -121,38 +121,19 @@ gigster.ui = {
 		});
 	},
 	maps: function(){
-		var mapContainer = $('.map-container'),
-			map = mapContainer.find('img');
-
-		mapContainer.hover(function(){
-			var currentMap = $(this);
-			if (currentMap.data('toggle')){
-				currentMap.stop().animate({
-			  		height: "80px"
-				},200);
-			}
-		}, function(){
-			var currentMap = $(this);
-			if (currentMap.data('toggle')){
-				currentMap.stop().animate({
-			  		height: "50px"
-				},200);
-			}
-		});
+		var mapContainer = $('.map-container');
 
 		mapContainer.click(function(){
 			var currentMap = $(this);
 
 			if (currentMap.hasClass('active')){
-				currentMap.animate({
-			  		height: "50px"
-				},200);
+				currentMap.removeClass('map-expanded');
+				currentMap.addClass('map-minified');
 				currentMap.data('toggle',true);
 				currentMap.removeClass('active');
 			} else {
-				currentMap.animate({
-			  		height: "300px"
-				},200);
+				currentMap.removeClass('map-minified');
+				currentMap.addClass('map-expanded');
 				currentMap.data('toggle',false);
 				currentMap.addClass('active');
 			}
