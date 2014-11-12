@@ -1,6 +1,5 @@
 var gigster = {} || gigster;
 
-
 gigster.dataCalls = {
 	artistLookup: function(){
 		$('.venue-check').on('click', $('div'), function(){
