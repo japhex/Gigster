@@ -128,6 +128,7 @@ ul {margin:0;padding:0;}
 @media (max-width: 480px) {
 	.mobile-only {display:inline-block;}
 	.widget {display:block;width:auto;}
+	.navbar-nav {margin-bottom:0;}
 	.navbar-nav li {display:inline-block;width:45px;overflow:hidden;vertical-align:top;height:30px;padding:6px;border-right:0;}
 	.user-nav {display:none;}
 	.navbar-default .navbar-brand {font-size:2em;}
