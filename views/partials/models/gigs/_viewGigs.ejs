@@ -66,7 +66,7 @@
 							<label class="hidden-update">Date:</label>
 							<abbr>VOID: </abbr><span class="static-value past-date"><%= pastGigs[i].gig_date %></span>
 						</div>
-						<!--<a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= pastGigs[i]._id %>">update show</a>-->
+						<a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= pastGigs[i]._id %>"  data-action-form="update-gig" data-trigger="popup">update show</a>
 					</div>
 				</li>
 				<% freshSequence++ %>

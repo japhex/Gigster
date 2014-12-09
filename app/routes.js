@@ -214,7 +214,7 @@ module.exports = function(app, passport) {
 					user : req.user,
 					gigStack : records,
 					lastFmArtists : JSON.parse(body)
-				});				
+				});
 			});
 		});
 	});

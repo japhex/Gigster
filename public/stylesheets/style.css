@@ -1,7 +1,8 @@
-* {box-sizing:border-box;}
 body {background:url(/images/bg_main.png);}
 
 h1 {font-family:'Raleway';}
+
+.mobile-only {display:none;}
 
 .gig-stack h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-transform:rotate(-90deg);position:absolute;left:-91px;top:100px;color:#E62534;font-family:'Gafata';border:1px solid #E62534;}
 #past h1 {left:66px;top:53px;}
@@ -114,4 +115,20 @@ ul {margin:0;padding:0;}
 [data-filler] {background:#E62534;display:block;height:30px;width:0;position:absolute;z-index:0;}
 
 /* WIDGETS */
-.widget {padding:10px;background:#fefefe;border-radius:10px;display:inline-block;width:49%;border:2px solid #eaeaea;box-shadow:0px 2px 3px #eee;max-height:436px;overflow:scroll;}
+.widget {padding:10px;background:#fefefe;display:inline-block;width:49%;box-shadow:0px 1px 4px #ccc;max-height:427px;overflow:scroll;margin:5px;width:30%;}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) {
+	
+}
+ 
+@media (max-width: 767px) {
+}
+
+@media (max-width: 480px) {
+	.mobile-only {display:inline-block;}
+	.widget {display:block;width:auto;}
+	.navbar-nav li {display:inline-block;width:45px;overflow:hidden;vertical-align:top;height:30px;padding:6px;border-right:0;}
+	.user-nav {display:none;}
+	.navbar-default .navbar-brand {font-size:2em;}
+}

@@ -57,6 +57,30 @@ gigster.dataCalls = {
 		// 		});
 		// 	})(band);
 		// }
+	},
+	loadSetlist: function(){
+		var collection = $('#past-gigs').find('.ticket-container'),
+			artistName = "",
+			date = "";
+
+		for (var i=0;i<collection.length;i++){
+			artistName = $(collection[i]).find('.artist-name').text();
+			date = $(collection[i]).parent().data('date'),
+			reformatDate = new Date(date),
+			reformatDate = reformatDate.getDate() + '-' + ("0" + (reformatDate.getMonth() + 1)).slice(-2) + '-' + reformatDate.getFullYear(),
+			gig = $(collection[i]);
+
+
+			(function(gig){
+				$.getJSON('http://api.setlist.fm/rest/0.1/search/setlists.json?artistName=' + artistName + '&date=' + reformatDate + '&callback=?gigster.dataCalls.printSetlist', {
+					dataType:'jsonp'
+				});
+			})(gig);
+		}
+	},
+	printSetlist: function(data){
+		console.log('test');
+		//console.log(data);
 	}
 };
 
@@ -145,7 +169,7 @@ gigster.ui = {
 			var currentBar = $(fillAmount[i]),
 				fillBarAmount = currentBar.data('filler');
 
-			currentBar.animate({'width': fillBarAmount + '%'});
+			currentBar.animate({'width': fillBarAmount + '%'},1000);
 		}
 	}
 };
@@ -160,6 +184,7 @@ $(function (){
 	gigster.dataCalls.artistLookup();
 	gigster.dataCalls.update();
 	gigster.dataCalls.loadBands();
+	gigster.dataCalls.loadSetlist();
 
 	// gigster ui functions
 	gigster.ui.popup();

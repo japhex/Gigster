@@ -10,7 +10,8 @@ var gigSchema = mongoose.Schema({
     venueLat: String,
     venueLong: String,
     gig_date: Date,
-    created_date: Date
+    created_date: Date,
+    set_list: Object
 });
 
 // create the model for users and expose it to our app

@@ -27,13 +27,16 @@
 							<li>
 								<a href="/profile"><span class="glyphicon glyphicon-music"></span> Gigs</a>
 							</li>
+							<% if (user != undefined) { %>
+								<li class="mobile-only"><a href="/logout"><span class="glyphicon glyphicon-eject"></span> Logout</a></li>
+							<% } %>
 						<% } %>
 
 					</ul>
 
 					<% if (user != undefined) { %>
 
-					<ul class="nav navbar-nav pull-right">
+					<ul class="nav navbar-nav pull-right user-nav">
 						<li><a href="#" data-action-form="update-user" data-trigger="popup"><%= user.username == undefined ? user.facebook.name : user.username %></a></li>
 						<% if (user.lastfm != undefined) { %><li data-lastfm="<%= user.lastfm %>"><a href="#"><img src="/images/lastfm_logo.png" /> <%= user.lastfm %></a></li><% } %>
 						<li><p><span class="badge"><%= gigStack.length %></span> gigs!</p></li>
@@ -46,7 +49,7 @@
 			</div>
 		</nav>
 	</header>
-	<div id="main" class="container">
+	<div id="main">
 		<%- body %>
 	</div>
 	<footer>
@@ -57,7 +60,6 @@
 	<% include ../partials/models/user/_updateUserDetails.ejs %>
 	<script src="//code.jquery.com/jquery-latest.js"></script>
 	<script src="/javascript/jquery-ui-1.10.4.custom.min.js"></script>
-	<script src="/javascript/utilities/md5.js"></script>
 	<script src="/javascript/main.js"></script>
 </body>
 </html>
