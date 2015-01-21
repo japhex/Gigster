@@ -1,0 +1,10 @@
+/* MODULES */
+/* Top artists */
+.top-artists {width:100%;}
+.top-artists td {position:relative;height:35px;vertical-align:top;}
+.top-artists tr:first-child td {height:62px;}
+.top-artists tr:first-child td span {height:55px;}
+.top-artists tr:first-child td a {font-size:1.5em;padding-top:11px;}
+.top-artists a {position:relative;z-index:1;color:#fff;padding:5px 10px;display:block;}
+.artist-count {text-align:right;display:block;}
+[data-filler] {background:#E62534;display:block;height:30px;width:0;position:absolute;z-index:0;}

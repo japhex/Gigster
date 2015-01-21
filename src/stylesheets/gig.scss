@@ -1,0 +1,124 @@
+.gig-stack {
+
+	&>ul>li {
+		width:100%;
+		list-style-type:none;
+		display:inline-block;
+		position:relative;
+		border-bottom:1px dashed #666;
+		min-height:106px;
+	}
+
+	&> li:first-child {
+		padding-top:0;
+	}
+
+	h1 {
+		margin-top:0;
+		display:inline-block;
+		background:#fff;
+		padding:5px 10px;
+		-webkit-transform:rotate(-90deg);
+		position:absolute;
+		left:-91px;
+		top:100px;
+		color:#E62534;
+		font-family:'Gafata';
+		border:1px solid #E62534;
+	}
+
+	li:last-child {
+		margin-right:0;
+		border-bottom:0;
+		padding-bottom:0;
+	}
+
+	.stack-info {
+		display:inline-block;
+		vertical-align:middle;
+		padding:10px 0;
+		min-height:0;
+		text-align:center;
+		width:100%;
+	}
+
+	display:inline-block;
+	width:49%;
+	position:relative;
+	vertical-align:top;	
+}
+
+#past-gigs {
+	h1 {
+		left:66px;top:53px;
+	}
+	
+	li {
+		margin-right:27px;
+	}
+	
+	.display-date {
+		color:#E62534;
+		border:1px dashed #E62534;
+		padding:8px;
+		font-family:'Rock Salt';
+		position:absolute;
+		min-width:192px;
+		right:0;
+	}
+}
+
+.display-date {display:inline-block;position:relative;top:9px;min-width:62px;}
+.date-sticker {/*position:absolute;top:-5px;left:-10px;*/font-family:'Gafata', sans-serif;}
+.date-sticker span {display:block;font-weight:bold;}
+.date-sticker .weekday {display:none;}
+.day {font-size:3em;line-height:0.5em;}
+.past-date .day {font-size:1em;}
+.date-sticker .month {font-size:2.5em;}
+.map-container {height:50px;overflow:hidden;margin-top:20px;position:relative;cursor:pointer;}
+.map-container img {margin:0;position:absolute;top:-108px;}
+.map-container.active img {position:static;}
+
+.event-detail {
+	label {
+		display:none;
+	}
+	
+	display:block;
+	height:40px;
+}
+
+.event-detail.ticket-artist {height:auto;display:inline-block;padding:17px 0 0 17px;}
+
+.app-action-container {
+	li {
+		display:inline-block;
+	}
+	
+	position:absolute;
+	top:5px;
+	right:5px;
+}
+
+.img-crop {width:100px;overflow:hidden;float:left;}
+.band-logo {display:inline-block;max-height:100px;min-height:100px;}
+
+.map-minified {height:50px;transition:height 0.4s;}
+.map-expanded {height:300px;transition:height 0.4s;}
+.map-expanded img {position:static;}
+
+/*-- Forms --*/
+/* Update Form */
+.static-value {display:inline-block;}
+.hidden-update {display:none;}
+.form-control {width:330px;display:inline-block;float:right;}
+.control-input {width:212px;margin-right:10px;}
+.control-button {width:107px;float:right;}
+
+.artist-name {font-size:2em;}
+.venue-name {display:block;}
+
+.gig-date {display:none;}
+
+/* EUGH */
+.hide-gig {display:none !important;} 
