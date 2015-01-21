@@ -10,149 +10,12 @@ h1 {font-family:'Raleway';}
 .gig-stack h1 {margin-top:0;display:inline-block;background:#fff;padding:5px 10px;-webkit-transform:rotate(-90deg);position:absolute;left:-91px;top:100px;color:#E62534;font-family:'Gafata';border:1px solid #E62534;}
 #past h1 {left:66px;top:53px;}
 
-header {position:fixed;width:100%;z-index:4;}
-
-#main {padding:100px 0 0 0;}
-
-ul {margin:0;padding:0;}
-
-.navbar-default {background:#fff;border-bottom:2px solid #eaeaea;border-top:4px solid #E62534;}
-.navbar-header {width:100%;}
-
-.navbar-default .navbar-brand {font-size:3em;/*color:#fff;*/display:block;padding:23px 23px 34px 23px;/*background:#E62534;*/height:auto;line-height:9px;/*-webkit-text-stroke-width:0.5px;-webkit-text-stroke-color:#78131B;*/}
-.navbar-brand, .btn {font-family:'Gafata', sans-serif;}
-.navbar-nav {
-	&> li {
-		border-right:1px solid #eaeaea;
-	}
-
-	&>li>a:hover {
-		color:#666;
-	}
-
-	padding-top:7px;
-}
-
 .btn {text-transform:uppercase;}
 
 .btn-default {background:#eaeaea;color:#666;}
 .btn-danger {background:#D70206;}
 .app-action-change, .app-action-change:hover {color:#D70206;}
 
-.navbar-default .navbar-nav>li>a:hover {color:#000;}
-
-.navbar-nav .user-nav {
-	a {
-		display:inline-block;
-	}
-	a:first-child {
-		margin-right:5px;
-	}
-}
-
-.form-horizontal {
-	.form-group {
-		margin:10px 0;
-	}
-}
-
-.gig-stack {
-	&>ul>li {
-		width:100%;
-		list-style-type:none;
-		display:inline-block;
-		position:relative;
-		border-bottom:1px dashed #666;
-		min-height:106px;
-	}
-
-	&> li:first-child {
-		padding-top:0;
-	}
-
-	li:last-child {
-		margin-right:0;
-		border-bottom:0;
-		padding-bottom:0;
-	}
-}
-
-.display-date {display:inline-block;position:relative;top:9px;min-width:62px;}
-.date-sticker {/*position:absolute;top:-5px;left:-10px;*/font-family:'Gafata', sans-serif;}
-.date-sticker span {display:block;font-weight:bold;}
-.date-sticker .weekday {display:none;}
-.day {font-size:3em;line-height:0.5em;}
-.past-date .day {font-size:1em;}
-.date-sticker .month {font-size:2.5em;}
-.map-container {height:50px;overflow:hidden;margin-top:20px;position:relative;cursor:pointer;}
-.map-container img {margin:0;position:absolute;top:-108px;}
-.map-container.active img {position:static;}
-
-#past-gigs {
-	li {
-		margin-right:27px;
-	}
-	.display-date {
-		color:#E62534;
-		border:1px dashed #E62534;
-		padding:8px;
-		font-family:'Rock Salt';
-		position:absolute;
-		min-width:192px;
-		right:0;
-	}
-}
-
-.event-detail {
-	label {
-		display:none;
-	}
-	
-	display:block;
-	height:40px;
-}
-
-.event-detail.ticket-artist {height:auto;display:inline-block;padding:17px 0 0 17px;}
-
-.app-action-container {
-	li {
-		display:inline-block;
-	}
-	
-	position:absolute;
-	top:5px;
-	right:5px;
-}
-
-.img-crop {width:100px;overflow:hidden;float:left;}
-.band-logo {display:inline-block;max-height:100px;min-height:100px;}
-
-.map-minified {height:50px;transition:height 0.4s;}
-.map-expanded {height:300px;transition:height 0.4s;}
-.map-expanded img {position:static;}
-
-/*-- Forms --*/
-/* Update Form */
-.static-value {display:inline-block;}
-.hidden-update {display:none;}
-.form-control {width:330px;display:inline-block;float:right;}
-.control-input {width:212px;margin-right:10px;}
-.control-button {width:107px;float:right;}
-
-.artist-name {font-size:2em;}
-.venue-name {display:block;}
-
-.gig-date {display:none;}
-
-.gig-stack {display:inline-block;width:49%;position:relative;vertical-align:top;}
-.gig-stack #future-gigs .stack-info, .gig-stack #past-gigs .stack-info {display:inline-block;vertical-align:middle;padding:10px 0;min-height:0;text-align:center;width:100%;}
-
-/*.gig-stack {vertical-align:top;position:relative;overflow:hidden;width:100%;overflow-x:scroll;}
-.gig-stack ul {width:2238px;height:300px;box-shadow:inset 0 0 10px #000000;padding-top:20px;}
-#past-gigs {width:1738px;}*/
-
-/* EUGH */
-.hide-gig {display:none !important;} 
 
 /* Bootstrap Module Overrides */
 
@@ -161,61 +24,11 @@ ul {margin:0;padding:0;}
 .navbar-nav li a {padding:0;}
 .badge {background:#d9534f;}
 
-/* Modules */
-
-.popup {position:fixed;box-shadow:0 0 10px #000;z-index:3;display:none;width:450px;background:url(/images/bg_main.png);top:50%;left:50%;transform:translateX(-50%) translateY(-50%);}
-.popup h3 {margin:0;border-bottom:1px solid #ccc;color:#777;border-top:3px solid #E62534;background:#fff;}
-.popup h3, .popup form {padding:15px;}
-.popup-shadow {width:100%;height:100%;position:absolute;background:#000;opacity:0.4;z-index:2;top:0;left:0;display:none;}
-
-.notification-popup {width:60%;}
-.notification-popup .notification {margin:0 auto;}
-
-.notification-bubble {position:absolute;background:#333;color:#fff;padding:10px;border-radius:21px;box-shadow:0px 0px 6px #000;}
-.notification-bubble:after {content:"";display:block;width:0;height:0;border-top:9px solid transparent;border-bottom:7px solid transparent;border-left:9px solid #333;position:absolute;right:-7px;top:12px;}
-.notification-bubble a {color:#fff;}
-
-#user-notifications {right:470px;top:14px;}
 
 /* Users */
 
 .user {font-family:'Gafata';font-size:3em;color:#000;}
 
-/* MODULES */
-/* Top artists */
-.top-artists {width:100%;}
-.top-artists td {position:relative;height:35px;vertical-align:top;}
-.top-artists tr:first-child td {height:62px;}
-.top-artists tr:first-child td span {height:55px;}
-.top-artists tr:first-child td a {font-size:1.5em;padding-top:11px;}
-.top-artists a {position:relative;z-index:1;color:#fff;padding:5px 10px;display:block;}
-.artist-count {text-align:right;display:block;}
-[data-filler] {background:#E62534;display:block;height:30px;width:0;position:absolute;z-index:0;}
 
 /* WIDGETS */
 .widget {padding:10px;background:#fefefe;display:inline-block;width:49%;box-shadow:0px 1px 4px #ccc;max-height:427px;overflow:scroll;margin:5px;width:30%;}
-
-/* Portrait tablet to landscape and desktop */
-@media (min-width: 768px) {
-	
-}
- 
-@media (max-width: 767px) {
-}
-
-@media (max-width: 480px) {
-	.mobile-only {display:inline-block !important;}
-	.mobile-no-scroll {overflow:hidden;}
-	.widget {display:block;width:auto;}
-	.navbar-nav {margin-bottom:0;}
-	.navbar-nav li {display:inline-block;width:45px;overflow:hidden;vertical-align:top;height:30px;padding:6px;border-right:0;}
-	.user-nav {display:none;}
-	.navbar-default .navbar-brand {font-size:2em;}
-	.top-artists a {font-size:0.9em;}
-	#past-gigs .display-date {border:0;position:static;}
-	#past-gigs li {margin-right:0;}
-	#past-gigs .event-detail.ticket-artist {display:block;padding:10px 0 0px 7px;}
-	#future-gigs > li {border:0;}
-	.map-expanded img {position:relative;top:0;left:-70px;}
-	.popup {width:98%;}
-}

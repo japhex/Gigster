@@ -1,3 +1,10 @@
 @import '_partials/_nav';
 @import 'modules';
 @import 'responsive';
+
+body {background:url(/images/bg_main.png);}
+h1 {font-family:'Raleway';}
+header {position:fixed;width:100%;z-index:4;}
+#main {padding:100px 0 0 0;}
+ul {margin:0;padding:0;}
+.btn {font-family:'Gafata', sans-serif;}
