@@ -35,9 +35,11 @@
 					</ul>
 
 					<% if (user != undefined) { %>
-
+					<div class="notification-bubble" id="user-notifications">
+						<a href="#">You have <span>0</span> notifications! x</a>
+					</div>
 					<ul class="nav navbar-nav pull-right user-nav">
-						<li><a href="#" data-action-form="update-user" data-trigger="popup"><%= user.username == undefined ? user.facebook.name : user.username %></a></li>
+						<li class="user-nav"><a href="#" data-action-form="notifications" data-trigger="popup"><span class="badge notification-badge hide">0</span> <a href="#" data-action-form="update-user" data-trigger="popup"><%= user.username == undefined ? user.facebook.name : user.username %></a></li>
 						<% if (user.lastfm != undefined) { %><li data-lastfm="<%= user.lastfm %>"><a href="#"><img src="/images/lastfm_logo.png" /> <%= user.lastfm %></a></li><% } %>
 						<li><p><span class="badge"><%= gigStack.length %></span> gigs!</p></li>
 						<li><a href="/logout"><span class="glyphicon glyphicon-eject"></span> Logout</a></li>
@@ -59,7 +61,6 @@
 	<% include ../partials/models/gigs/_updateGigDetails.ejs %>
 	<% include ../partials/models/user/_updateUserDetails.ejs %>
 	<script src="//code.jquery.com/jquery-latest.js"></script>
-	<script src="/javascript/jquery-ui-1.10.4.custom.min.js"></script>
 	<script src="/javascript/main.js"></script>
 </body>
 </html>

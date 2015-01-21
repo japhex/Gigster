@@ -6,89 +6,90 @@
 	The main profile page which shows each users gig list along with other features
 
 -->
-
-<% if (user.username == undefined) { %>
-	<div class="row panel panel-warning">
-		<div class="panel-heading">
-			<span class="glyphicon glyphicon-warning-sign"></span> Notification
-		</div>
-		<div class="panel-body">
-			
-			<!--
-
-				Create username field. If username if null, before allowing them to continue, get them to create a unique username.
-
-				Use username in URL
-
-			-->
-
-			<p>
-				Unlike other social media sites like Twitter, Facebook doesn't store a username against you, we require this to give you a nicer experience, if you wouldn't mind creating a username below, that would be awesome!
-			</p>
-			<form action="/user/update/<%= user._id %>" method="POST">
-				<label>
-					Username:
-				</label>
-				<input placeholder="username" name="username" />
-				<button type="submit">Update</button>
-			</form>
-		</div>
-	</div>
-<% } %>
-<% if (user.email == undefined){ %>
-	<div class="row panel panel-warning">
-		<div class="panel-heading">
-			<span class="glyphicon glyphicon-warning-sign"></span> Notification
-		</div>
-		<div class="panel-body">
-			
-			<!--
-
-				Create specific email field. 
+<div class="popup notification-popup" id="notifications">
+	<% if (user.username == undefined) { %>
+		<div class="panel panel-warning notification">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-warning-sign"></span> Notification
+			</div>
+			<div class="panel-body">
 				
-				TODO: MD5 into DB and then create gravatar URL off the back of it.
+				<!--
 
-			-->
+					Create username field. If username if null, before allowing them to continue, get them to create a unique username.
 
-			<p>
-				We can grab your email from your social account, but just to make sure we've got the right one to get you gravatar icon etc. do you mind entering it here?
-			</p>
-			<form action="/user/update/<%= user._id %>" method="POST">
-				<label>
-					Email:
-				</label>
-				<input placeholder="email" name="email" />
-				<button type="submit">Update</button>
-			</form>
+					Use username in URL
+
+				-->
+
+				<p>
+					Unlike other social media sites like Twitter, Facebook doesn't store a username against you, we require this to give you a nicer experience, if you wouldn't mind creating a username below, that would be awesome!
+				</p>
+				<form action="/user/update/<%= user._id %>" method="POST">
+					<label>
+						Username:
+					</label>
+					<input placeholder="username" name="username" />
+					<button type="submit">Update</button>
+				</form>
+			</div>
 		</div>
-	</div>
-<% } %>
-<% if (user.lastfm == undefined) { %>
-	<div class="row panel panel-warning">
-		<div class="panel-heading">
-			<span class="glyphicon glyphicon-warning-sign"></span> Notification
+	<% } %>
+	<% if (user.email == undefined){ %>
+		<div class="panel panel-warning notification">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-warning-sign"></span> Notification
+			</div>
+			<div class="panel-body">
+				
+				<!--
+
+					Create specific email field. 
+					
+					TODO: MD5 into DB and then create gravatar URL off the back of it.
+
+				-->
+
+				<p>
+					We can grab your email from your social account, but just to make sure we've got the right one to get you gravatar icon etc. do you mind entering it here?
+				</p>
+				<form action="/user/update/<%= user._id %>" method="POST">
+					<label>
+						Email:
+					</label>
+					<input placeholder="email" name="email" />
+					<button type="submit">Update</button>
+				</form>
+			</div>
 		</div>
-		<div class="panel-body">
-			
-			<!--
+	<% } %>
+	<% if (user.lastfm == undefined) { %>
+		<div class="panel panel-warning notification">
+			<div class="panel-heading">
+				<span class="glyphicon glyphicon-warning-sign"></span> Notification
+			</div>
+			<div class="panel-body">
+				
+				<!--
 
-				Create Last.fm user.
+					Create Last.fm user.
 
-			-->
+				-->
 
-			<p>
-				Do you have a Last.fm account? If so enter your username below to get some stats going on!
-			</p>
-			<form action="/user/update/<%= user._id %>" method="POST">
-				<label>
-					Last.fm Username:
-				</label>
-				<input placeholder="musicLover" name="lastfm" />
-				<button type="submit">Update</button>
-			</form>
+				<p>
+					Do you have a Last.fm account? If so enter your username below to get some stats going on!
+				</p>
+				<form action="/user/update/<%= user._id %>" method="POST">
+					<label>
+						Last.fm Username:
+					</label>
+					<input placeholder="musicLover" name="lastfm" />
+					<button type="submit">Update</button>
+				</form>
+			</div>
 		</div>
-	</div>
-<% } %>
+	<% } %>
+</div>
 
 <!-- Last.fm top artists -->
 <% include partials/models/user/lastfm/_topArtists.ejs %>

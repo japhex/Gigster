@@ -112,29 +112,6 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	// =====================================
-	// UPDATE AN EVENT (FIND BY ID) ========
-	// =====================================
-	// app.post('/update/:id', function (req, res) {
-	// 	Gig.findByIdAndUpdate(req.params.id, {
-	// 		artist:req.body.artist,
-	// 		venue:req.body.venue,
-	// 		gig_date:req.body.gig_date
-	// 	}, function (err) {
-	// 		res.redirect( '/' );
-	// 	});
-	// });
-
-	// =====================================
-	// DELETE AN EVENT (FIND BY ID) ========
-	// =====================================
-	// app.get('/delete/:id', function (req, res) {
-	// 	Gig.remove({_id: req.params.id}, function (err) {
-	// 		res.redirect( '/' );
-	// 		// Need to include gigStack in request params as well as user to re-render the page and pass back the correct data.
-	// 	});
-	// });
-
 	// --==--==--==--==--==--==--==--==--==--
 
 	// User API

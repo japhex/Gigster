@@ -11,6 +11,10 @@
 			var freshSequence = 1;
 		%>
 
+		<% if (futureGigs.length < 1) { %>
+			<li class="stack-info">You don't currently have any upcoming gigs.</li>
+		<% } %>
+
 		<% for(var i=0; i<futureGigs.length; i++) {%>
 			<% var currentDate = new Date(); %>
 			<% if (currentDate - futureGigs[i].gig_date < 0){ %>
@@ -50,6 +54,10 @@
 			});
 			var freshSequence = 1;
 		%>
+
+		<% if (pastGigs.length < 1) { %>
+			<li class="stack-info">You haven't been to any shows.</li>
+		<% } %>
 
 		<% for(var i=0; i<pastGigs.length; i++) {%>
 			<% var currentDate = new Date(); %>
