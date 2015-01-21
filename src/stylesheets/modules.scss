@@ -1,4 +1,4 @@
-@import 'gig';
-@import 'popup';
-@import 'top-artists';
-@import 'widget';
+@import '_partials/models/gigs/_gig';
+@import '_partials/_popup';
+@import '_partials/models/user/lastfm/_top-artists';
+@import '_partials/_widget';
