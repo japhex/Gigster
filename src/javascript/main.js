@@ -1,4 +1,3 @@
-
 /** @namespace */
 var gigster = {} || gigster;
 

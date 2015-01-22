@@ -51,6 +51,7 @@ module.exports = function(app, passport) {
 	// 	});
 	// });
 
+	// Change to put method
 	app.post('/update/:id', function(req, res) {
 		Gig.findOne({_id:req.params.id}, function(err,gig){
 			if (err) {
@@ -201,6 +202,7 @@ module.exports = function(app, passport) {
 	// =====================================
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
+	// Change to put method
 	app.post('/user/update/:id', isLoggedIn, function(req, res) {
 		User.findOne({_id:req.params.id}, function(err,user){
 			if (err) {
