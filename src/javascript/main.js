@@ -81,9 +81,9 @@ gigster.dataCalls = {
 
 		for (var i=0;i<collection.length;i++){
 			artistName = $(collection[i]).find('.artist-name').text();
-			date = $(collection[i]).parent().data('date'),
-			reformatDate = new Date(date),
-			reformatDate = reformatDate.getDate() + '-' + ("0" + (reformatDate.getMonth() + 1)).slice(-2) + '-' + reformatDate.getFullYear(),
+			date = $(collection[i]).parent().data('date');
+			reformatDate = new Date(date);
+			reformatDate = reformatDate.getDate() + '-' + ("0" + (reformatDate.getMonth() + 1)).slice(-2) + '-' + reformatDate.getFullYear();
 			gig = $(collection[i]);
 
 
@@ -123,23 +123,23 @@ gigster.utilities = {
 	},
 	/** Utility function to format dates */
 	formatDate: function(){
-		var dates = $('.display-date').find('span'),
+		var $dates = $('.display-date').find('span'),
 			dateString = "";
 
-		for (var i=0;i<dates.length;i++){
-			if ($(dates[i]).hasClass('past-date')){
-				dateString = "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + " </span>";
-				dateString += "<span class='day'> " + $(dates[i]).text().substring(8,11) + "</span>";
-				dateString += "<span class='month'>" + $(dates[i]).text().substring(4,7) + "</span>";
-				dateString += "<span class='year'> " + $(dates[i]).text().substring(13,15) + "</span>";
+		for (var i=0;i<$dates.length;i++){
+			if ($($dates[i]).hasClass('past-date')){
+				dateString = "<span class='weekday'>" + $($dates[i]).text().substring(0,3) + " </span>";
+				dateString += "<span class='day'> " + $($dates[i]).text().substring(8,11) + "</span>";
+				dateString += "<span class='month'>" + $($dates[i]).text().substring(4,7) + "</span>";
+				dateString += "<span class='year'> " + $($dates[i]).text().substring(13,15) + "</span>";
 			} else {
 				dateString = "<div class='date-sticker'>";
-				dateString += "<span class='weekday'>" + $(dates[i]).text().substring(0,3) + " </span>";
-				dateString += "<span class='day'>" + $(dates[i]).text().substring(8,11) + "</span>";
-				dateString += "<span class='month'>" + $(dates[i]).text().substring(4,7) + "</span>";
+				dateString += "<span class='weekday'>" + $($dates[i]).text().substring(0,3) + " </span>";
+				dateString += "<span class='day'>" + $($dates[i]).text().substring(8,11) + "</span>";
+				dateString += "<span class='month'>" + $($dates[i]).text().substring(4,7) + "</span>";
 				dateString += "</div>";
 			}
-			$(dates[i]).html(dateString);
+			$($dates[i]).html(dateString);
 		}
 	}
 };
@@ -177,46 +177,46 @@ gigster.ui = {
 		});
 	},
 	maps: function(){
-		var mapContainer = $('.map-container');
+		var $mapContainer = $('.map-container');
 
-		mapContainer.click(function(){
-			var currentMap = $(this);
+		$mapContainer.click(function(){
+			var $currentMap = $(this);
 
-			if (currentMap.hasClass('active')){
-				currentMap.removeClass('map-expanded');
-				currentMap.addClass('map-minified');
-				currentMap.data('toggle',true);
-				currentMap.removeClass('active');
+			if ($currentMap.hasClass('active')){
+				$currentMap.removeClass('map-expanded');
+				$currentMap.addClass('map-minified');
+				$currentMap.data('toggle',true);
+				$currentMap.removeClass('active');
 			} else {
-				currentMap.removeClass('map-minified');
-				currentMap.addClass('map-expanded');
-				currentMap.data('toggle',false);
-				currentMap.addClass('active');
+				$currentMap.removeClass('map-minified');
+				$currentMap.addClass('map-expanded');
+				$currentMap.data('toggle',false);
+				$currentMap.addClass('active');
 			}
 		});		
 	},
 	artistFiller: function(){
-		var fillAmount = $('[data-filler]');
+		var $fillAmount = $('[data-filler]');
 
 		for (var i=0;i<$('[data-filler]').length;i++){
-			var currentBar = $(fillAmount[i]),
+			var currentBar = $($fillAmount[i]),
 				fillBarAmount = currentBar.data('filler');
 
 			currentBar.animate({'width': fillBarAmount + '%'},1000);
 		}
 	},
 	notificationCount: function(){
-		var notification = $('.notification'),
-			notificationCount = notification.length,
-			notificationBadge = $('.notification-badge'),
-			notificationBubble = $('.notification-bubble span');
+		var $notification = $('.notification'),
+			notificationCount = $notification.length,
+			$notificationBadge = $('.notification-badge'),
+			$notificationBubble = $('.notification-bubble span');
 
 		if (notificationCount > 0){
 			for (var i=0;i<notificationCount;i++){
-				notificationBadge.text(notificationCount);
-				notificationBubble.text(notificationCount);
+				$notificationBadge.text(notificationCount);
+				$notificationBubble.text(notificationCount);
 			}
-			notificationBadge.removeClass('hide');
+			$notificationBadge.removeClass('hide');
 		}
 		// Count all notifications on page and display a number next to the username.
 		// If notifications exist on page, display banner at the top of the page alerting the user to this.

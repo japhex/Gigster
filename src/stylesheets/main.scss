@@ -8,3 +8,15 @@ header {position:fixed;width:100%;z-index:4;}
 #main {padding:100px 0 0 0;}
 ul {margin:0;padding:0;}
 .btn {font-family:'Gafata', sans-serif;}
+.btn-default {background:#eaeaea;color:#666;}
+.btn-danger {background:#D70206;}
+.app-action-change, .app-action-change:hover {color:#D70206;}
+
+/* Bootstrap Module Overrides */
+
+.panel-body h1 {margin-top:0;}
+.navbar-nav li {padding:15px;}
+.navbar-nav li a {padding:0;}
+.badge {background:#d9534f;}
+
+.para-intro {width:80%;margin:0 auto;}
