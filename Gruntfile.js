@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  // Project configuration.
+    // Project configuration.
     grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     dirs: {
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             files: [{
                 expand: true,
                 cwd: '<%= dirs.privateCss %>',
-                src: ['main.scss'],
+                src: ['main.scss','modules.scss','responsive.scss','/_partials/models/gigs/_gig.scss','/_partials/models/user/lastfm/_top-artists.scss','/_partials/models/user/_user.scss','/_partials/_nav.scss','/_partials/_notifications.scss','/_partials/_popup.scss','/_partials/_widget.scss'],
                 dest: '<%= dirs.publicCss %>',
                 ext: '.css'
             }]
