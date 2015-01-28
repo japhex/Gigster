@@ -317,17 +317,13 @@
 @media (max-width: 480px) {
   .mobile-only {
     display: inline-block !important; }
-
   .mobile-no-scroll {
     overflow: hidden; }
-
   .widget {
     display: block;
     width: auto; }
-
   .navbar-nav {
     margin-bottom: 0; }
-
   .navbar-nav li {
     display: inline-block;
     width: 45px;
@@ -336,37 +332,29 @@
     height: 30px;
     padding: 6px;
     border-right: 0; }
-
   .user-nav {
     display: none; }
-
   .navbar-default .navbar-brand {
     font-size: 2em; }
-
   .top-artists a {
     font-size: 0.9em; }
-
   #past-gigs .display-date {
     border: 0;
     position: static; }
-
   #past-gigs li {
     margin-right: 0; }
-
   #past-gigs .event-detail.ticket-artist {
     display: block;
     padding: 10px 0 0px 7px; }
-
   #future-gigs > li {
     border: 0; }
-
   .map-expanded img {
     position: relative;
     top: 0;
     left: -70px; }
-
   .popup {
     width: 98%; } }
+
 body {
   background: url(/images/bg_main.png); }
 
@@ -414,5 +402,3 @@ ul {
 .para-intro {
   width: 80%;
   margin: 0 auto; }
-
-/*# sourceMappingURL=main.css.map */
