@@ -1,17 +1,11 @@
 // Include gulp
-var gulp = require('gulp'); 
-
-// Include Our Plugins
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
-var size = require('gulp-filesize');
+var gulp = require('gulp');
+var gulpLoadPlugins = require('gulp-load-plugins'),
+    plugins = gulpLoadPlugins();
 
 // Directory structures
 var DIRECTORIES = {
+    src : '/',
     publicStyles : 'public/stylesheets/',
     privateStyles : 'src/stylesheets/',
     publicScripts : 'public/javascript/',
@@ -19,40 +13,49 @@ var DIRECTORIES = {
     publicImages : 'public/images/'
 }
 
+// Function to fire everytime a file is changed and displayed the changes in the console
+var changeEvent = function(evt) {
+    plugins.util.log('File', plugins.util.colors.yellow(evt.path.replace(new RegExp('/.*(?=/' + DIRECTORIES.src + ')/'), '')), 'was', plugins.util.colors.green(evt.type));
+};
+
 // Compile Our Sass
 gulp.task('sass', function() {
     return gulp.src(DIRECTORIES.privateStyles + '*.scss')
-        .pipe(sass())
+        .pipe(plugins.sass())
         .pipe(gulp.dest(DIRECTORIES.publicStyles));
 });
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
     return gulp.src(DIRECTORIES.privateScripts + '*.js')
-        .pipe(size())
-        .pipe(concat('build-concat.js'))
+        .pipe(plugins.filesize())
+        .pipe(plugins.concat('build-concat.js'))
         .pipe(gulp.dest(DIRECTORIES.publicScripts))
-        .pipe(rename('built.min.js'))
-        .pipe(uglify())
+        .pipe(plugins.rename('built.min.js'))
+        .pipe(plugins.uglify())
         .pipe(gulp.dest(DIRECTORIES.publicScripts))
-        .pipe(size());
+        .pipe(plugins.filesize());
 });
 
 // Minify all images on build
 gulp.task('imageMin', function () {
     return gulp.src('src/images/*')
-        .pipe(imagemin({
+        .pipe(plugins.imagemin({
             progressive: true,
-            svgoPlugins: [{removeViewBox: false}],
-            use: [pngquant()]
+            svgoPlugins: [{removeViewBox: false}]
+            //use: [plugins.imagemin-pngquant()]
         }))
         .pipe(gulp.dest(DIRECTORIES.publicImages));
 });
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch(DIRECTORIES.privateScripts + '*.js', ['scripts']);
-    gulp.watch(DIRECTORIES.privateStyles + '*.scss', ['sass']);
+    gulp.watch(DIRECTORIES.privateScripts + '*.js', ['scripts']).on('change', function(event){
+        changeEvent(event);
+    });
+    gulp.watch(DIRECTORIES.privateStyles + '*.scss', ['sass']).on('change', function(event){
+        changeEvent(event);
+    });
 });
 
 // Default Task
