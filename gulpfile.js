@@ -22,7 +22,8 @@ var changeEvent = function(evt) {
 gulp.task('sass', function() {
     return gulp.src(DIRECTORIES.privateStyles + '*.scss')
         .pipe(plugins.sass())
-        .pipe(gulp.dest(DIRECTORIES.publicStyles));
+        .pipe(gulp.dest(DIRECTORIES.publicStyles))
+        .pipe(livereload());
 });
 
 // Concatenate & Minify JS
