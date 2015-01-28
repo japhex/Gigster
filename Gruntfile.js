@@ -9,11 +9,11 @@ module.exports = function(grunt) {
         privateCss: 'src/stylesheets',
         publicCss: 'public/stylesheets',
         privateImages: 'src/images/',
-        publicImage: 'public/images/'
+        publicImages: 'public/images/'
     },    
     concat: {
         bar: {
-            src: ['<%= dirs.privateJs %>jquery-ui-1.10.4.custom.min.js','<%= dirs.privateJs %>main.js'],
+            src: ['<%= dirs.privateJs %>utilities/*.js', '<%= dirs.privateJs %>main.js'],
             dest: '<%= dirs.privateJs %>build-concat.js',
         },
     },
