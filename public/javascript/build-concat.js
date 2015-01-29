@@ -2699,24 +2699,24 @@ gigster.dataCalls = {
 		// }
 	},
 	loadSetlist: function(){
-		var collection = $('#past-gigs').find('.ticket-container'),
-			artistName = "",
-			date = "";
+		// var collection = $('#past-gigs').find('.ticket-container'),
+		// 	artistName = "",
+		// 	date = "";
 
-		for (var i=0;i<collection.length;i++){
-			artistName = $(collection[i]).find('.artist-name').text();
-			date = $(collection[i]).parent().data('date');
-			reformatDate = new Date(date);
-			reformatDate = reformatDate.getDate() + '-' + ("0" + (reformatDate.getMonth() + 1)).slice(-2) + '-' + reformatDate.getFullYear();
-			gig = $(collection[i]);
+		// for (var i=0;i<collection.length;i++){
+		// 	artistName = $(collection[i]).find('.artist-name').text();
+		// 	date = $(collection[i]).parent().data('date');
+		// 	reformatDate = new Date(date);
+		// 	reformatDate = reformatDate.getDate() + '-' + ("0" + (reformatDate.getMonth() + 1)).slice(-2) + '-' + reformatDate.getFullYear();
+		// 	gig = $(collection[i]);
 
 
-			(function(gig){
-				$.getJSON('http://api.setlist.fm/rest/0.1/search/setlists.json?artistName=' + artistName + '&date=' + reformatDate + '&callback=?gigster.dataCalls.printSetlist', {
-					dataType:'jsonp'
-				});
-			})(gig);
-		}
+		// 	(function(gig){
+		// 		$.getJSON('http://api.setlist.fm/rest/0.1/search/setlists.json?artistName=' + artistName + '&date=' + reformatDate + '&callback=?gigster.dataCalls.printSetlist', {
+		// 			dataType:'jsonp'
+		// 		});
+		// 	})(gig);
+		//}
 	},
 	printSetlist: function(data){
 		console.log('test');
@@ -2834,6 +2834,8 @@ gigster.ui = {
 			notificationCount = $notification.length,
 			$notificationBadge = $('.notification-badge'),
 			$notificationBubble = $('.notification-bubble span');
+
+			console.log(notificationCount);
 
 		if (notificationCount > 0){
 			for (var i=0;i<notificationCount;i++){
