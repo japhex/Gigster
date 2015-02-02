@@ -29,13 +29,14 @@ gulp.task('sass', function() {
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
     return gulp.src(DIRECTORIES.privateScripts + '*.js')
-        //.pipe(plugins.filesize())
+        .pipe(plugins.filesize())
         .pipe(plugins.concat('build-concat.js'))
         .pipe(gulp.dest(DIRECTORIES.publicScripts))
         .pipe(plugins.rename('built.min.js'))
+        .pipe(plugins.stripDebug())
         .pipe(plugins.uglify().on('error', function(e) { console.log('\x07',e.message); return this.end(); }))
         .pipe(gulp.dest(DIRECTORIES.publicScripts))
-        //.pipe(plugins.filesize())
+        .pipe(plugins.filesize())
         .pipe(plugins.jsdoc('./docs'));
 });
 
