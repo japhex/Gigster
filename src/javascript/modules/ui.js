@@ -76,8 +76,6 @@ function UI() {
 			$notificationBadge = $('.notification-badge'),
 			$notificationBubble = $('.notification-bubble span');
 
-			console.log(notificationCount);
-
 		if (notificationCount > 0){
 			for (var i=0;i<notificationCount;i++){
 				$notificationBadge.text(notificationCount);
