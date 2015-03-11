@@ -34,6 +34,9 @@ gulp.task('clean-scripts', function(){
 });
 
 // Compile Sass files, add autoprefixed CSS3 properties, minify the output CSS and finally concatenate into a single file for a single request
+// @waits-for: 'clean-styles' task
+// @output: /public/stylesheets/main.css
+// 
 gulp.task('sass', ['clean-styles'], function() {
     return gulp.src(DIRECTORIES.privateStyles + '*.scss')
         .pipe(plugins.sourcemaps.init())
@@ -55,7 +58,10 @@ gulp.task('browserify', function(){
         .pipe(gulp.dest(DIRECTORIES.publicScripts))
 });
 
-// Concatenate & Minify JS
+// Concatenate & Minify JS after browserify task has run
+// @waits-for: 'browserify' and 'clean-scripts' tasks
+// @output: /public/javascript/build.min.js
+// 
 gulp.task('scripts', ['browserify','clean-scripts'], function() {
     return gulp.src(DIRECTORIES.publicScripts + 'build.min.js')
         .pipe(plugins.concat('build.min.js'))
@@ -83,7 +89,7 @@ gulp.task('watch', function() {
     });
 });
 
-// Open task
+// Run nodemon task and within it on start and change, intitiate 'watch' task to re-compile static files
 gulp.task('start', function(){
   plugins.nodemon({ script: 'server.js', ext: 'html js'})
     .on('start', ['watch'])
