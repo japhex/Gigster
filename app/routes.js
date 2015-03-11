@@ -1,6 +1,6 @@
 var Gig = require('./models/gig.js');
 var User = require('./models/user.js');
-var helpers = require('gigster-utils');
+//var helpers = require('gigster-utils');
 var request = require('request');
 
 // app/routes.js
@@ -129,7 +129,7 @@ module.exports = function(app, passport) {
 					users : users,
 					user: req.user,
 					gigStack: records,
-					helpers: helpers
+					//helpers: helpers
 				});
 			});
 		});

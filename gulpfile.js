@@ -51,19 +51,13 @@ gulp.task('sass', ['clean-styles'], function() {
 gulp.task('browserify', function(){
     return gulp.src(DIRECTORIES.privateScripts + 'main.js')
         .pipe(plugins.browserify())
-        .pipe(plugins.rename('build.js'))
+        .pipe(plugins.rename('build.min.js'))
         .pipe(gulp.dest(DIRECTORIES.publicScripts))
-        .pipe(plugins.concat('build.min.js'))
-        .pipe(plugins.stripDebug())
-        .pipe(plugins.uglify().on('error', function(e) { console.log('\x07',e.message); return this.end(); }))
-        .pipe(plugins.size({showFiles:true}))
-        .pipe(gulp.dest(DIRECTORIES.publicScripts))
-        .pipe(plugins.jsdoc('./docs'));        
 });
 
 // Concatenate & Minify JS
-gulp.task('scripts', ['clean-scripts'], function() {
-    return gulp.src(DIRECTORIES.publicScripts + 'build.js')
+gulp.task('scripts', ['browserify','clean-scripts'], function() {
+    return gulp.src(DIRECTORIES.publicScripts + 'build.min.js')
         .pipe(plugins.concat('build.min.js'))
         .pipe(plugins.stripDebug())
         .pipe(plugins.uglify().on('error', function(e) { console.log('\x07',e.message); return this.end(); }))
@@ -81,7 +75,7 @@ gulp.task('imagemin', function () {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch(DIRECTORIES.privateScripts + '*.js', ['scripts']).on('change', function(event){
+    gulp.watch([DIRECTORIES.privateScripts + '*.js',DIRECTORIES.privateScripts + '/modules/*.js'], ['browserify', 'scripts']).on('change', function(event){
         changeEvent(event);
     });
     gulp.watch(DIRECTORIES.privateStyles + '*.scss', ['sass']).on('change', function(event){
@@ -89,5 +83,15 @@ gulp.task('watch', function() {
     });
 });
 
+// Open task
+gulp.task('start', function(){
+  plugins.nodemon({ script: 'server.js', ext: 'html js'})
+    .on('start', ['watch'])
+    .on('change', ['watch'])
+    .on('restart', function () {
+      console.log('restarted!');
+    });
+});
+
 // Default Task
-gulp.task('default', ['sass', 'browserify', 'scripts', 'watch']);
+gulp.task('default', ['sass', 'browserify', 'scripts', 'start']);
