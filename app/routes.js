@@ -2,6 +2,7 @@ var Gig = require('./models/gig.js');
 var User = require('./models/user.js');
 //var helpers = require('gigster-utils');
 var request = require('request');
+var async = require('async');
 
 // app/routes.js
 module.exports = function(app, passport) {
@@ -185,6 +186,9 @@ module.exports = function(app, passport) {
 	// =====================================
 	// we will want this protected so you have to be logged in to visit
 	// we will use route middleware to verify this (the isLoggedIn function)
+	// Async requests for different API calls
+
+
 	app.get('/profile', isLoggedIn, function(req, res) {
 		Gig.find().sort({gig_date: -1}).where('_id').in(req.user.gigs).exec(function (err, records) {
 			request('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=' + req.user.lastfm + '&api_key=87a726f5832926366bd09f6a3935d792&format=json', function(err, resp, body) {
@@ -195,7 +199,46 @@ module.exports = function(app, passport) {
 				});
 			});
 		});
-	});
+	
+		// var venueArray = {venues:[]};
+
+		// async.waterfall([
+		//     function(callback) {
+		//         Gig.find().sort({gig_date: -1}).where('_id').in(req.user.gigs).exec(function (err, records) {
+		//             callback(null, records);
+		//         });
+		//     },
+		//     function(gigRecords, callback) {
+		// 	    request('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=' + req.user.lastfm + '&api_key=87a726f5832926366bd09f6a3935d792&format=json', function(err, resp, body) {
+		// 	        callback(null, gigRecords, JSON.parse(body));
+		// 	    });
+		//     },
+		//     function(gigRecords, lastFmArtists, callback) {
+
+		//     	lastFmArtists.topartists.artist.forEach(function(eachField){
+		//     		request('http://api.bandsintown.com/artists/' + eachField.name + '/events/search.json?api_version=2.0&app_id=gigster&location=London,UK&radius=10', function(err, resp, body) {
+		// 	    		//venueArray.venues.push(JSON.parse(body));
+		// 	    	});
+		//     	});
+
+
+		//     	console.log(gigRecords);
+		//     	console.log("----------------------");
+		//     	console.log(lastFmArtists);
+		//     	console.log("----------------------");
+		//     	console.log(venueArray);
+
+		//     	callback(null, gigRecords, lastFmArtists, venueArray);
+		//     }
+		// ], function (err, result) {
+		// 	//console.log(result);
+
+		//      res.render('profile.ejs', {
+		//      	userObject: req.user,
+		//      	gigsAndData: result
+		//      });
+		// });	
+	}); 
 
 	// =====================================
 	// UPDATE USER =========================

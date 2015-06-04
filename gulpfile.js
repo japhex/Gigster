@@ -40,13 +40,13 @@ gulp.task('clean-scripts', function(){
 gulp.task('sass', ['clean-styles'], function() {
     return gulp.src(DIRECTORIES.privateStyles + '*.scss')
         .pipe(plugins.sourcemaps.init())
-        .pipe(plugins.sass({ style: 'expanded' }))
+        .pipe(plugins.sass({ style: 'expanded',errLogToConsole: true }))
         .pipe(plugins.autoprefixer({browsers: ['last 3 versions']}))
         .pipe(plugins.minifycss({keepBreaks:false}))
         .pipe(plugins.concat('main.css'))
         .pipe(plugins.sourcemaps.write('.'))
         .pipe(gulp.dest(DIRECTORIES.publicStyles))
-        .pipe(plugins.size({showFiles:true}))
+        .pipe(plugins.size({showFiles:true,title:'Minfied CSS'}))
         .pipe(plugins.livereload());
 });
 
@@ -65,14 +65,15 @@ gulp.task('browserify', function(){
 gulp.task('scripts', ['browserify','clean-scripts'], function() {
     return gulp.src(DIRECTORIES.publicScripts + 'build.min.js')
         .pipe(plugins.concat('build.min.js'))
-        .pipe(plugins.stripDebug())
+        //.pipe(plugins.stripDebug()) --> USE FOR PRODUCTION
         .pipe(plugins.uglify().on('error', function(e) { console.log('\x07',e.message); return this.end(); }))
-        .pipe(plugins.size({showFiles:true}))
+        .pipe(plugins.size({showFiles:true,title:'Minfied javascript'}))
         .pipe(gulp.dest(DIRECTORIES.publicScripts))
         .pipe(plugins.jsdoc('./docs'));
 });
 
-// Minify all images on build
+// Minify all images on separate build task
+// @output: /public/images/[images].png
 gulp.task('imagemin', function () {
     return gulp.src('src/images/*.png')
         .pipe(pngquant({ quality: '65-80', speed: 4})())
@@ -101,3 +102,4 @@ gulp.task('start', function(){
 
 // Default Task
 gulp.task('default', ['sass', 'browserify', 'scripts', 'start']);
+gulp.task('image', ['imagemin']);

@@ -1,5 +1,6 @@
 'use strict';
 var instance = false;
+var ui = require('./../modules/ui');
 
 
 function Data() {
@@ -15,11 +16,21 @@ function Data() {
 	* @returns Lat/Lng for venueLat/venueLong hidden fields to be posted
 	*/
 	var artistLookup = function(){
-		$('.venue-check').on('click', $('div'), function(){
-			$.post(gigster.dataCalls.apiUrl('venue',$(this).prev().val()), function(data) {
-				var venue = data.results.venuematches.venue[0];
-				$('[name="venueLat"]').val(venue.location["geo:point"]["geo:lat"]);
-				$('[name="venueLong"]').val(venue.location["geo:point"]["geo:long"]);
+		var $trigger = $('.venue-check');
+
+		$trigger.on('click', $('div'), function(){
+			ui.addLoader($trigger.parents('.popup'));
+			$.post(apiUrl('venue',$('[name="venue"]').val()), function(data) {
+				if (data.error){
+					console.log(data.message);
+				} else {
+					// Check data structure and do 2 different things
+					var venue = data.results.venuematches.venue[0];
+					$('[name="venueLat"]').val(venue.location["geo:point"]["geo:lat"]);
+					$('[name="venueLong"]').val(venue.location["geo:point"]["geo:long"]);
+					$trigger.parents('form').find('button').removeAttr('disabled');
+				}
+				ui.removeLoader();
 			});
 			return false;
 		});

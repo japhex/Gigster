@@ -9,6 +9,8 @@ function UI() {
 		maps();
 		artistFiller();
 		notificationCount();
+
+		$('.datepicker').datepicker();
 	}
 
 	var popup = function(){
@@ -87,8 +89,20 @@ function UI() {
 		// If notifications exist on page, display banner at the top of the page alerting the user to this.
 	};
 
+	var _addLoader = function(element) {
+		var $loader = $('<div class="spinner"><div class="spinner--element"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div></div>');
+
+		element.append($loader);
+	}
+
+	var _removeLoader = function(){
+		$('.spinner').remove();
+	}
+
 	return {
-		init: init
+		init: init,
+		addLoader: _addLoader,
+		removeLoader: _removeLoader
 	};
 }
 
