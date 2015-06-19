@@ -121,3 +121,26 @@
 
 /* EUGH */
 .hide-gig {display:none !important;} 
+
+.festival {
+	background: #FFE0B2;
+	border-radius:5px;
+	border-top-left-radius:0;
+	padding: 10px 20px;
+	position:relative;
+
+	.icon {
+		position: absolute;
+		top: -3px;
+		width: 30px;
+		left: -8px;
+	}
+	input {
+		width: 97px;
+	}
+	input[type="checkbox"] {
+		width: auto;
+		border:0;
+		box-shadow: none;
+	}
+}

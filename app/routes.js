@@ -199,46 +199,49 @@ module.exports = function(app, passport) {
 				});
 			});
 		});
-	
-		// var venueArray = {venues:[]};
-
-		// async.waterfall([
-		//     function(callback) {
-		//         Gig.find().sort({gig_date: -1}).where('_id').in(req.user.gigs).exec(function (err, records) {
-		//             callback(null, records);
-		//         });
-		//     },
-		//     function(gigRecords, callback) {
-		// 	    request('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=' + req.user.lastfm + '&api_key=87a726f5832926366bd09f6a3935d792&format=json', function(err, resp, body) {
-		// 	        callback(null, gigRecords, JSON.parse(body));
-		// 	    });
-		//     },
-		//     function(gigRecords, lastFmArtists, callback) {
-
-		//     	lastFmArtists.topartists.artist.forEach(function(eachField){
-		//     		request('http://api.bandsintown.com/artists/' + eachField.name + '/events/search.json?api_version=2.0&app_id=gigster&location=London,UK&radius=10', function(err, resp, body) {
-		// 	    		//venueArray.venues.push(JSON.parse(body));
-		// 	    	});
-		//     	});
-
-
-		//     	console.log(gigRecords);
-		//     	console.log("----------------------");
-		//     	console.log(lastFmArtists);
-		//     	console.log("----------------------");
-		//     	console.log(venueArray);
-
-		//     	callback(null, gigRecords, lastFmArtists, venueArray);
-		//     }
-		// ], function (err, result) {
-		// 	//console.log(result);
-
-		//      res.render('profile.ejs', {
-		//      	userObject: req.user,
-		//      	gigsAndData: result
-		//      });
-		// });	
 	}); 
+
+
+
+	// TESTING FOR EXTENDED PROFILE
+	// 
+	// 
+	// app.get('/new_profile', isLoggedIn, function(req,res) {
+
+	//     var gigStack = function(callback) {
+	//         Gig.find().sort({gig_date: -1}).where('_id').in(req.user.gigs).exec(function (err, records) {
+	//             callback(null, records);
+	//         });
+	//     };
+
+	//     var lastFmArtists = function(gigRecords, callback) {
+	// 	    request('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=' + req.user.lastfm + '&api_key=87a726f5832926366bd09f6a3935d792&format=json&limit=5', function(err, resp, body) {
+	// 	        callback(null, gigRecords, JSON.parse(body));
+	// 	    });
+	//     };
+
+	//     var bandsInTown = function(gigRecords, lastFmArtists, callback) {
+	// 	    var gigDates = [];
+
+	// 	    var sendRequest = function(artist, requestCallback) {
+	// 	        request('http://api.bandsintown.com/artists/' + artist.name + '/events/search.json?api_version=2.0&app_id=gigster&location=London,UK&radius=10', function(err,results){
+	// 	        	gigDates.push(results);
+	// 	        });
+	// 	    };
+
+	// 	    async.map(lastFmArtists.topartists.artist, sendRequest, function(err, responseArray) {
+	// 	    	console.log(gigDates);
+	// 	        callback(null, gigRecords, lastFmArtists, bandsArray);
+	// 	    });
+	// 	};
+
+	// 	async.waterfall([gigStack,lastFmArtists,bandsInTown],function(err,result){
+	// 		res.render('new_profile.ejs', {
+	// 			user: req.user,
+	// 			gigsAndData: result
+	// 		});
+	// 	});
+	// });
 
 	// =====================================
 	// UPDATE USER =========================

@@ -10,6 +10,9 @@ var gigSchema = mongoose.Schema({
     venueLat: String,
     venueLong: String,
     gig_date: Date,
+    festival: Boolean,
+    start_date: Date,
+    end_date: Date,
     created_date: Date,
     set_list: Object
 });

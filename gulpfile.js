@@ -85,7 +85,7 @@ gulp.task('watch', function() {
     gulp.watch([DIRECTORIES.privateScripts + '*.js',DIRECTORIES.privateScripts + '/modules/*.js'], ['browserify', 'scripts']).on('change', function(event){
         changeEvent(event);
     });
-    gulp.watch(DIRECTORIES.privateStyles + '*.scss', ['sass']).on('change', function(event){
+    gulp.watch([DIRECTORIES.privateStyles + '*.scss',DIRECTORIES.privateStyles + '/_partials/*.scss',DIRECTORIES.privateStyles + '/_partials/models/gigs/*.scss',DIRECTORIES.privateStyles + '/_partials/models/user/*.scss'], ['sass']).on('change', function(event){
         changeEvent(event);
     });
 });
