@@ -1,0 +1,27 @@
+[data-autolist] {
+	position: relative;
+	z-index: 2;
+}
+
+.autolist {
+	position: absolute;
+	left: 107px;
+	top: 231px;
+	max-height: 160px;
+	max-width: 210px;
+	overflow-y: scroll;
+	background: #FBFBFB;
+	padding: 0;
+	z-index: 1;
+	box-shadow: 0 0 2px 1px #999;
+	> li {
+		list-style-type: none;
+		border-bottom: 1px solid #cecece;
+		padding: 10px;
+		cursor: pointer;
+		&:hover {
+			background: #E8E8E8;
+			font-weight: bold;
+		}
+	}
+}

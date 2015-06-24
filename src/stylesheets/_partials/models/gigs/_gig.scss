@@ -123,11 +123,15 @@
 .hide-gig {display:none !important;} 
 
 .festival {
-	background: #FFE0B2;
-	border-radius:5px;
-	border-top-left-radius:0;
-	padding: 10px 20px;
 	position:relative;
+
+	.toggle-festival {
+		display: none;
+		background: #FFE0B2;
+		border-radius:5px;
+		border-top-left-radius:0;
+		padding: 10px 20px;		
+	}
 
 	.icon {
 		position: absolute;

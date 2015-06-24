@@ -8,33 +8,36 @@
 				<label for="artist" class="control-label">Artist:</label>
 				<input name="artist" class="form-control" />
 			</div>
-			Put a description or callout for information stating that they need to select a venue first, then add the address from the response to the form just as text before allowing user to add the gig.
+			To enhance your experience, we want to make sure all of the required information if accurate for you! Type in your venue, hit search, let's see what happens.
 			<div class="form-group">
 				<label for="venue" class="control-label">Venue:</label>
 				<input type="button" value="Check Venue" class="venue-check btn btn-warning control-button" />
-				<input name="venue" class="form-control control-input" />
+				<input name="venue" class="form-control control-input" data-autolist="true" />
 			</div>
 			<div class="festival">
-				<img class="icon" src="/images/icon_festival.png" />
 				<div class="form-group">
 					<label for="festival" class="control-label">Festival:</label>
 					<input name="festival" type="checkbox" class="form-control" />
 				</div>
-				<div class="form-group">
-					<label for="start_date" class="control-label">Start Date:</label>
-					<input name="start_date" class="datepicker form-control" />
+				<div class="toggle-festival">
+					<div class="form-group">
+						<label for="start_date" class="control-label">Start Date:</label>
+						<input name="start_date" class="datepicker form-control" />
+					</div>
+					<div class="form-group">
+						<label for="end_date" class="control-label">End Date:</label>
+						<input name="end_date" class="datepicker form-control" />
+					</div>
 				</div>
+			</div>
+			<div class="single-gig">
 				<div class="form-group">
-					<label for="end_date" class="control-label">End Date:</label>
-					<input name="end_date" class="datepicker form-control" />
+					<label for="gigDate" class="control-label">Gig Date:</label>
+					<input name="gigDate" class="datepicker form-control" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="gigDate" class="control-label">Gig Date:</label>
-				<input name="gigDate" class="datepicker form-control" />
-			</div>
-			<div class="form-group">
-				<button type="submit" class="btn btn-warning btn-lg" disabled>Add Gig</button>
+				<button type="submit" class="btn btn-warning btn-lg hide">Add Gig</button>
 			</div>
 		</fieldset>
 	</form>

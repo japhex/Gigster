@@ -24,11 +24,25 @@ function Data() {
 				if (data.error){
 					console.log(data.message);
 				} else {
-					// Check data structure and do 2 different things
-					var venue = data.results.venuematches.venue[0];
-					$('[name="venueLat"]').val(venue.location["geo:point"]["geo:lat"]);
-					$('[name="venueLong"]').val(venue.location["geo:point"]["geo:long"]);
-					$trigger.parents('form').find('button').removeAttr('disabled');
+					// Check data structure and do 2 different things	
+					var autoList = $('<ul class="autolist"></ul>'),
+						venue = data.results.venuematches.venue[0];
+
+					for (var i=0; i < data.results.venuematches.venue.length; i++) {
+						autoList.append('<li data-lat="' + data.results.venuematches.venue[i].location["geo:point"]["geo:lat"] + '" data-lng="' + data.results.venuematches.venue[i].location["geo:point"]["geo:long"] + '">' + data.results.venuematches.venue[i].name + '</li>');
+					}
+
+					$trigger.parent().append(autoList);
+
+					$('li').on('click',$('.autolist'), function(){
+						var chosenVenue = $(this);
+						$('[name="venueLat"]').val(chosenVenue.data('lat'));
+						$('[name="venueLong"]').val(chosenVenue.data('lng'));
+						$('[name="venue"]').val(chosenVenue.text());
+						$trigger.parents('form').find('button').removeClass('hide');
+						$('.autolist').remove();
+						return false;
+					});
 				}
 				ui.removeLoader();
 			});

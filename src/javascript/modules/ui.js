@@ -9,6 +9,7 @@ function UI() {
 		maps();
 		artistFiller();
 		notificationCount();
+		festival();
 
 		$('.datepicker').datepicker();
 	}
@@ -88,6 +89,13 @@ function UI() {
 		// Count all notifications on page and display a number next to the username.
 		// If notifications exist on page, display banner at the top of the page alerting the user to this.
 	};
+
+	var festival = function() {
+		$('[name="festival"]').click(function(){
+			$('.toggle-festival').slideToggle();
+			$('.single-gig').slideToggle();
+		});
+	}
 
 	var _addLoader = function(element) {
 		var $loader = $('<div class="spinner"><div class="spinner--element"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div></div>');
