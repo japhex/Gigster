@@ -117,6 +117,7 @@ function UI() {
 		}
 
 		$autoList.css({'top':(trigger.position().top + 31) + 'px'});
+		$('[data-autolist]').not(trigger.next()).css({'z-index':'0'});
 		trigger.parent().append($autoList);
 
 		$('li').on('click',$('.autolist'), function(){
@@ -124,6 +125,7 @@ function UI() {
 			callback($autoList, chosenItem);
 
 			// Show buttons, remove list.
+			$('[data-autolist]').not(trigger.next()).css({'z-index':'2'});
 			trigger.parents('form').find('button').removeClass('hide');
 			$('.autolist').remove();
 			return false;
