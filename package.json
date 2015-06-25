@@ -46,9 +46,10 @@
     "nib": "^1.1.0",
     "node-sass": "^2.1.1",
     "request": "^2.53.0",
-    "serve-static": "^1.9.2"    
+    "serve-static": "^1.9.2"
   },
   "devDependencies": {
+    "async": "^1.2.1",
     "ejs-locals": "^1.0.2",
     "grunt-contrib-imagemin": "^0.9.2",
     "grunt-jsdoc": "^0.5.7",
