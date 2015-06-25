@@ -46,7 +46,8 @@
     "nib": "^1.1.0",
     "node-sass": "^2.1.1",
     "request": "^2.53.0",
-    "serve-static": "^1.9.2"
+    "serve-static": "^1.9.2",
+    "async": "^1.2.1"
   },
   "devDependencies": {
     "async": "^1.2.1",
