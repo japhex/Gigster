@@ -31,7 +31,8 @@ var userSchema = mongoose.Schema({
     gigs             : Array,
     username         : {type:String, unique:true},
     email            : String,
-    lastfm           : String
+    lastfm           : String,
+    location         : String
 
 });
 

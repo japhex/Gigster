@@ -10,6 +10,7 @@ function UI() {
 		artistFiller();
 		notificationCount();
 		festival();
+		_findMe();
 
 		$('.datepicker').datepicker();
 	}
@@ -95,22 +96,57 @@ function UI() {
 			$('.toggle-festival').slideToggle();
 			$('.single-gig').slideToggle();
 		});
-	}
+	};
 
 	var _addLoader = function(element) {
 		var $loader = $('<div class="spinner"><div class="spinner--element"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div></div>');
 
 		element.append($loader);
-	}
+	};
 
 	var _removeLoader = function(){
 		$('.spinner').remove();
-	}
+	};
+
+	var _autoList = function(trigger, data, assemble, callback){
+		var $autoList = $('<ul class="autolist"></ul>');
+
+		// For data collection passed to function, loop through each item and assemble list based on custom template.
+		for (var i=0; i < data.length; i++) {
+			assemble($autoList, data[i]);
+		}
+
+		$autoList.css({'top':(trigger.position().top + 31) + 'px'});
+		trigger.parent().append($autoList);
+
+		$('li').on('click',$('.autolist'), function(){
+			var chosenItem = $(this);
+			callback($autoList, chosenItem);
+
+			// Show buttons, remove list.
+			trigger.parents('form').find('button').removeClass('hide');
+			$('.autolist').remove();
+			return false;
+		});
+	};
+
+	var _findMe = function(){
+		$('[data-findme]').click(function(){
+			_addLoader($(this).parents('.popup'));
+			navigator.geolocation.getCurrentPosition(function(position) {
+				_removeLoader();
+			  	console.log(position.coords.latitude, position.coords.longitude);
+			});
+			return false;
+		});
+	};
 
 	return {
 		init: init,
 		addLoader: _addLoader,
-		removeLoader: _removeLoader
+		removeLoader: _removeLoader,
+		autoList: _autoList,
+		findme: _findMe
 	};
 }
 

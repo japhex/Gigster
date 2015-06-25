@@ -16,32 +16,39 @@ function Data() {
 	* @returns Lat/Lng for venueLat/venueLong hidden fields to be posted
 	*/
 	var artistLookup = function(){
-		var $trigger = $('.venue-check');
+		var $venueCheck = $('.venue-check');
 
-		$trigger.on('click', $('div'), function(){
-			ui.addLoader($trigger.parents('.popup'));
+		$venueCheck.on('click', $('div'), function(){
+			ui.addLoader($venueCheck.parents('.popup'));
 			$.post(apiUrl('venue',$('[name="venue"]').val()), function(data) {
 				if (data.error){
 					console.log(data.message);
 				} else {
-					// Check data structure and do 2 different things	
-					var autoList = $('<ul class="autolist"></ul>'),
-						venue = data.results.venuematches.venue[0];
+					ui.autoList($venueCheck,data.results.venuematches.venue, function($autoList, data) {
+						$autoList.append('<li data-lat="' + data.location["geo:point"]["geo:lat"] + '" data-lng="' + data.location["geo:point"]["geo:long"] + '">' + data.name + '</li>');
+					}, function($autoList,chosenItem){
+						$('[name="venueLat"]').val(chosenItem.data('lat'));
+						$('[name="venueLong"]').val(chosenItem.data('lng'));
+						$('[name="venue"]').val(chosenItem.text());
+					});
+				}
+				ui.removeLoader();
+			});
+			return false;
+		});
 
-					for (var i=0; i < data.results.venuematches.venue.length; i++) {
-						autoList.append('<li data-lat="' + data.results.venuematches.venue[i].location["geo:point"]["geo:lat"] + '" data-lng="' + data.results.venuematches.venue[i].location["geo:point"]["geo:long"] + '">' + data.results.venuematches.venue[i].name + '</li>');
-					}
+		var $artistCheck = $('.artist-check');
 
-					$trigger.parent().append(autoList);
-
-					$('li').on('click',$('.autolist'), function(){
-						var chosenVenue = $(this);
-						$('[name="venueLat"]').val(chosenVenue.data('lat'));
-						$('[name="venueLong"]').val(chosenVenue.data('lng'));
-						$('[name="venue"]').val(chosenVenue.text());
-						$trigger.parents('form').find('button').removeClass('hide');
-						$('.autolist').remove();
-						return false;
+		$artistCheck.on('click', $('div'), function(){
+			ui.addLoader($artistCheck.parents('.popup'));
+			$.post(apiUrl('artist',$('[name="artist"]').val()), function(data) {
+				if (data.error){
+					console.log(data.message);
+				} else {
+					ui.autoList($artistCheck,data.results.artistmatches.artist, function($autoList, data) {
+						$autoList.append('<li>' + data.name + '</li>');
+					}, function($autoList,chosenItem){
+						$('[name="artist"]').val(chosenItem.text());
 					});
 				}
 				ui.removeLoader();
@@ -126,11 +133,6 @@ function Data() {
 		// 		});
 		// 	})(gig);
 		//}
-	};
-
-	var printSetlist = function(data){
-		console.log('test');
-		//console.log(data);
 	};
 
 	return {
