@@ -97,7 +97,7 @@ function Data() {
 	};
 
 	var loadBands = function(){
-	var collection = $('.ticket-artist .artist-name');
+		// var collection = $('.ticket-artist .artist-name');
 
 		// for (var i=0;i<collection.length;i++){
 		// 	var band = $(collection[i]);

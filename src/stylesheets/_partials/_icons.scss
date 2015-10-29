@@ -1,0 +1,29 @@
+/* ICONS */
+.icon {
+	display: inline-block;
+	font-size: 2rem;
+
+	&-edit:before {content:'\e802';}
+	&-delete:before {content:'\e800';}
+	&-cassette:before {content:'\e801';}
+	&-label:before {content:'\e803'; }
+	&-musicplayer:before {content:'\e804';}
+
+	&-container {
+		position:absolute;
+		right:-5px;
+		top:-5px;
+
+		&_left {
+			left:-5px;
+		}
+		&_bottom {
+			bottom:-5px;
+		}
+
+		li {
+			list-style-type: none;
+			display: inline-block;
+		}
+	}
+}

@@ -67,7 +67,14 @@
 	}
 }
 
-.display-date {display:inline-block;position:relative;top:9px;min-width:62px;}
+.display-date {
+	display:inline-block;
+	position:relative;
+	top:9px;
+	min-width:62px;
+    border: 1px solid #fefefe;
+    box-shadow: 0px 0px 5px 0px rgba(181,181,181,0.4);
+}
 .date-sticker {/*position:absolute;top:-5px;left:-10px;*/font-family:'Gafata', sans-serif;}
 .date-sticker span {display:block;font-weight:bold;}
 .date-sticker .weekday {display:none;}
@@ -89,22 +96,12 @@
 
 .event-detail.ticket-artist {height:auto;display:inline-block;padding:17px 0 0 17px;}
 
-.app-action-container {
-	li {
-		display:inline-block;
-	}
-	
-	position:absolute;
-	top:5px;
-	right:5px;
-}
-
 .img-crop {width:100px;overflow:hidden;float:left;}
 .band-logo {display:inline-block;max-height:100px;min-height:100px;}
 
 .map-minified {height:50px;transition:height 0.4s;}
 .map-expanded {height:300px;transition:height 0.4s;}
-.map-expanded img {position:static;}
+.map-expanded img {position:static;width:100%;}
 
 /*-- Forms --*/
 /* Update Form */

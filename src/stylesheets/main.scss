@@ -1,4 +1,11 @@
+/* Bourbon library */
+@import '../../bower_components/bourbon/app/assets/stylesheets/_bourbon';
+@import '../../bower_components/neat/app/assets/stylesheets/_neat';
+@import '../../bower_components/sass-rem/_rem';
+
+@import '_partials/_fonts';
 @import '_partials/_nav';
+@import '_partials/_icons';
 @import 'modules';
 @import 'responsive';
 
@@ -15,7 +22,9 @@ ul {margin:0;padding:0;}
 /* Bootstrap Module Overrides */
 
 .panel-body h1 {margin-top:0;}
-.navbar-nav li {padding:15px;}
+.navbar-nav li {
+  @include rem(padding,15px);
+}
 .navbar-nav li a {padding:0;}
 .badge {background:#d9534f;padding:3px 6px;}
 

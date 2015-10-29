@@ -70,7 +70,7 @@ function UI() {
 			var currentBar = $($fillAmount[i]),
 				fillBarAmount = currentBar.data('filler');
 
-			currentBar.animate({'width': fillBarAmount + '%'},1000);
+			currentBar.animate({'width': (fillBarAmount > 2000 ? (fillBarAmount / 100) : (fillBarAmount / 10)) + '%'},1000);
 		}
 	};
 

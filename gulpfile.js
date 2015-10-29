@@ -15,7 +15,9 @@ var DIRECTORIES = {
     privateStyles : 'src/stylesheets/',
     publicScripts : 'public/javascript/',
     privateScripts : 'src/javascript/',
-    publicImages : 'public/images/'
+    publicImages : 'public/images/',
+    publicFonts : 'public/fonts/',
+    privateFonts : 'src/fonts/'
 };
 
 // Function to fire everytime a file is changed and displayed the changes in the console
@@ -80,6 +82,13 @@ gulp.task('imagemin', function () {
         .pipe(gulp.dest(DIRECTORIES.publicImages));
 });
 
+// Move fonts to public directory
+// @output: /public/fonts/[font].woff
+gulp.task('fonts', function () {
+    return gulp.src('src/fonts/*')
+        .pipe(gulp.dest(DIRECTORIES.publicFonts));
+});
+
 // Watch Files For Changes
 gulp.task('watch', function() {
     gulp.watch([DIRECTORIES.privateScripts + '*.js',DIRECTORIES.privateScripts + '/modules/*.js'], ['browserify', 'scripts']).on('change', function(event){
@@ -101,5 +110,5 @@ gulp.task('start', function(){
 });
 
 // Default Task
-gulp.task('default', ['sass', 'browserify', 'scripts', 'start']);
+gulp.task('default', ['sass', 'browserify', 'scripts', 'fonts', 'start']);
 gulp.task('image', ['imagemin']);

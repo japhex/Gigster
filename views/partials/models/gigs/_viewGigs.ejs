@@ -27,12 +27,12 @@
 							<span class="static-value artist-name" contenteditable><%= futureGigs[i].artist %></span>
 							<span class="static-value venue-name" contenteditable><%= futureGigs[i].venue %></span>
 						</div>
-						<ul class="app-action-container">
-							<li><a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>">remove show</a> |</li> 
-							<li><a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>" data-action-form="update-gig" data-trigger="popup">update show</a></li>
+						<ul class="icon-container">
+							<li><a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>" data-action-form="update-gig" data-trigger="popup"><i class="icon icon-edit"></i></a></li>
+							<li><a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>"><i class="icon icon-delete"></i></a></li> 
 						</ul>
 						<div class="map-container <%= freshSequence == 1 ? 'map-expanded' : '' %>" data-toggle="true">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>&zoom=15&size=410x300&markers=color:red%7Clabel:%7C<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>" />
+							<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>&zoom=15&size=610x500&markers=color:red%7Clabel:%7C<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>" />
 						</div>
 					</div>
 				</li>
@@ -74,7 +74,9 @@
 							<label class="hidden-update">Date:</label>
 							<abbr>VOID: </abbr><span class="static-value past-date"><%= pastGigs[i].gig_date %></span>
 						</div>
-						<a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>">remove show</a> | <a class="app-action-change action-update" href="/update/<%= pastGigs[i]._id %>"  data-action-form="update-gig" data-trigger="popup">update show</a>
+						<ul class="icon-container icon-container_bottom">
+							<!-- <li><a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>"><i class="icon icon-delete"></i></a></li> -->
+						</ul>
 					</div>
 				</li>
 				<% freshSequence++ %>

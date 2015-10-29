@@ -1,2 +1,11 @@
 /* WIDGETS */
-.widget {padding:10px;background:#fefefe;display:inline-block;width:49%;box-shadow:0px 1px 4px #ccc;max-height:427px;overflow:scroll;margin:5px;width:30%;}
+#main {
+	@include outer-container(100%);
+	.widget {
+		@include span-columns(4);
+		padding:10px;
+		background:#fefefe;
+		box-shadow:0px 1px 4px #ccc;
+		margin:5px;
+	}
+}

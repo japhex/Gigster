@@ -4,7 +4,7 @@
 			<% for(var i=0; i<=10; i++) {%>
 				<tr>
 					<td>
-						<span data-filler="<%= lastFmArtists.topartists.artist[i].playcount.substring(0,2) %>"></span>
+						<span data-filler="<%= lastFmArtists.topartists.artist[i].playcount.substring(0,4) %>"></span>
 						<a href="<%= lastFmArtists.topartists.artist[i].url %>"><%= lastFmArtists.topartists.artist[i].name %></a>
 					</td>
 					<td><span class="artist-count"><%= lastFmArtists.topartists.artist[i].playcount %></span></td>
