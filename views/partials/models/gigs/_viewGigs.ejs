@@ -5,7 +5,7 @@
 			var freshSequence = 1;
 		%>
 
-		<% for(var i=0; i<futureGigStack.length; i++) {%>
+		<% for(var i=0; i< futureGigStack.length; i++) {%>
 			<li data-date="<%= futureGigStack[i].gig_date %>" data-id="<%= futureGigStack[i]._id %>" data-lat="<%= futureGigStack[i].venueLat %>" data-long="<%= futureGigStack[i].venueLong %>">
 				<div class="ticket-container">
 					<div class="display-date">
@@ -36,7 +36,7 @@
 </section>
 <section id="past" class="gig-stack widget">
 	<ul id="past-gigs">
-		<% for(var i=0; i<pastGigStack.length; i++) {%>
+		<% for(var i=0; i< pastGigStack.length; i++) {%>
 			<li data-date="<%= pastGigStack[i].gig_date %>" data-id="<%= pastGigStack[i]._id %>">
 				<div class="ticket-container">
 					<div class="event-detail ticket-artist">
