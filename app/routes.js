@@ -191,10 +191,25 @@ module.exports = function(app, passport) {
 
 	app.get('/profile', isLoggedIn, function(req, res) {
 		Gig.find().sort({gig_date: -1}).where('_id').in(req.user.gigs).exec(function (err, records) {
+			
+			// Organise gigs into past and future
+			var currentDate = new Date(),
+				futureGigs = [],
+				pastGigs = [];
+
+			for(var i=0; i<records.length; i++) {
+				if (currentDate - records[i].gig_date < 0) {
+					futureGigs.push(records[i]);
+				} else {
+					pastGigs.push(records[i]);
+				}
+			}
 			request('http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=' + req.user.lastfm + '&api_key=87a726f5832926366bd09f6a3935d792&format=json', function(err, resp, body) {
 				res.render('profile.ejs', {
 					user : req.user,
-					gigStack : records,
+					futureGigStack : futureGigs,
+					pastGigStack : pastGigs,
+					gigStack: records,
 					lastFmArtists : JSON.parse(body)
 				});
 			});

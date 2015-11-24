@@ -2,86 +2,61 @@
 	<ul id="future-gigs">
 
 		<%
-			// Horrible, have to sort future dates in template as collection
-			// comes out as one but we want the two sets in different orders.
-			var futureGigs = gigStack;
-			futureGigs.sort(function(a,b){
-			  return new Date(a.gig_date) - new Date(b.gig_date);
-			});
 			var freshSequence = 1;
 		%>
 
-		<% if (futureGigs.length < 1) { %>
+		<% for(var i=0; i<futureGigStack.length; i++) {%>
+			<li data-date="<%= futureGigStack[i].gig_date %>" data-id="<%= futureGigStack[i]._id %>" data-lat="<%= futureGigStack[i].venueLat %>" data-long="<%= futureGigStack[i].venueLong %>">
+				<div class="ticket-container">
+					<div class="display-date">
+						<span class="static-value"><%= futureGigStack[i].gig_date %></span>
+					</div>
+					<div class="event-detail ticket-artist">
+						<span class="static-value artist-name" contenteditable><%= futureGigStack[i].artist %></span>
+						<span class="static-value venue-name" contenteditable><%= futureGigStack[i].venue %></span>
+					</div>
+					<ul class="icon-container">
+						<li><a class="app-action-change action-update" href="/update/<%= futureGigStack[i]._id %>" data-action-form="update-gig" data-trigger="popup"><i class="icon icon-edit"></i></a></li>
+						<li><a class="app-action-change" href="/delete/<%= futureGigStack[i]._id %>"><i class="icon icon-delete"></i></a></li> 
+					</ul>
+					<div class="map-container <%= freshSequence == 1 ? 'map-expanded' : '' %>" data-toggle="true">
+						<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigStack[i].venueLat %>,<%= futureGigStack[i].venueLong %>&zoom=15&size=610x500&markers=color:red%7Clabel:%7C<%= futureGigStack[i].venueLat %>,<%= futureGigStack[i].venueLong %>" />
+					</div>
+				</div>
+			</li>
+			<% 
+				freshSequence++;
+			%>
+		<% } %>
+		<% if (futureGigStack.length < 1){ %>
 			<li class="stack-info">You don't currently have any upcoming gigs.</li>
 		<% } %>
-
-		<% for(var i=0; i<futureGigs.length; i++) {%>
-			<% var currentDate = new Date(); %>
-			<% if (currentDate - futureGigs[i].gig_date < 0){ %>
-				<li data-date="<%= futureGigs[i].gig_date %>" data-id="<%= futureGigs[i]._id %>" data-lat="<%= futureGigs[i].venueLat %>" data-long="<%= futureGigs[i].venueLong %>">
-					<div class="ticket-container">
-						<div class="display-date">
-							<span class="static-value"><%= futureGigs[i].gig_date %></span>
-						</div>						
-						<div class="event-detail ticket-artist">
-							<span class="static-value artist-name" contenteditable><%= futureGigs[i].artist %></span>
-							<span class="static-value venue-name" contenteditable><%= futureGigs[i].venue %></span>
-						</div>
-						<ul class="icon-container">
-							<li><a class="app-action-change action-update" href="/update/<%= futureGigs[i]._id %>" data-action-form="update-gig" data-trigger="popup"><i class="icon icon-edit"></i></a></li>
-							<li><a class="app-action-change" href="/delete/<%= futureGigs[i]._id %>"><i class="icon icon-delete"></i></a></li> 
-						</ul>
-						<div class="map-container <%= freshSequence == 1 ? 'map-expanded' : '' %>" data-toggle="true">
-							<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>&zoom=15&size=610x500&markers=color:red%7Clabel:%7C<%= futureGigs[i].venueLat %>,<%= futureGigs[i].venueLong %>" />
-						</div>
-					</div>
-				</li>
-				<% freshSequence++ %>
-			<% }%>
-		<% } %>	
 
 	</ul>
 </section>
 <section id="past" class="gig-stack widget">
 	<ul id="past-gigs">
-
-		<%
-			// Horrible, have to sort future dates in template as collection
-			// comes out as one but we want the two sets in different orders.
-			var pastGigs = gigStack;
-			pastGigs.sort(function(a,b){
-			  return new Date(b.gig_date) - new Date(a.gig_date);
-			});
-			var freshSequence = 1;
-		%>
-
-		<% if (pastGigs.length < 1) { %>
+		<% for(var i=0; i<pastGigStack.length; i++) {%>
+			<li data-date="<%= pastGigStack[i].gig_date %>" data-id="<%= pastGigStack[i]._id %>">
+				<div class="ticket-container">
+					<div class="event-detail ticket-artist">
+						<span class="static-value artist-name"><%= pastGigStack[i].artist %></span>
+						<div class="event-detail ticket-venue">
+							<span class="static-value"><%= pastGigStack[i].venue %></span>
+						</div>								
+					</div>
+					<div class="display-date">
+						<label class="hidden-update">Date:</label>
+						<abbr>VOID: </abbr><span class="static-value past-date"><%= pastGigStack[i].gig_date %></span>
+					</div>
+					<ul class="icon-container icon-container_bottom">
+						<!-- <li><a class="app-action-change" href="/delete/<%= pastGigStack[i]._id %>"><i class="icon icon-delete"></i></a></li> -->
+					</ul>
+				</div>
+			</li>
+		<% } %>
+		<% if (pastGigStack.length < 1) { %>
 			<li class="stack-info">You haven't been to any shows.</li>
 		<% } %>
-
-		<% for(var i=0; i<pastGigs.length; i++) {%>
-			<% var currentDate = new Date(); %>
-			<% if (currentDate - pastGigs[i].gig_date > 0){ %>
-				<li data-date="<%= pastGigs[i].gig_date %>" data-id="<%= pastGigs[i]._id %>">
-					<div class="ticket-container">
-						<div class="event-detail ticket-artist">
-							<span class="static-value artist-name"><%= pastGigs[i].artist %></span>
-							<div class="event-detail ticket-venue">
-								<span class="static-value"><%= pastGigs[i].venue %></span>
-							</div>								
-						</div>
-						<div class="display-date">
-							<label class="hidden-update">Date:</label>
-							<abbr>VOID: </abbr><span class="static-value past-date"><%= pastGigs[i].gig_date %></span>
-						</div>
-						<ul class="icon-container icon-container_bottom">
-							<!-- <li><a class="app-action-change" href="/delete/<%= pastGigs[i]._id %>"><i class="icon icon-delete"></i></a></li> -->
-						</ul>
-					</div>
-				</li>
-				<% freshSequence++ %>
-			<% } %>
-		<% } %>
-
 	</ul>
 </section>
