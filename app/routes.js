@@ -198,6 +198,8 @@ module.exports = function(app, passport) {
 				pastGigs = [];
 
 			for(var i=0; i< records.length; i++) {
+				// Build setlist object for each gig
+
 				if (currentDate - records[i].gig_date < 0) {
 					futureGigs.push(records[i]);
 				} else {

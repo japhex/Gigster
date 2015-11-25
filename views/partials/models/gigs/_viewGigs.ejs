@@ -1,10 +1,5 @@
 <section id="upcoming" class="gig-stack widget mobile-no-scroll">
 	<ul id="future-gigs">
-
-		<%
-			var freshSequence = 1;
-		%>
-
 		<% for(var i=0; i< futureGigStack.length; i++) {%>
 			<li data-date="<%= futureGigStack[i].gig_date %>" data-id="<%= futureGigStack[i]._id %>" data-lat="<%= futureGigStack[i].venueLat %>" data-long="<%= futureGigStack[i].venueLong %>">
 				<div class="ticket-container">
@@ -19,15 +14,13 @@
 						<li><a class="app-action-change action-update" href="/update/<%= futureGigStack[i]._id %>" data-action-form="update-gig" data-trigger="popup"><i class="icon icon-edit"></i></a></li>
 						<li><a class="app-action-change" href="/delete/<%= futureGigStack[i]._id %>"><i class="icon icon-delete"></i></a></li> 
 					</ul>
-					<div class="map-container <%= freshSequence == 1 ? 'map-expanded' : '' %>" data-toggle="true">
+					<div class="map-container" data-toggle="true">
 						<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigStack[i].venueLat %>,<%= futureGigStack[i].venueLong %>&zoom=15&size=610x500&markers=color:red%7Clabel:%7C<%= futureGigStack[i].venueLat %>,<%= futureGigStack[i].venueLong %>" />
 					</div>
 				</div>
 			</li>
-			<% 
-				freshSequence++;
-			%>
 		<% } %>
+
 		<% if (futureGigStack.length < 1){ %>
 			<li class="stack-info">You don't currently have any upcoming gigs.</li>
 		<% } %>

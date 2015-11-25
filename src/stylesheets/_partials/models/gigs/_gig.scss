@@ -58,7 +58,6 @@
 	
 	.display-date {
 		color:#E62534;
-		border:1px dashed #E62534;
 		padding:8px;
 		font-family:'Rock Salt';
 		position:absolute;
@@ -67,45 +66,73 @@
 	}
 }
 
-time.icon-calendar {
-  	font-size: 1em;
-  	display: block;
-  	position: relative;
-  	width: 7em;
-  	height: 7em;
-  	background-color: #fff;
-  	border-radius: 0.6em;
-  	box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;
-  	overflow: hidden;
-	* {
-  		display: block;
-  		width: 100%;
-  		font-size: 1em;
-  		font-weight: bold;
-  		font-style: normal;
-  		text-align: center;
-	}
-	strong {
-  		position: absolute;
-  		top: 0;
-  		padding: 0.4em 0;
-  		color: #fff;
-  		background-color: #E62534;
-  		border-bottom: 1px dashed #E62534;
-  		box-shadow: 0 2px 0 #E62534;
-	}
-	em {
-  		position: absolute;
-  		bottom: 0.3em;
-  		color: #E62534;
-	}
-	span {
-  		font-size: 2.8em;
-  		letter-spacing: -0.05em;
-  		padding-top: 0.8em;
-  		color: #2f2f2f;
-	}
+.calendar{
+	padding-top:5px;
+	width:80px;
+	background:#ededef;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ededef), to(#ccc));
+	background: -moz-linear-gradient(top,  #ededef,  #ccc);
+	font:bold 30px/60px;
+	text-align:center;
+	color:#000;
+	text-shadow:#fff 0 1px 0;	
+	border-radius:3px;
+	box-shadow:0 2px 2px #888;
 }
+
+.calendar em{
+	display:block;
+	font:12px/30px "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+	color:#fff;
+	text-shadow:#00365a 0 -1px 0;	
+	background:#04599a;
+	background:-webkit-gradient(linear, left top, left bottom, from(#04599a), to(#00365a)); 
+	background:-moz-linear-gradient(top,  #04599a,  #00365a); 
+	-moz-border-radius-bottomright:3px;
+	-webkit-border-bottom-right-radius:3px;	
+	border-bottom-right-radius:3px;
+	-moz-border-radius-bottomleft:3px;
+	-webkit-border-bottom-left-radius:3px;	
+	border-bottom-left-radius:3px;	
+	border-top:1px solid #00365a;
+	}
+
+.calendar:before, .calendar:after{
+	content:'';
+	float:left;
+	position:absolute;
+	top:5px;	
+	width:8px;
+	height:8px;
+	background:#111;
+	z-index:1;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	-moz-box-shadow:0 1px 1px #fff;
+	-webkit-box-shadow:0 1px 1px #fff;
+	box-shadow:0 1px 1px #fff;
+	}
+.calendar:before{left:11px;}	
+.calendar:after{right:11px;}
+
+.calendar em:before, .calendar em:after{
+	content:'';
+	float:left;
+	position:absolute;
+	top:-5px;	
+	width:4px;
+	height:14px;
+	background:#dadada;
+	background:-webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#aaa)); 
+	background:-moz-linear-gradient(top,  #f1f1f1,  #aaa); 
+	z-index:2;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	}
+.calendar em:before{left:13px;}
+.calendar em:after{right:13px;}
 
 .display-date {
 	display:inline-block;
@@ -113,7 +140,7 @@ time.icon-calendar {
 	top:9px;
 	min-width:62px;
 }
-.date-sticker {/*position:absolute;top:-5px;left:-10px;*/font-family:'Gafata', sans-serif;}
+.date-sticker {font-family:'Gafata', sans-serif;}
 .date-sticker span {display:block;font-weight:bold;}
 .date-sticker .weekday {display:none;}
 .day {font-size:3em;line-height:0.5em;}
@@ -153,9 +180,6 @@ time.icon-calendar {
 .venue-name {display:block;}
 
 .gig-date {display:none;}
-
-/* EUGH */
-.hide-gig {display:none !important;} 
 
 .festival {
 	position:relative;

@@ -31,11 +31,7 @@ function APICalls() {
 				dateString += "<span class='month'>" + $($dates[i]).text().substring(4,7) + "</span>";
 				dateString += "<span class='year'> " + $($dates[i]).text().substring(13,15) + "</span>";
 			} else {
-				dateString = "<time datetime='2014-09-20' class='icon-calendar'>";
-				dateString += "<em>" + $($dates[i]).text().substring(0,3) + " </em>";
-				dateString += "<strong>" + $($dates[i]).text().substring(4,7) + "</strong>";
-				dateString += "<span>" + $($dates[i]).text().substring(8,11) + "</span>";
-				dateString += "</time>";
+				dateString = "<p class='calendar'>" + $($dates[i]).text().substring(4,7) + "<em>" + $($dates[i]).text().substring(0,3) + "</em></p>";
 			}
 			$($dates[i]).html(dateString);
 		}
