@@ -11,8 +11,8 @@
 						<span class="static-value venue-name" contenteditable><%= futureGigStack[i].venue %></span>
 					</div>
 					<ul class="icon-container">
-						<li><a class="app-action-change action-update" href="/update/<%= futureGigStack[i]._id %>" data-action-form="update-gig" data-trigger="popup"><i class="icon icon-edit"></i></a></li>
-						<li><a class="app-action-change" href="/delete/<%= futureGigStack[i]._id %>"><i class="icon icon-delete"></i></a></li> 
+						<!--<li><a class="app-action-change action-update" href="/update/<%= futureGigStack[i]._id %>" data-action-form="update-gig" data-trigger="popup"><i class="icon icon-edit"></i></a></li>
+						<li><a class="app-action-change" href="/delete/<%= futureGigStack[i]._id %>"><i class="icon icon-delete"></i></a></li>-->
 					</ul>
 					<div class="map-container" data-toggle="true">
 						<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= futureGigStack[i].venueLat %>,<%= futureGigStack[i].venueLong %>&zoom=15&size=610x500&markers=color:red%7Clabel:%7C<%= futureGigStack[i].venueLat %>,<%= futureGigStack[i].venueLong %>" />

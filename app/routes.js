@@ -142,10 +142,29 @@ module.exports = function(app, passport) {
 	app.get('/users/:username', isLoggedIn, function (req, res) {
 		User.findOne({username: req.params.username}, function (err, user) {
 			Gig.find().sort({gig_date: -1}).where('_id').in(user.gigs).exec(function (err, records) {
+				// Organise gigs into past and future
+				var currentDate = new Date(),
+					futureGigs = [],
+					pastGigs = [];
+
+				for(var i=0; i< records.length; i++) {
+					if (currentDate - records[i].gig_date < 0) {
+						futureGigs.push(records[i]);
+					} else {
+						pastGigs.push(records[i]);
+					}
+				}
+
+				futureGigs.sort(function(a,b){
+				  return new Date(a.gig_date) - new Date(b.gig_date);
+				});
+
 				res.render('partials/models/user/_viewUser.ejs', { 
 					title : user.name,
 					user: user,
-					gigStack: records
+					gigStack: records,
+					futureGigStack: futureGigs,
+					pastGigStack: pastGigs
 				});
 			});
 		});
@@ -198,8 +217,6 @@ module.exports = function(app, passport) {
 				pastGigs = [];
 
 			for(var i=0; i< records.length; i++) {
-				// Build setlist object for each gig
-
 				if (currentDate - records[i].gig_date < 0) {
 					futureGigs.push(records[i]);
 				} else {
